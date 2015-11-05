@@ -1,12 +1,12 @@
 import React, {Component, PropTypes} from 'react';
-import { Link } from 'react-router';
 import { connect } from 'react-redux';
-import * as ItemActions from '../actions/items';
+import * as ItemActions from '../actions/products';
+import { getVisibleProducts } from '../reducers/products'
 import { bindActionCreators } from 'redux';
 import ImageLoader  from 'react-imageloader';
 
 @connect(state => ({
-  data: state.items
+  data: getVisibleProducts(state.products)
 }), dispatch => ({
   actions: bindActionCreators(ItemActions, dispatch)
 }))
@@ -27,10 +27,8 @@ export default class Item extends Component {
     }
 
   render () {
-    const { data, actions, params } = this.props;
-    const item = actions.fetchItems();
-    console.log(item);
-    // const item = data.items.filter(c => c.id == params.id)[0];
+    const { data, params } = this.props;
+    const item = data.filter(c => c.id == params.id)[0];
     this.state = item ? item : this.initialState;
 
     function preloader() {

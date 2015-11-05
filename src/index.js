@@ -1,10 +1,11 @@
+import 'babel-core/polyfill'
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { render } from 'react-dom';
 import {createHashHistory, createHistory} from 'history';
-import Root from './Root';
+import Root from './containers/Root';
 
 const history = process.env.NODE_ENV === 'production' ?
   createHashHistory() :
   createHistory();
 
-ReactDOM.render(<Root history={history}/>, document.getElementById('root'));
+render(<Root history={history}/>, document.getElementById('root'));

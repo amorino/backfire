@@ -1,0 +1,19 @@
+[{
+  "id": 1,
+  "title": "Work 1",
+  "description": "description 1",
+  "inventory": 2,
+  "image": "http://payload336.cargocollective.com/1/17/574234/9036095/DSC_0817_1250.jpg"
+}, {
+  "id": 2,
+  "title": "Work 1",
+  "description": "description 2",
+  "inventory": 10,
+  "image": "http://payload336.cargocollective.com/1/17/574234/9036350/DSC_0613_1250.JPG"
+}, {
+  "id": 3,
+  "title": "Work 1",
+  "description": "description 1",
+  "inventory": 5,
+  "image": "http://payload336.cargocollective.com/1/17/574234/9036103/DSC_1261_1250.jpg"
+}]

@@ -2,7 +2,6 @@ import React, { PropTypes, Component } from 'react';
 import { Link } from 'react-router';
 import classnames from 'classnames';
 
-
 export default class MenuListItem extends Component{
 
   static propTypes = {

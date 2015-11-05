@@ -1,10 +1,10 @@
 {
-  "name": "react-gear",
+  "name": "backfire",
   "version": "0.0.1",
   "description": "A boilerplate with hot reloading React components using redux.",
   "scripts": {
     "clean": "rimraf dist",
-    "build:webpack": "NODE_ENV=production webpack --config webpack.config.prod.js",
+    "build:webpack": "NODE_ENV=production webpack --config webpack.config.production.js",
     "build": "npm run clean && npm run build:webpack",
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js",
@@ -12,7 +12,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Amorino/react-gear.git"
+    "url": "git+https://github.com/Amorino/backfire.git"
   },
   "keywords": [
     "react",
@@ -25,27 +25,30 @@
   "author": "Erick Bazán",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Amorino/react-gear/issues"
+    "url": "https://github.com/Amorino/backfire/issues"
   },
-  "homepage": "https://github.com/Amorino/react-gear",
+  "homepage": "https://github.com/Amorino/backfire",
   "devDependencies": {
     "babel-core": "^5.8.24",
     "babel-eslint": "^4.1.3",
     "babel-loader": "^5.3.2",
     "babel-plugin-react-transform": "^1.1.0",
+    "css-loader": "^0.21.0",
     "eslint": "^1.4.3",
     "eslint-plugin-react": "^3.4.1",
+    "express": "^4.13.3",
+    "json-loader": "^0.5.3",
+    "raw-loader": "^0.5.1",
     "react-transform-catch-errors": "^1.0.0",
     "react-transform-hmr": "^1.0.1",
     "rimraf": "^2.4.3",
+    "style-loader": "^0.13.0",
     "webpack": "^1.12.2",
     "webpack-dev-middleware": "^1.2.0",
     "webpack-hot-middleware": "^2.1.0"
   },
   "dependencies": {
     "classnames": "^2.1.3",
-    "css-loader": "^0.21.0",
-    "express": "^4.13.3",
     "fetch-jsonp": "^0.9.2",
     "history": "^1.9.1",
     "humps": "^1.0.0",
@@ -55,20 +58,15 @@
     "moment": "^2.10.6",
     "normalizr": "^1.3.1",
     "object-assign": "^4.0.1",
-    "raw-loader": "^0.5.1",
-    "react": "^0.14.0-rc1",
-    "react-dom": "^0.14.0-rc1",
+    "react": "^0.14.0",
+    "react-dom": "^0.14.0",
     "react-imageloader": "^2.1.0",
     "react-redux": "^4.0.0",
     "react-router": "^1.0.0-rc1",
     "redbox-react": "^1.1.1",
-    "redux": "^3.0.2",
-    "redux-logger": "^2.0.4",
     "redux": "^3.0.0",
-    "redux-logger": "^1.0.8",
-    "redux-react-router": "^1.0.0-beta3",
+    "redux-logger": "^2.0.4",
     "redux-router": "^1.0.0-beta3",
-    "redux-thunk": "^1.0.0",
-    "style-loader": "^0.13.0"
+    "redux-thunk": "^1.0.0"
   }
 }

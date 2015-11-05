@@ -1,13 +1,12 @@
 import React, { PropTypes, Component } from 'react';
-import { Link } from 'react-router';
-import { connect } from 'react-redux';
 import MenuListItem from './MenuListItem';
 
 const menuItems = [
   { text: 'Home', link: '/' },
   { text: 'About', link: '/about' },
-  { text: 'Item', link: '/item/77' },
-  { text: 'Item', link: '/item/1' }
+  { text: 'Amorino', link: '/users/amorino' },
+  { text: 'Item', link: '/item/1' },
+  { text: 'Items', link: '/items' }
 ];
 
 export default class Menu extends Component {

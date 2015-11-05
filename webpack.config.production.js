@@ -1,4 +1,3 @@
-/* eslint-disable no-var */
 var path = require('path');
 var webpack = require('webpack');
 
