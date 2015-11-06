@@ -8,6 +8,7 @@ import zip from 'lodash/array/zip';
 
 function loadData(props) {
   const { login } = props;
+  console.log(props);
   props.loadUser(login, ['name']);
   props.loadStarred(login);
 }

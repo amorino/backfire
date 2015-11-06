@@ -5,6 +5,14 @@ import { getVisibleProducts } from '../reducers/products'
 import { bindActionCreators } from 'redux';
 import ImageLoader  from 'react-imageloader';
 
+
+function loadData(props) {
+  const { login } = props;
+  console.log(props);
+  props.loadUser(login, ['name']);
+  props.loadStarred(login);
+}
+
 @connect(state => ({
   data: getVisibleProducts(state.products)
 }), dispatch => ({
