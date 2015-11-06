@@ -28,6 +28,8 @@ export default class Item extends Component {
 
   render () {
     const { data, params } = this.props;
+    // const item = actions.fetchItems();
+    // console.log(item);
     const item = data.filter(c => c.id == params.id)[0];
     this.state = item ? item : this.initialState;
 

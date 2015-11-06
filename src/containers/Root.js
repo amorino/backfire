@@ -1,11 +1,11 @@
-import React, { Component, PropTypes } from 'react';
-import { Router, Route } from 'react-router';
-import { Provider } from 'react-redux';
-import configureStore from '../utils/configureStore';
-import { ReduxRouter } from 'redux-router';
-import { getAllProducts } from '../actions/products'
+import React, { Component, PropTypes } from 'react'
+import { Router, Route } from 'react-router'
+import { Provider } from 'react-redux'
+import configureStore from '../utils/configureStore'
+import { ReduxRouter } from 'redux-router'
+import { getAllProducts, getOneProduct } from '../actions/products'
 
-const store = configureStore();
+const store = configureStore()
 store.dispatch(getAllProducts())
 
 export default class Root extends Component {

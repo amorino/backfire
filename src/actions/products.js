@@ -8,10 +8,25 @@ function receiveProducts(products) {
   }
 }
 
+function receiveProduct(product) {
+  return {
+    type: types.RECEIVE_ONE_PRODUCT,
+    product: product
+  }
+}
+
 export function getAllProducts() {
   return dispatch => {
     shop.getProducts(products => {
       dispatch(receiveProducts(products))
+    })
+  }
+}
+
+export function getOneProduct(id) {
+  return dispatch => {
+    shop.getProduct(id, product => {
+      dispatch(receiveProduct(product))
     })
   }
 }
