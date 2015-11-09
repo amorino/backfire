@@ -7,14 +7,14 @@ import ImageLoader  from 'react-imageloader';
 import { getAllProducts, getOneProduct } from '../actions/products'
 
 function loadData(props) {
-  props.dispatch(props.getOneProduct(props.params.id))
+  props.dispatch(getOneProduct(props.params.id))
 }
 
 @connect(state => ({
-  data: getProduct(state.products, state.router.params.id),
-  getOneProduct
+  data: getProduct(state.products, state.router.params.id)
+  // data: state.products.visibleIds
 }), dispatch => ({
-  dispatch: dispatch,
+  // dispatch: dispatch,
   actions: bindActionCreators(ProductActions, dispatch)
 }))
 export default class Item extends Component {
@@ -34,14 +34,7 @@ export default class Item extends Component {
     }
 
     componentWillMount() {
-      loadData(this.props);
-      // console.log(this.props);
-    }
-
-    componentDidMount() {
-      console.log(this.props);
-      this.state = getProduct(this.props.product, 1)
-      // console.log(this.state);
+      // loadData(this.props);
     }
 
   render () {

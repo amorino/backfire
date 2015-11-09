@@ -7,9 +7,6 @@ import ProductsList from '../components/ProductsList'
 class ProductsContainer extends Component {
   render() {
     const { products } = this.props
-    if (products.length == 0) {
-      return <h1><i>Loading</i></h1>
-    }
     return (
       <ProductsList title="Items">
         {products.map(product =>
