@@ -1,20 +1,20 @@
-import _products from './items.json'
+import items from './items.json'
 
 const TIMEOUT = 100
 
 export default {
   getProducts(cb, timeout) {
-      setTimeout(() => cb(_products), timeout || TIMEOUT)
+      setTimeout(() => cb(items), timeout || TIMEOUT)
     },
 
     getProduct(id, cb, timeout) {
-        setTimeout(() => {
-          for (let item of _products) {
-            if (item.id == id) {
-                cb(item)
-            }
+      setTimeout(() => {
+        for (let item of items) {
+          if (item.id == id) {
+            cb(item)
           }
-        }, timeout || TIMEOUT);
+        }
+      }, timeout || TIMEOUT);
     },
 
     buyProducts(payload, cb, timeout) {

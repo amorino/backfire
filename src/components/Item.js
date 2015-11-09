@@ -1,22 +1,21 @@
 import React, {Component, PropTypes} from 'react';
 import { connect } from 'react-redux';
-import * as ItemActions from '../actions/products';
-import { getVisibleProducts } from '../reducers/products'
+import * as ProductActions from '../actions/products';
+import { getVisibleProducts, getProduct } from '../reducers/products'
 import { bindActionCreators } from 'redux';
 import ImageLoader  from 'react-imageloader';
-
+import { getAllProducts, getOneProduct } from '../actions/products'
 
 function loadData(props) {
-  const { login } = props;
-  console.log(props);
-  props.loadUser(login, ['name']);
-  props.loadStarred(login);
+  props.dispatch(props.getOneProduct(props.params.id))
 }
 
 @connect(state => ({
-  data: getVisibleProducts(state.products)
+  data: getProduct(state.products, state.router.params.id),
+  getOneProduct
 }), dispatch => ({
-  actions: bindActionCreators(ItemActions, dispatch)
+  dispatch: dispatch,
+  actions: bindActionCreators(ProductActions, dispatch)
 }))
 export default class Item extends Component {
     static propTypes = {
@@ -26,7 +25,7 @@ export default class Item extends Component {
 
    initialState = {
         id: null,
-        description: 'Item not found',
+        description: 'Loading',
         image: null
     }
 
@@ -34,11 +33,21 @@ export default class Item extends Component {
         super(props, context);
     }
 
+    componentWillMount() {
+      loadData(this.props);
+      // console.log(this.props);
+    }
+
+    componentDidMount() {
+      console.log(this.props);
+      this.state = getProduct(this.props.product, 1)
+      // console.log(this.state);
+    }
+
   render () {
-    const { data, params } = this.props;
-    // const item = actions.fetchItems();
-    // console.log(item);
-    const item = data.filter(c => c.id == params.id)[0];
+    const { data, params, actions } = this.props;
+    const item = data;
+    // const item = data.filter(c => c.id == params.id)[0];
     this.state = item ? item : this.initialState;
 
     function preloader() {

@@ -1,11 +1,12 @@
-import React, { PropTypes } from 'react'
+import React, { PropTypes, Component } from 'react'
 import Menu from '../components/Menu'
 import Footer from '../components/Footer'
+import { connect } from 'react-redux'
 
-export default class App extends React.Component {
+class App extends Component {
 
   static propTypes = {
-    children: PropTypes.any
+    children: PropTypes.any,
   }
 
   constructor (props, context) {
@@ -26,3 +27,11 @@ export default class App extends React.Component {
     )
   }
 }
+
+App.propTypes = {
+    dispatch: PropTypes.func.isRequired,
+    children: PropTypes.node
+};
+
+
+export default connect()(App);

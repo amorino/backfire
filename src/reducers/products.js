@@ -61,6 +61,6 @@ export function getProduct(state, id) {
   return state.byId[id]
 }
 
-export function getVisibleProducts(state) {
+export function getVisibleProducts(state, action) {
   return state.visibleIds.map(id => getProduct(state, id))
 }

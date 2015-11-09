@@ -1,5 +1,6 @@
 import counter from './counter';
-import { default as products, getProduct } from './products';
+import { default as products } from './products';
+import { postsByReddit, selectedReddit } from './posts';
 
 // export default combineReducers({
 //   counter,
@@ -61,5 +62,7 @@ export default combineReducers({
   errorMessage,
   router,
   counter,
-  products
+  products,
+  postsByReddit,
+  selectedReddit
 });

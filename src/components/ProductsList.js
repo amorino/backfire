@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 
 export default class ProductsList extends Component {
+
   render() {
     return (
       <div>
