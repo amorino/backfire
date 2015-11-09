@@ -1,9 +1,9 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { loadUser, loadStarred } from '../actions/github';
-import User from '../components/User';
-import Repo from '../components/Repo';
-import List from '../components/List';
+import User from '../components/github/User';
+import Repo from '../components/github/Repo';
+import List from '../components/github/List';
 import zip from 'lodash/array/zip';
 
 function loadData(props) {

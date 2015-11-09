@@ -1,10 +1,10 @@
 import React, {Component, PropTypes} from 'react';
 import { connect } from 'react-redux';
-import * as ProductActions from '../actions/products';
-import { getVisibleProducts, getProduct } from '../reducers/products'
+import * as ProductActions from '../../actions/products';
+import { getVisibleProducts, getProduct } from '../../reducers/products'
 import { bindActionCreators } from 'redux';
 import ImageLoader  from 'react-imageloader';
-import { getAllProducts, getOneProduct } from '../actions/products'
+import { getAllProducts, getOneProduct } from '../../actions/products'
 
 function loadData(props) {
   props.dispatch(getOneProduct(props.params.id))

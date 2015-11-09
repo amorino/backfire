@@ -1,4 +1,4 @@
-import items from './items.json'
+import items from './catalog.json'
 
 const TIMEOUT = 100
 

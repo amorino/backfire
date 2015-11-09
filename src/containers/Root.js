@@ -6,7 +6,6 @@ import { ReduxRouter } from 'redux-router'
 import { getAllProducts, getOneProduct } from '../actions/products'
 
 const store = configureStore()
-store.dispatch(getAllProducts())
 
 export default class Root extends Component {
   static propTypes = {

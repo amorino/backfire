@@ -1,4 +1,5 @@
 import shop from '../data/items'
+import catalog from '../data/catalog.json'
 import * as types from '../constants/ActionTypes'
 
 function receiveProducts(products) {

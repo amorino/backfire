@@ -1,18 +1,15 @@
 import counter from './counter';
 import { default as products } from './products';
-import { postsByReddit, selectedReddit } from './posts';
-
-// export default combineReducers({
-//   counter,
-//   items,
-//   router
-// });
-
+import { catalog, filter} from './catalog';
 import * as ActionTypes from '../actions/github';
 import merge from 'lodash/object/merge';
 import paginate from './paginate';
 import { routerStateReducer as router } from 'redux-router';
 import { combineReducers } from 'redux';
+
+function content(state = null, action) {
+  return action.content ? action.content : state;
+}
 
 // Updates an entity cache in response to any action with response.entities.
 function entities(state = { users: {}, repos: {} }, action) {
@@ -62,7 +59,7 @@ export default combineReducers({
   errorMessage,
   router,
   counter,
-  products,
-  postsByReddit,
-  selectedReddit
+  catalog,
+  filter,
+  content
 });

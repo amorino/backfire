@@ -1,6 +1,6 @@
 import React, { PropTypes, Component } from 'react'
-import Menu from '../components/Menu'
-import Footer from '../components/Footer'
+import Menu from '../components/menu/Menu'
+import Footer from '../components/sections/Footer'
 import { connect } from 'react-redux'
 
 class App extends Component {
@@ -29,7 +29,6 @@ class App extends Component {
 }
 
 App.propTypes = {
-    dispatch: PropTypes.func.isRequired,
     children: PropTypes.node
 };
 

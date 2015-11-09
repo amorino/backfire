@@ -1,12 +1,15 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
-import { getVisibleProducts } from '../reducers/products'
-import ProductItem from '../components/ProductItem'
-import ProductsList from '../components/ProductsList'
+import { getVisibleProducts } from '../../reducers/products'
+import ProductItem from './ProductItem'
+import ProductsList from './ProductsList'
 
 class ProductsContainer extends Component {
   render() {
     const { products } = this.props
+    if (products.length == 0){
+        return <h1><i>Loading ...</i></h1>;
+    }
     return (
       <ProductsList title="Items">
         {products.map(product =>
