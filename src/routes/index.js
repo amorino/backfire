@@ -17,7 +17,7 @@ export default (
     <Route name='about' path='/about' component={About} />
     <Route name='item' path='/item/:id' component={Item} />
     <Route name='catalog' path='/items' component={CatalogPage} />
-    <Route name='item' path='/catalog/:id' component={ItemDetailPage} />
+    <Route name='detail' path='/catalog/:id' component={ItemDetailPage} />
     <Route name='notfound' path='*' component={NotFound} />
   </Route>
 );
