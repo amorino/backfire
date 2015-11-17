@@ -2,6 +2,9 @@ import React, { PropTypes, Component } from 'react'
 import Menu from '../components/menu/Menu'
 import Footer from '../components/sections/Footer'
 import { connect } from 'react-redux'
+import RouteCSSTransitionGroup from '../components/utils/RouteCSSTransitionGroup'
+import GSAPTransitionGroup from '../components/utils/GSAPTransitionGroup'
+
 
 class App extends Component {
 
@@ -18,9 +21,10 @@ class App extends Component {
       <div id="layout">
         <Menu />
 
-        <div id="main">
+        <GSAPTransitionGroup component="div" transitionName="moveUp"
+          transitionEnterTimeout={500} transitionLeaveTimeout={500}>
           {this.props.children}
-        </div>
+        </GSAPTransitionGroup>
 
         <Footer />
       </div>
