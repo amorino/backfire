@@ -28,7 +28,8 @@ module.exports = {
       loader: ExtractTextPlugin.extract('style', 'css?importLoaders=1')
     }, {
       test: /\.scss$/,
-      loader: 'style!css?importLoaders=2&sourceMap!autoprefixer?browsers=last 2 version!sass?outputStyle=expanded&sourceMap'
+    //   loader: 'style!css?importLoaders=2&sourceMap!sass?outputStyle=expanded&sourceMap'
+       loader: 'style!css?importLoaders=2&sourceMap!autoprefixer?browsers=last 2 version!sass?outputStyle=expanded&sourceMap'
     }, {
       test: /\.styl$/,
       loader: 'style!css?importLoaders=2&sourceMap&localIdentName=[local]___[hash:base64:10]!stylus'

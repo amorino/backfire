@@ -1,30 +1,30 @@
 $main: #000;
 body {
-  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
-  font-weight: 300;
-  color: $main;
+    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+    font-weight: 300;
+    color: $main;
 }
 a {
-  color: #bbb;
+    color: #bbb;
 }
 .moveUp-enter {
-  transition-duration: 0.3s;
-  transition-property: transform, opacity;
-  transition-timing-function: ease-out;
-  transform: translate3d(0,100%,0);
-  z-index: 10000;
+    transition-duration: 0.3s;
+    transition-property: transform, opacity;
+    transition-timing-function: ease-out;
+    transform: translate3d(0,100%,0);
+    z-index: 10000;
 }
 .moveUp-enter.moveUp-enter-active {
-  transform: translate3d(0,0,0);
+    transform: translate3d(0,0,0);
 }
 .moveUp-leave {
-  transition-duration: 0.3s;
-  transition-property: transform, opacity;
-  transition-timing-function: ease-out;
-  transform: translate3d(0,0,0);
-  opacity: 1;
+    transition-duration: 0.3s;
+    transition-property: transform, opacity;
+    transition-timing-function: ease-out;
+    transform: translate3d(0,0,0);
+    opacity: 1;
 }
 .moveUp-leave.moveUp-leave-active {
-  transform: translate3d(0,-15%,0);
-  opacity: 0.3;
+    transform: translate3d(0,-15%,0);
+    opacity: 0.3;
 }

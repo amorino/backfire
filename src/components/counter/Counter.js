@@ -1,16 +1,14 @@
-import React, { Component, PropTypes } from 'react';
-import { bindActionCreators } from 'redux';
-import { connect } from 'react-redux';
+import React, {Component, PropTypes} from 'react';
+import {bindActionCreators} from 'redux';
+import {connect} from 'react-redux';
 import * as CounterActions from '../../actions/counter';
 
 function mapStateToProps(state) {
-    return {
-        counter: state.counter
-    };
+    return {counter: state.counter};
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators(CounterActions, dispatch);
+    return bindActionCreators(CounterActions, dispatch);
 }
 
 @connect(mapStateToProps, mapDispatchToProps)
@@ -23,19 +21,27 @@ class Counter extends Component {
         counter: PropTypes.number.isRequired
     }
 
-    render() {
-        const { increment, incrementIfOdd, incrementAsync, decrement, counter } = this.props;
+    render () {
+        const {
+            increment,
+            incrementIfOdd,
+            incrementAsync,
+            decrement,
+            counter
+        } = this.props;
         return (
             <p>
-            Clicked: {counter} times
-            {' '}
-            <button onClick={increment}>+</button>
-            {' '}
-            <button onClick={decrement}>-</button>
-            {' '}
-            <button onClick={incrementIfOdd}>Increment if odd</button>
-            {' '}
-            <button onClick={() => incrementAsync()}>Increment async</button>
+                Clicked:
+                {counter}
+                times
+                {' '}
+                <button onClick={increment}>+</button>
+                {' '}
+                <button onClick={decrement}>-</button>
+                {' '}
+                <button onClick={incrementIfOdd}>Increment if odd</button>
+                {' '}
+                <button onClick={() => incrementAsync()}>Increment async</button>
             </p>
         );
     }

@@ -1,26 +1,35 @@
-import React, { PropTypes, Component } from 'react';
+import React, {PropTypes, Component} from 'react';
 import MenuListItem from './MenuListItem';
 
 const menuItems = [
-  { text: 'Home', link: '/' },
-  { text: 'About', link: '/about' },
-  { text: 'Amorino', link: '/users/amorino' },
-  { text: 'Items', link: '/items' }
+    {
+        text: 'Home',
+        link: '/'
+    }, {
+        text: 'About',
+        link: '/about'
+    }, {
+        text: 'Amorino',
+        link: '/users/amorino'
+    }, {
+        text: 'Items',
+        link: '/items'
+    }
 ];
 
 export default class Menu extends Component {
 
-  constructor (props, context) {
-    super(props, context)
-  }
+    constructor(props, context) {
+        super(props, context)
+    }
 
-  render () {
-    return (
-      <div id="menu" ref="menu">
-          <ul>
-            {menuItems.map((item, i) => <MenuListItem {...item} key={i} />)}
-          </ul>
-      </div>
-    )
-  }
+    render () {
+        return(
+            <div id="menu" ref="menu">
+                <ul>
+                    {menuItems.map((item, i) => <MenuListItem {...item} key={i}/>)}
+                </ul>
+            </div>
+        )
+    }
 }
