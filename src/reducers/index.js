@@ -13,6 +13,12 @@ function content(state = null, action) {
         : state;
 }
 
+function detail(state = null, action) {
+    return action.detail
+        ? action.detail
+        : state;
+}
+
 // Updates an entity cache in response to any action with response.entities.
 function entities(state = {
     users: {},
@@ -41,4 +47,4 @@ const pagination = combineReducers({starredByUser: paginate({
         types: [ActionTypes.STARGAZERS_REQUEST, ActionTypes.STARGAZERS_SUCCESS, ActionTypes.STARGAZERS_FAILURE]
     })});
 
-export default combineReducers({entities, pagination, errorMessage, router, counter, catalog, filter, content});
+export default combineReducers({entities, pagination, errorMessage, router, counter, catalog, filter, content, detail});

@@ -30,7 +30,7 @@ class ItemDetailPage extends Component {
 }
 
 function mapStateToProps(state) {
-    return {item: state.content};
+    return {item: state.detail};
 }
 
 export default connect(mapStateToProps)(ItemDetailPage);

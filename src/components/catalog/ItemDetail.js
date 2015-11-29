@@ -1,10 +1,9 @@
 import React, {Component, PropTypes} from 'react';
 import ImageLoader from 'react-imageloader';
 
-class CatalogItem extends Component {
+class ItemDetail extends Component {
 
     render() {
-
         const {item} = this.props;
 
         function preloader() {
@@ -27,4 +26,4 @@ class CatalogItem extends Component {
     }
 }
 
-export default CatalogItem;
+export default ItemDetail;

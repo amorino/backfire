@@ -8,9 +8,9 @@ import zip from 'lodash/array/zip';
 
 function loadData(props) {
     const {login} = props;
-    console.log(props);
-    props.loadUser(login, ['name']);
-    props.loadStarred(login);
+    if (login.length > 0) {props.loadUser(login, ['name']);
+        props.loadStarred(login);}
+
 }
 
 class UserPage extends Component {
@@ -70,7 +70,9 @@ UserPage.propTypes = {
 };
 
 function mapStateToProps(state) {
-    const {login} = state.router.params;
+
+    let login  = state.router.params.login? state.router.params.login : '';
+
     const {
         pagination: {
             starredByUser

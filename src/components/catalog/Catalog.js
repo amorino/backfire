@@ -3,8 +3,11 @@ import Filter from './Filter';
 import CatalogItem from './CatalogItem';
 
 class Catalog extends Component {
-    render() {
-        const {items, actions} = this.props;
+    render () {
+        const {
+            items,
+            actions
+        } = this.props;
         return (
             <div>
                 <Filter onFilterChange={actions.setItemFilter}/>

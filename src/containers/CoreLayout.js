@@ -4,6 +4,7 @@ import Footer from '../components/sections/Footer'
 import {connect} from 'react-redux'
 import RouteCSSTransitionGroup from '../components/utils/RouteCSSTransitionGroup'
 import GSAPTransitionGroup from '../components/utils/GSAPTransitionGroup'
+import {VelocityTransitionGroup} from 'velocity-react'
 
 class App extends Component {
 
@@ -14,14 +15,22 @@ class App extends Component {
     constructor (props, context) {super(props, context);}
 
     render () {
-        return(
+        const {
+            pathname
+        } = this.props.location;
+        const key = pathname.split('/') || 'root';
+        const element = this.props.children || <div/>;
+        const elementToAnimate = React.cloneElement(element, {key});
+        return (
             <div id="layout">
                 <Menu/>
-
-                <GSAPTransitionGroup component="div" transitionName="moveUp" transitionEnterTimeout={500} transitionLeaveTimeout={500}>
-                    {this.props.children}
-                </GSAPTransitionGroup>
-
+                <VelocityTransitionGroup enter={{
+                animation: 'slideDown', duration: 400, delay: 100
+                }} leave={{
+                animation: 'slideUp', duration: 400
+                }} runOnMount={true}>
+                    {elementToAnimate}
+                </VelocityTransitionGroup>
                 <Footer/>
             </div>
         )
