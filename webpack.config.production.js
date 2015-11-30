@@ -1,5 +1,6 @@
 var path = require('path');
 var webpack = require('webpack');
+var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
     devtool: 'source-map',
@@ -13,6 +14,7 @@ module.exports = {
     },
     plugins: [
         new webpack.optimize.OccurenceOrderPlugin(),
+        new ExtractTextPlugin('styles.css'),
         new webpack.DefinePlugin({
             'process.env': {
                 'NODE_ENV': JSON.stringify('production')
@@ -24,10 +26,24 @@ module.exports = {
             }
         })
     ],
+    resolve: {
+        extensions: ['', '.js', '.json', '.css', '.scss']
+    },
     module: {
         loaders: [{
             test: /\.js$/,
             loaders: ['babel'],
+            include: path.join(__dirname, 'src')
+        }, {
+            test: /\.css$/,
+            loader: ExtractTextPlugin.extract('style', 'css?importLoaders=1')
+        }, {
+            test: /\.scss$/,
+            loader: ExtractTextPlugin.extract('style', 'css?importLoaders=2&sourceMap!autoprefixer!sass?outputStyle=expanded&sourceMap=true&sourceMapContents=true')
+        }, {
+            test: /\.json$/,
+            loaders: ['json'],
+            exclude: /node_modules/,
             include: path.join(__dirname, 'src')
         }]
     }

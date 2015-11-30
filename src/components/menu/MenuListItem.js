@@ -52,7 +52,7 @@ export default class MenuListItem extends Component {
             )
         else
             return (
-                <Link to={this.props.link} className={classnames('menu-link', activeClass)} onClick={this.handleMenuClick}>
+                <Link to={`${this.props.link}`} className={classnames('menu-link', activeClass)} onClick={this.handleMenuClick}>
                     {this.props.text}
                 </Link>
             )
