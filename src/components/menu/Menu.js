@@ -10,9 +10,6 @@ const menuItems = [
         text: 'About',
         link: '/about'
     }, {
-        text: 'Amorino',
-        link: '/users/amorino'
-    }, {
         text: 'Items',
         link: '/items'
     }
