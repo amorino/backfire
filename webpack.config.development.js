@@ -18,6 +18,10 @@ module.exports = {
         new webpack.NoErrorsPlugin(),
         new ExtractTextPlugin('styles.css')
     ],
+    resolve: {
+        extensions: ['', '.js', '.json', '.css', '.scss'],
+        modulesDirectories: ['src', 'node_modules', 'vendor', 'bower_directories']
+    },
     module: {
         loaders: [{
             test: /\.js$/,
@@ -32,6 +36,14 @@ module.exports = {
         }, {
             test: /\.styl$/,
             loader: 'style!css?importLoaders=2&sourceMap&localIdentName=[local]___[hash:base64:10]!stylus'
+        }, {
+            test: /\.(ttf|eot|svg|woff(2)?)(\?[a-z0-9]+)?$/,
+            loader: 'file-loader'
+        }, {
+            test: /\.(jpe?g|png|gif|svg)$/i,
+            loaders: [
+                'file?name=[hash].[ext]'
+            ]
         }, {
             test: /\.json$/,
             loaders: ['json'],

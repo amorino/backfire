@@ -27,7 +27,8 @@ module.exports = {
         })
     ],
     resolve: {
-        extensions: ['', '.js', '.json', '.css', '.scss']
+        extensions: ['', '.js', '.json', '.css', '.scss'],
+        moduleDirectories: ['src', 'node_modules', 'vendor', 'bower_directories']
     },
     module: {
         loaders: [{
@@ -40,6 +41,15 @@ module.exports = {
         }, {
             test: /\.scss$/,
             loader: ExtractTextPlugin.extract('style', 'css?importLoaders=2&sourceMap!autoprefixer!sass?outputStyle=expanded&sourceMap=true&sourceMapContents=true')
+        }, {
+            test: /\.(ttf|eot|svg|woff(2)?)(\?[a-z0-9]+)?$/,
+            loader: 'file?name=[path][name].[ext]'
+        }, {
+            test: /\.(jpe?g|png|gif|svg)$/i,
+            loaders: [
+                'file?hash=sha512&digest=hex&name=[hash].[ext]',
+                'image-webpack?bypassOnDebug&optimizationLevel=7&interlaced=false'
+            ]
         }, {
             test: /\.json$/,
             loaders: ['json'],
