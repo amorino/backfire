@@ -1,0 +1,32 @@
+@font-face {
+    font-family: 'TwCenMT-Regular';
+    src: url('../fonts/TwCenMT-Regular.eot');
+    src: url('../fonts/TwCenMT-Regular.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/TwCenMT-Regular.woff') format('woff'),
+        url('../fonts/TwCenMT-Regular.ttf') format('truetype'),
+        url('../fonts/TwCenMT-Regular.svg#TwCenMT-Regular') format('svg');
+    font-weight: 400;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'TwCenMT-Bold';
+    src: url('../fonts/TwCenMT-Bold.eot');
+    src: url('../fonts/TwCenMT-Bold.eot?#iefix') format('embedded-opentype'),
+    url('../fonts/TwCenMT-Bold.woff') format('woff'),
+    url('../fonts/TwCenMT-Bold.ttf') format('truetype'),
+    url('../fonts/TwCenMT-Bold.svg#TwCenMT-Bold') format('svg');
+    font-weight: bolder;
+    font-style: normal;
+}
+
+@font-face {
+	font-family:'UniversLTStd-Regular';
+	src: url('../fonts/UniversLTStd_gdi.eot');
+	src: url('../fonts/UniversLTStd_gdi.eot?#iefix') format('embedded-opentype'),
+		url('../fonts/UniversLTStd_gdi.woff') format('woff'),
+		url('../fonts/UniversLTStd_gdi.ttf') format('truetype'),
+		url('../fonts/UniversLTStd_gdi.svg#UniversLTStd-Regular') format('svg');
+	font-weight: 400;
+	font-style: normal;
+	font-stretch: normal;
+}

@@ -38,11 +38,11 @@ module.exports = {
             loader: 'style!css?importLoaders=2&sourceMap&localIdentName=[local]___[hash:base64:10]!stylus'
         }, {
             test: /\.(ttf|eot|svg|woff(2)?)(\?[a-z0-9]+)?$/,
-            loader: 'file-loader'
+            loader: 'file?name=[name].[ext]'
         }, {
             test: /\.(jpe?g|png|gif|svg)$/i,
             loaders: [
-                'file?name=[hash].[ext]'
+                'file?name=[name].[ext]'
             ]
         }, {
             test: /\.json$/,
