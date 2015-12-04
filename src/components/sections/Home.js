@@ -1,8 +1,7 @@
 import React, {Component} from 'react';
-
 export default class About extends Component {
     render() {
-        // let i = require ('images/banner.jpg');
+        // let i = require('images/banner.jpg');
         return (
             <div>
                 <div className="header">

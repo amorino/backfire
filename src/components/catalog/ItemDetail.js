@@ -1,5 +1,6 @@
 import React, {Component, PropTypes} from 'react';
 import ImageLoader from 'react-imageloader';
+import Image from 'components/utils/Image';
 
 class ItemDetail extends Component {
 
@@ -20,6 +21,7 @@ class ItemDetail extends Component {
                 Description:
                 {item.description}
                 <br/>
+                <Image src={item.image} />
                 <ImageLoader src={item.image} preloader={preloader}>Image load failed!</ImageLoader>
             </div>
         );
