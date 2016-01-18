@@ -1,4 +1,4 @@
-Load the CSS as: 
+Load the CSS as:
 
 ```css
 @font-face {

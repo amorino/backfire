@@ -6,16 +6,17 @@ import api from '../middleware/api';
 import createLogger from 'redux-logger';
 import reducer from '../reducers';
 
+const reduxRouterMiddleware = syncHistory(browserHistory);
 const createStoreWithMiddleware = compose(
   applyMiddleware(thunk, api),
-  applyMiddleware(syncHistory(browserHistory)),
+  applyMiddleware(reduxRouterMiddleware),
   applyMiddleware(createLogger({collapsed: true}))
 )(createStore);
 
 
 export default function configureStore(initialState) {
     const store = createStoreWithMiddleware(reducer, initialState);
-    // reduxRouterMiddleware.listenForReplays(store);
+    reduxRouterMiddleware.listenForReplays(store);
 
     if (module.hot) {
         // Enable Webpack hot module replacement for reducers

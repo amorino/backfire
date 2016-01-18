@@ -7,12 +7,15 @@ import api from '../middleware/api';
 import reducer from '../reducers';
 
 // const history = createHashHistory({ queryKey: false });
+const reduxRouterMiddleware = syncHistory(useRouterHistory(createHashHistory)({queryKey: false}));
 
 const createStoreWithMiddleware = compose(
   applyMiddleware(thunk, api),
-  applyMiddleware(syncHistory(useRouterHistory(createHashHistory)({queryKey: false})))
+  applyMiddleware(reduxRouterMiddleware)
 )(createStore);
 
 export default function configureStore(initialState) {
-  return createStoreWithMiddleware(reducer, initialState)
+  store = createStoreWithMiddleware(reducer, initialState);
+  reduxRouterMiddleware.listenForReplays(store);
+  return store;
 }
