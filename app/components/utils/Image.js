@@ -11,7 +11,7 @@ export default class Image extends Component {
 
     fadeIn = () => {
         this.setState({opacity: 1})
-    }
+    };
 
     render () {
         //this vs including an Object.assign polyfill

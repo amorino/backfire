@@ -1,6 +1,6 @@
 import React, {Component, PropTypes} from 'react';
 import ImageLoader from 'react-imageloader';
-import Image from 'components/utils/Image';
+import Image from '../utils/Image';
 
 class ItemDetail extends Component {
 

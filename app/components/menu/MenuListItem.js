@@ -8,7 +8,7 @@ export default class MenuListItem extends Component {
         isExternal: PropTypes.bool,
         link: PropTypes.string.isRequired,
         text: PropTypes.string.isRequired
-    }
+    };
 
     constructor (props, context) {
         super(props, context);
@@ -27,7 +27,7 @@ export default class MenuListItem extends Component {
 
     static defaultProps = {
         isExternal: false
-    }
+    };
 
     render () {
         return(

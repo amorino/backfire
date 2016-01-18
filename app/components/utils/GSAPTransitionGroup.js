@@ -7,7 +7,7 @@ import TweenMax from 'gsap'
 export default class RouteCSSTransitionGroup extends React.Component {
     static contextTypes = {
         location: React.PropTypes.object
-    }
+    };
 
     constructor (props, context) {
         super(props, context);

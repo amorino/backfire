@@ -1,16 +1,21 @@
 import {createStore, applyMiddleware, compose} from 'redux';
-import {reduxReactRouter} from 'redux-router';
-import { createHistory } from 'history';
-import routes from '../routes/index';
+import { syncHistory } from 'redux-simple-router';
+import { browserHistory } from 'react-router'
 import thunk from 'redux-thunk';
 import api from '../middleware/api';
 import createLogger from 'redux-logger';
 import reducer from '../reducers';
 
-const finalCreateStore = compose(applyMiddleware(thunk, api), reduxReactRouter({routes, createHistory}), applyMiddleware(createLogger({collapsed: true})))(createStore);
+const createStoreWithMiddleware = compose(
+  applyMiddleware(thunk, api),
+  applyMiddleware(syncHistory(browserHistory)),
+  applyMiddleware(createLogger({collapsed: true}))
+)(createStore);
+
 
 export default function configureStore(initialState) {
-    const store = finalCreateStore(reducer, initialState);
+    const store = createStoreWithMiddleware(reducer, initialState);
+    // reduxRouterMiddleware.listenForReplays(store);
 
     if (module.hot) {
         // Enable Webpack hot module replacement for reducers
@@ -19,6 +24,5 @@ export default function configureStore(initialState) {
             store.replaceReducer(nextRootReducer);
         });
     }
-
     return store;
 }

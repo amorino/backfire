@@ -1,6 +1,6 @@
 import {catalog, filter} from './catalog';
 import merge from 'lodash/object/merge';
-import {routerStateReducer as router} from 'redux-router';
+import {routeReducer} from 'redux-simple-router';
 import {combineReducers} from 'redux';
 
 function content(state = null, action) {
@@ -15,4 +15,4 @@ function detail(state = null, action) {
         : state;
 }
 
-export default combineReducers({router, catalog, filter, content, detail});
+export default combineReducers({routing: routeReducer, catalog, filter, content, detail});
