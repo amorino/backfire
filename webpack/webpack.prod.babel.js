@@ -27,8 +27,9 @@ module.exports = require('./webpack.base.babel')({
   ),
   // In production, we minify our CSS with cssnano
   postcssPlugins: [
+    rucksack(),
     postcssSimpleVars({
-      silent: true
+      silent: false
     }),
     postcssNested(),
     postcssMixins(),

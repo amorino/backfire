@@ -69,6 +69,7 @@
     "redux-logger": "^2.3.2",
     "redux-simple-router": "^2.0.3",
     "rimraf": "^2.4.3",
+    "rucksack-css": "^0.8.5",
     "style-loader": "^0.13.0",
     "webpack": "^1.12.9",
     "webpack-dev-middleware": "^1.4.0",

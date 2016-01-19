@@ -9,6 +9,7 @@ const postcssReporter = require('postcss-reporter');
 const postcssSimpleVars = require('postcss-simple-vars');
 const postcssNested = require('postcss-nested');
 const postcssMixins = require('postcss-mixins');
+const rucksack = require('rucksack-css');
 
 module.exports = require('./webpack.base.babel')({
   type: 'development',
@@ -23,6 +24,7 @@ module.exports = require('./webpack.base.babel')({
   cssLoaders: 'style-loader!css-loader?modules&importLoaders=1&sourceMap!postcss-loader',
   // Process the CSS with PostCSS
   postcssPlugins: [
+    rucksack(),
     postcssSimpleVars({
       silent: false
     }),
