@@ -6,7 +6,7 @@ import ItemDetail from '../components/catalog/ItemDetail';
 
 import * as CatalogActions from '../actions/catalog';
 
-class ItemDetailPage extends Component {
+class ItemDetailLayout extends Component {
     componentDidMount() {
         const {dispatch} = this.props;
         const {id} = this.props.params;
@@ -33,4 +33,4 @@ function mapStateToProps(state) {
     return {item: state.detail};
 }
 
-export default connect(mapStateToProps)(ItemDetailPage);
+export default connect(mapStateToProps)(ItemDetailLayout);

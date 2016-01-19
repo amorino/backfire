@@ -13,7 +13,7 @@ function loadData(props) {
 
 }
 
-class UserPage extends Component {
+class UserLayout extends Component {
     constructor(props) {
         super(props);
         this.renderRepo = this.renderRepo.bind(this);
@@ -98,4 +98,4 @@ function mapStateToProps(state) {
     };
 }
 
-export default connect(mapStateToProps, {loadUser, loadStarred})(UserPage);
+export default connect(mapStateToProps, {loadUser, loadStarred})(UserLayout);

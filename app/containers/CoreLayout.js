@@ -1,6 +1,6 @@
 import React, {PropTypes, Component} from 'react'
 import Menu from '../components/menu/Menu'
-import Footer from '../components/sections/Footer'
+import Footer from '../components/pages/Footer'
 import {connect} from 'react-redux'
 // import RouteCSSTransitionGroup from '../components/utils/RouteCSSTransitionGroup'
 import {VelocityTransitionGroup} from 'velocity-react'

@@ -8,7 +8,7 @@ import * as CatalogActions from '../actions/catalog';
 
 import _ from 'lodash';
 
-class CatalogPage extends Component {
+class CatalogLayout extends Component {
     componentDidMount() {
         const {dispatch} = this.props;
         dispatch(CatalogActions.fetchCatalog());
@@ -51,4 +51,4 @@ function mapStateToProps(state) {
     return {items: state.content, isFetching: state.catalog.isFetching, filter: state.filter};
 }
 
-export default connect(mapStateToProps)(CatalogPage);
+export default connect(mapStateToProps)(CatalogLayout);
