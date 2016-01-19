@@ -8,11 +8,8 @@ import reducer from '../reducers';
 
 // const history = createHashHistory({ queryKey: false });
 const reduxRouterMiddleware = syncHistory(useRouterHistory(createHashHistory)({queryKey: false}));
+const createStoreWithMiddleware = applyMiddleware(thunk, api, reduxRouterMiddleware)(createStore);
 
-const createStoreWithMiddleware = compose(
-  applyMiddleware(thunk, api),
-  applyMiddleware(reduxRouterMiddleware)
-)(createStore);
 
 export default function configureStore(initialState) {
   const store = createStoreWithMiddleware(reducer, initialState);

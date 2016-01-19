@@ -15,6 +15,10 @@ app.use(require('webpack-dev-middleware')(compiler, {
 
 app.use(require('webpack-hot-middleware')(compiler));
 
+app.get('*', function (request, response){
+    response.redirect('/');
+})
+
 app.listen(server, 'localhost', function(err) {
     if (err) {
         console.log(err);

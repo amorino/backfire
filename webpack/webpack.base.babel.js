@@ -34,13 +34,12 @@ module.exports = (options) => {
     },
     plugins: options.plugins,
     postcss: (webpack) => {
-      var postcssPlugins = options.postcssPlugins;
-      postcssPlugins.push(
+      return options.postcssPlugins.concat([
         postcssImport({
           glob: true, // Import all the css files...
           addDependencyTo: webpack
-        }));
-      return postcssPlugins;
+        })
+      ])
     },
     resolve: {
       modulesDirectories: [
