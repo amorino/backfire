@@ -1,5 +1,6 @@
 const path = require('path');
 const webpack = require('webpack');
+const postcssImport = require('postcss-import');
 
 module.exports = (options) => {
   return {
@@ -32,8 +33,14 @@ module.exports = (options) => {
       }]
     },
     plugins: options.plugins,
-    postcss: () => {
-      return options.postcssPlugins;
+    postcss: (webpack) => {
+      var postcssPlugins = options.postcssPlugins;
+      postcssPlugins.push(
+        postcssImport({
+          glob: true, // Import all the css files...
+          addDependencyTo: webpack
+        }));
+      return postcssPlugins;
     },
     resolve: {
       modulesDirectories: [

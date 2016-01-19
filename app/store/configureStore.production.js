@@ -15,7 +15,7 @@ const createStoreWithMiddleware = compose(
 )(createStore);
 
 export default function configureStore(initialState) {
-  store = createStoreWithMiddleware(reducer, initialState);
+  const store = createStoreWithMiddleware(reducer, initialState);
   reduxRouterMiddleware.listenForReplays(store);
   return store;
 }

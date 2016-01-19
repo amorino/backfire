@@ -6,8 +6,12 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const cssnext = require('postcss-cssnext');
 const postcssFocus = require('postcss-focus');
 const postcssReporter = require('postcss-reporter');
+const postcssSimpleVars = require('postcss-simple-vars');
+const postcssNested = require('postcss-nested');
+const postcssMixins = require('postcss-mixins');
 
 module.exports = require('./webpack.base.babel')({
+  type: 'development',
   devtool: 'cheap-module-eval-source-map',
   // Add hot reloading in development
   entry: [
@@ -19,6 +23,11 @@ module.exports = require('./webpack.base.babel')({
   cssLoaders: 'style-loader!css-loader?modules&importLoaders=1&sourceMap!postcss-loader',
   // Process the CSS with PostCSS
   postcssPlugins: [
+    postcssSimpleVars({
+      silent: false
+    }),
+    postcssNested(),
+    postcssMixins(),
     postcssFocus(), // Add a :focus to every :hover
     cssnext({ // Allow future CSS features to be used, also auto-prefixes the CSS...
       browsers: ['last 2 versions', 'IE > 10'] // ...based on this browser list
