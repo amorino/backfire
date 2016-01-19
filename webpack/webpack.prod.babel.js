@@ -11,6 +11,7 @@ const cssnano = require('cssnano');
 const postcssSimpleVars = require('postcss-simple-vars');
 const postcssNested = require('postcss-nested');
 const postcssMixins = require('postcss-mixins');
+const lost = require('lost');
 
 module.exports = require('./webpack.base.babel')({
   type: 'development',
@@ -27,6 +28,7 @@ module.exports = require('./webpack.base.babel')({
   ),
   // In production, we minify our CSS with cssnano
   postcssPlugins: [
+    lost(),
     rucksack(),
     postcssSimpleVars({
       silent: false
