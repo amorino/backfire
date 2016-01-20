@@ -1,2 +1,6 @@
-$color:'#befa07';
-@import 'vars.css'
+@font-face {
+  font-family: 'BrandonText';
+  font-path: 'fonts/BrandonText-Medium_gdi';
+  font-weight: 400;
+  font-style: normal;
+}

@@ -15,6 +15,12 @@ const lost = require('lost');
 module.exports = require('./webpack.base.babel')({
   type: 'development',
   devtool: 'cheap-module-eval-source-map',
+  output: { // Compile into js/build.js
+    path: path.resolve(__dirname, '..', 'build'),
+    filename: '[name].js',
+    chunkFilename: '[name].chunk.js',
+    // publicPath: 'http://localhost:4000/'
+  },
   // Add hot reloading in development
   entry: [
     'eventsource-polyfill', // necessary for hot reloading with IE
@@ -22,10 +28,9 @@ module.exports = require('./webpack.base.babel')({
     path.join(__dirname, '..', 'app/app.js') // Start with js/app.js
   ],
   // Load the CSS in a style tag in development
-  cssLoaders: 'style-loader!css-loader?modules&importLoaders=1&sourceMap!postcss-loader',
+  cssLoaders: 'style!css?modules&importLoaders=1&sourceMap!postcss',
   // Process the CSS with PostCSS
   postcssPlugins: [
-    rucksack(),
     lost(),
     postcssSimpleVars(),
     postcssNested(),
@@ -34,6 +39,7 @@ module.exports = require('./webpack.base.babel')({
     cssnext({ // Allow future CSS features to be used, also auto-prefixes the CSS...
       browsers: ['last 2 versions', 'IE > 10'] // ...based on this browser list
     }),
+    rucksack(),
     postcssReporter({ // Posts messages from plugins to the terminal
       clearMessages: true
     })

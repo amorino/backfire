@@ -11,11 +11,17 @@ const cssnano = require('cssnano');
 const postcssSimpleVars = require('postcss-simple-vars');
 const postcssNested = require('postcss-nested');
 const postcssMixins = require('postcss-mixins');
+const rucksack = require('rucksack-css');
 const lost = require('lost');
 
 module.exports = require('./webpack.base.babel')({
   type: 'development',
   devtool: 'source-map',
+  output: {
+    path: path.resolve(__dirname, '..', 'build'),
+    filename: '[name].js',
+    chunkFilename: '[name].chunk.js'
+  },
   // In production, we skip all hot-reloading stuff
   entry: [
     path.join(__dirname, '..', 'app/app.js')
@@ -23,8 +29,8 @@ module.exports = require('./webpack.base.babel')({
   // We use ExtractTextPlugin so we get a seperate CSS file instead
   // of the CSS being in the JS and injected as a style tag
   cssLoaders: ExtractTextPlugin.extract(
-    'style-loader',
-    'css-loader?modules&importLoaders=1!postcss-loader'
+    'style',
+    'css?modules&importLoaders=1!postcss'
   ),
   // In production, we minify our CSS with cssnano
   postcssPlugins: [
@@ -73,7 +79,7 @@ module.exports = require('./webpack.base.babel')({
       inject: true
     }),
     // Extract the CSS into a seperate file
-    new ExtractTextPlugin('css/style.css'),
+    new ExtractTextPlugin('style.css'),
     // Set the process.env to production so React includes the production
     // version of itself
     new webpack.DefinePlugin({

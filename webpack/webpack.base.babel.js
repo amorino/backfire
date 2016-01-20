@@ -6,11 +6,7 @@ module.exports = (options) => {
   return {
     devtool: options.devtool,
     entry: options.entry,
-    output: { // Compile into js/build.js
-      path: path.resolve(__dirname, '..', 'build'),
-      filename: '[name].js',
-      chunkFilename: '[name].chunk.js'
-    },
+    output: options.output,
     module: {
       loaders: [{
         test: /\.js$/, // Transform all .js files required somewhere with Babel
@@ -27,7 +23,7 @@ module.exports = (options) => {
         loader: 'html-loader'
       }, {
         test: /\.(ttf|eot|svg|woff(2)?)(\?[a-z0-9]+)?$/,
-        loader: 'file?name=[path][name].[ext]!url?prefix=font/&limit=10000'
+        loader: 'url?prefix=font/&limit=10000'
       }, {
         test: /\.json$/,
         loaders: ['json'],
@@ -37,10 +33,12 @@ module.exports = (options) => {
     },
     plugins: options.plugins,
     postcss: (webpack) => {
-      var plugins = [postcssImport({
-        glob: true, // Import all the css files...
-        addDependencyTo: webpack
-      })];
+      var plugins = [
+        postcssImport({
+          glob: true, // Import all the css files...
+          addDependencyTo: webpack
+        })
+      ];
       return plugins.concat(options.postcssPlugins);
     },
     resolve: {
