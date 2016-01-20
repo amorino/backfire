@@ -25,11 +25,9 @@ module.exports = require('./webpack.base.babel')({
   cssLoaders: 'style-loader!css-loader?modules&importLoaders=1&sourceMap!postcss-loader',
   // Process the CSS with PostCSS
   postcssPlugins: [
-    lost(),
     rucksack(),
-    postcssSimpleVars({
-      silent: false
-    }),
+    lost(),
+    postcssSimpleVars(),
     postcssNested(),
     postcssMixins(),
     postcssFocus(), // Add a :focus to every :hover
