@@ -19,7 +19,7 @@ module.exports = require('./webpack.base.babel')({
     path: path.resolve(__dirname, '..', 'build'),
     filename: '[name].js',
     chunkFilename: '[name].chunk.js',
-    // publicPath: 'http://localhost:4000/'
+    publicPath: '/'
   },
   // Add hot reloading in development
   entry: [
@@ -28,7 +28,7 @@ module.exports = require('./webpack.base.babel')({
     path.join(__dirname, '..', 'app/app.js') // Start with js/app.js
   ],
   // Load the CSS in a style tag in development
-  cssLoaders: 'style!css?modules&importLoaders=1&sourceMap!postcss',
+  cssLoaders: 'style!css?importLoaders=1&sourceMap!postcss',
   // Process the CSS with PostCSS
   postcssPlugins: [
     lost(),

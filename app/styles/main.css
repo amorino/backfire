@@ -1,5 +1,9 @@
-/*@import 'fonts.css';*/
+@import 'fonts.css';
 body {
   font-family: 'BrandonText', sans-serif;
-  font-weight: 800;
+  font-weight: 400;
+}
+
+#root{
+  display: block;
 }

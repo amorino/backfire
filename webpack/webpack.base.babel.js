@@ -6,7 +6,12 @@ module.exports = (options) => {
   return {
     devtool: options.devtool,
     entry: options.entry,
-    output: options.output,
+    output: { // Compile into js/build.js
+      path: path.resolve(__dirname, '..', 'build'),
+      filename: '[name].js',
+      chunkFilename: '[name].chunk.js',
+      publicPath: '/'
+    },
     module: {
       loaders: [{
         test: /\.js$/, // Transform all .js files required somewhere with Babel
