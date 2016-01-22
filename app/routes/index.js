@@ -1,19 +1,47 @@
 import {Route, Redirect} from 'react-router';
 import React from 'react';
 import CoreLayout from '../containers/CoreLayout';
-import CatalogLayout from '../containers/CatalogLayout';
-import ItemDetailLayout from '../containers/ItemDetailLayout';
-
-import About from '../components/pages/About';
-import NotFound from '../components/pages/NotFound';
-import Home from '../components/pages/Home';
-
 export default(
     <Route component={CoreLayout}>
-        <Route name='home' path='/' component={Home}/>
-        <Route name='about' path='/about' component={About}/>
-        <Route name='catalog' path='/items' component={CatalogLayout}/>
-        <Route name='detail' path='/catalog/:id' component={ItemDetailLayout}/>
-        <Route name='notfound' path='*' component={NotFound}/>
+      <Route
+        path="/"
+        getComponent={function get(location, cb) {
+          require.ensure([], (require) => {
+            cb(null, require('../components/pages/Home').default);
+          }, 'HomePage');
+        }}
+        />
+        <Route
+        path="/about"
+        getComponent={function get(location, cb) {
+          require.ensure([], (require) => {
+            cb(null, require('../components/pages/About').default);
+          }, 'About');
+        }}
+        />
+        <Route
+        path="/items"
+        getComponent={function get(location, cb) {
+          require.ensure([], (require) => {
+            cb(null, require('../containers/CatalogLayout').default);
+          }, 'CatalogLayout');
+        }}
+        />
+        <Route
+        path="/catalog/:id"
+        getComponent={function get(location, cb) {
+          require.ensure([], (require) => {
+            cb(null, require('../containers/ItemDetailLayout').default);
+          }, 'ItemDetailLayout');
+        }}
+        />
+        <Route
+        path="*"
+        getComponent={function get(location, cb) {
+          require.ensure([], (require) => {
+            cb(null, require('../components/pages/NotFound').default);
+          }, 'NotFound');
+        }}
+        />
     </Route>
 );

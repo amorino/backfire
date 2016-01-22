@@ -20,7 +20,8 @@ module.exports = require('./webpack.base.babel')({
   output: {
     path: path.resolve(__dirname, '..', 'build'),
     filename: '[name].js',
-    chunkFilename: '[name].chunk.js'
+    chunkFilename: '[name].chunk.js',
+    publicPath: '/' // Insert the production server folder
   },
   // In production, we skip all hot-reloading stuff
   entry: [

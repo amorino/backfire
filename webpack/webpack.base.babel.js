@@ -6,12 +6,7 @@ module.exports = (options) => {
   return {
     devtool: options.devtool,
     entry: options.entry,
-    output: { // Compile into js/build.js
-      path: path.resolve(__dirname, '..', 'build'),
-      filename: '[name].js',
-      chunkFilename: '[name].chunk.js',
-      publicPath: '/'
-    },
+    output: options.output,
     module: {
       loaders: [{
         test: /\.js$/, // Transform all .js files required somewhere with Babel
@@ -36,7 +31,9 @@ module.exports = (options) => {
         include: path.join(__dirname, '..', 'app')
       }]
     },
-    plugins: options.plugins,
+    plugins: options.plugins.concat([
+      new webpack.optimize.CommonsChunkPlugin('common.js')
+    ]),
     postcss: (webpack) => {
       var plugins = [
         postcssImport({
