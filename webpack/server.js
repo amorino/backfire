@@ -6,7 +6,7 @@ var config = require('./webpack.dev.babel');
 
 var app = express();
 var compiler = webpack(config);
-var server = 4000;
+var server = 5000;
 
 app.use(require('webpack-dev-middleware')(compiler, {
     noInfo: true,

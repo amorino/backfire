@@ -27,8 +27,7 @@ export default(
           }, 'CatalogLayout');
         }}
         />
-        <Route
-        path="/catalog/:id"
+        <Route path="/catalog/:id"
         getComponent={function get(location, cb) {
           require.ensure([], (require) => {
             cb(null, require('../containers/ItemDetailLayout').default);
