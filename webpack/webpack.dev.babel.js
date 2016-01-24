@@ -17,8 +17,8 @@ module.exports = require('./webpack.base.babel')({
   devtool: 'cheap-module-eval-source-map',
   output: { // Compile into js/build.js
     path: path.resolve(__dirname, '..', 'build'),
-    filename: '[name].js',
-    chunkFilename: '[name].chunk.js',
+    filename: 'js/[name].js',
+    chunkFilename: 'js/[name].chunk.js',
     publicPath: 'http://localhost:5000/'
   },
   // Add hot reloading in development
@@ -29,6 +29,8 @@ module.exports = require('./webpack.base.babel')({
   ],
   // Load the CSS in a style tag in development
   cssLoaders: 'style!css?importLoaders=1&sourceMap!postcss',
+  // Load Stylus with SourceMaps
+  stylusLoaders: 'style!css?importLoaders=1&sourceMap&localIdentName=[local]___[hash:base64:10]!stylus',
   // Process the CSS with PostCSS
   postcssPlugins: [
     lost(),
@@ -37,11 +39,21 @@ module.exports = require('./webpack.base.babel')({
     postcssMixins(),
     postcssFocus(), // Add a :focus to every :hover
     cssnext({ // Allow future CSS features to be used, also auto-prefixes the CSS...
-      browsers: ['last 2 versions', 'IE > 10'] // ...based on this browser list
+      browsers: ['last 2 versions', 'IE 8'] // ...based on this browser list
     }),
     rucksack(),
     postcssReporter({ // Posts messages from plugins to the terminal
       clearMessages: true
+    })
+  ],
+  stylusPlugins: [
+    lost(),
+    postcssFocus(), // Add a :focus to every :hover
+    cssnext({ // Allow future CSS features to be used, also auto-prefixes the CSS...
+      browsers: ['last 2 versions', 'IE 8'] // ...based on this browser list
+    }),
+    rucksack({
+      autoprefixer: true
     })
   ],
   // Add hot reloading

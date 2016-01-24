@@ -1,6 +1,5 @@
 import React, {Component, PropTypes} from 'react'
 import {Router, Route, browserHistory, hashHistory, useRouterHistory} from 'react-router'
-import {createHashHistory} from 'history'
 import {Provider} from 'react-redux'
 import configureStore from '../store/configureStore'
 import routes from '../routes';

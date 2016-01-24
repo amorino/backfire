@@ -8,8 +8,8 @@ const cssnext = require('postcss-cssnext');
 const postcssFocus = require('postcss-focus');
 const postcssReporter = require('postcss-reporter');
 const cssnano = require('cssnano');
-const postcssSimpleVars = require('postcss-simple-vars');
 const postcssNested = require('postcss-nested');
+const postcssSimpleVars = require('postcss-simple-vars');
 const postcssMixins = require('postcss-mixins');
 const rucksack = require('rucksack-css');
 const lost = require('lost');
@@ -19,8 +19,8 @@ module.exports = require('./webpack.base.babel')({
   devtool: 'source-map',
   output: {
     path: path.resolve(__dirname, '..', 'build'),
-    filename: '[name].js',
-    chunkFilename: '[name].chunk.js',
+    filename: 'js/[name].js',
+    chunkFilename: 'js/[name].chunk.js',
     publicPath: '/' // Insert the production server folder
   },
   // In production, we skip all hot-reloading stuff
@@ -31,20 +31,24 @@ module.exports = require('./webpack.base.babel')({
   // of the CSS being in the JS and injected as a style tag
   cssLoaders: ExtractTextPlugin.extract(
     'style',
-    'css?modules&importLoaders=1!postcss'
+    'css?importLoaders=1!postcss'
+  ),
+  stylusLoaders: ExtractTextPlugin.extract(
+    'style',
+    'css?importLoaders=1!stylus'
   ),
   // In production, we minify our CSS with cssnano
   postcssPlugins: [
     lost(),
     rucksack(),
+    postcssNested(),
     postcssSimpleVars({
       silent: false
     }),
-    postcssNested(),
     postcssMixins(),
     postcssFocus(),
     cssnext({
-      browsers: ['last 2 versions', 'IE > 10']
+      browsers: ['last 2 versions', 'IE 8']
     }),
     cssnano({
       autoprefixer: false, // cssnext already runs autoprefixer
@@ -53,6 +57,16 @@ module.exports = require('./webpack.base.babel')({
     }),
     postcssReporter({
       clearMessages: true
+    })
+  ],
+  stylusPlugins: [
+    lost(),
+    postcssFocus(), // Add a :focus to every :hover
+    cssnext({ // Allow future CSS features to be used, also auto-prefixes the CSS...
+      browsers: ['last 2 versions', 'IE 8'] // ...based on this browser list
+    }),
+    rucksack({
+      autoprefixer: true
     })
   ],
   plugins: [
@@ -80,7 +94,7 @@ module.exports = require('./webpack.base.babel')({
       inject: true
     }),
     // Extract the CSS into a seperate file
-    new ExtractTextPlugin('style.css'),
+    new ExtractTextPlugin('css/style.css'),
     // Set the process.env to production so React includes the production
     // version of itself
     new webpack.DefinePlugin({
