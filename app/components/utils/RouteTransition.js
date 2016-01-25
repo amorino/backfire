@@ -14,16 +14,16 @@ const getStyles = (children, pathname) => ({
 export default function RouteTransition({children, pathname}) {
   return (
     <TransitionMotion styles={getStyles(children, pathname)} willEnter={willEnter} willLeave={willLeave}>
-      {interpolated => <div>
-        {Object.keys(interpolated).map(key => <div key={`${key}-transition`} style={{
+      {item => <div>
+        {Object.keys(item).map(key => <div key={`${key}-transition`} style={{
           position: 'absolute',
-          opacity: interpolated[key].opacity,
-          transform: `translate3d(0, ${interpolated[key].x}px, 0)`
+          opacity: item[key].opacity,
+          WebkitTransform: `translate3d(0, ${item[key].x}px, 0)`,
+          transform: `translate3d(0, ${item[key].x}px, 0)`
         }}>
-          {interpolated[key].children}
+          {item[key].children}
         </div>)}
-      </div>
-}
+      </div>}
     </TransitionMotion>
   );
 }
