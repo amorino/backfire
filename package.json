@@ -67,6 +67,7 @@
     "postcss-simple-vars": "^1.2.0",
     "poststylus": "^0.2.2",
     "raw-loader": "^0.5.1",
+    "react-motion": "^0.3.1",
     "redux-logger": "^2.3.2",
     "redux-simple-router": "^2.0.3",
     "rimraf": "^2.4.3",
@@ -79,6 +80,7 @@
     "webpack-hot-middleware": "^2.6.0"
   },
   "dependencies": {
+    "gsap": "^1.18.2",
     "humps": "^1.0.0",
     "isomorphic-fetch": "^2.2.1",
     "moment": "^2.11.1",
@@ -86,6 +88,7 @@
     "normalizr": "^1.4.1",
     "react": "^0.14.3",
     "react-dom": "^0.14.3",
+    "react-gsap-enhancer": "^0.2.1",
     "react-imageloader": "^2.1.0",
     "react-redux": "^4.0.0",
     "react-router": ">2.0.0-rc",

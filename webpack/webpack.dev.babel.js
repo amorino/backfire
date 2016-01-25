@@ -30,7 +30,7 @@ module.exports = require('./webpack.base.babel')({
   // Load the CSS in a style tag in development
   cssLoaders: 'style!css?importLoaders=1&sourceMap!postcss',
   // Load Stylus with SourceMaps
-  stylusLoaders: 'style!css?importLoaders=1&sourceMap&localIdentName=[local]___[hash:base64:10]!stylus',
+  stylusLoaders: 'style!css?modules&importLoaders=1&sourceMap&localIdentName=[local]___[hash:base64:10]!stylus',
   // Process the CSS with PostCSS
   postcssPlugins: [
     lost(),

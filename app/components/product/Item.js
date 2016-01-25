@@ -10,24 +10,20 @@ function loadData(props) {
     props.dispatch(getOneProduct(props.params.id))
 }
 
-@connect(state => ({
-    data: getProduct(state.products, state.router.params.id)
-    // data: state.products.visibleIds
-}), dispatch => ({
+@connect(state => ({ data: getProduct(state.products, state.router.params.id) }), dispatch => ({
     // dispatch: dispatch,
-    actions: bindActionCreators(ProductActions, dispatch)
-}))
+    actions: bindActionCreators(ProductActions, dispatch) }))
 export default class Item extends Component {
     static propTypes = {
         children: PropTypes.any,
-        actions: PropTypes.object
-    }
+        actions: PropTypes.object,
+    };
 
     initialState = {
         id: null,
         description: 'Loading',
-        image: null
-    }
+        image: null,
+    };
 
     constructor (props, context) {super(props, context);}
 
@@ -39,7 +35,7 @@ export default class Item extends Component {
         const {
             data,
             params,
-            actions
+            actions,
         } = this.props;
         const item = data;
         // const item = data.filter(c => c.id == params.id)[0];
