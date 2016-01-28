@@ -1,6 +1,7 @@
 import {Route, Redirect} from 'react-router';
 import React from 'react';
 import CoreLayout from '../containers/CoreLayout';
+
 export default(
     <Route component={CoreLayout}>
       <Route

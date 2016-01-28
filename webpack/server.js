@@ -1,8 +1,6 @@
-/* eslint-disable no-var */
-var path = require('path');
+var config = require('./webpack.dev.babel');
 var express = require('express');
 var webpack = require('webpack');
-var config = require('./webpack.dev.babel');
 
 var app = express();
 var compiler = webpack(config);

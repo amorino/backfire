@@ -1,3 +1,5 @@
+require('gsap');
+
 import React from 'react';
 import { render } from 'react-dom';
 import Root from './containers/Root';
@@ -6,6 +8,5 @@ import Root from './containers/Root';
 // import './styles/main.css';
 import 'normalize.css';
 import './styles/main.styl';
-require('gsap');
 
 render(<Root/>, document.getElementById('root'));
