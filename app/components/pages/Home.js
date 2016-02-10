@@ -13,7 +13,6 @@ export default class About extends Component {
         <div>
           <p>This is a static page</p>
         </div>
-
         <Footer/>
       </div>
     )

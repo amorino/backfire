@@ -1,5 +1,5 @@
-import catalog from '../data/catalog.json'
-import * as types from '../constants/ActionTypes'
+import catalog from '../data/catalog.json';
+import * as types from '../constants/ActionTypes';
 
 function requestItems() {
   return {
@@ -17,8 +17,7 @@ function receiveItems(content) {
 export function fetchCatalog() {
   return dispatch => {
     dispatch(requestItems());
-    setTimeout(() =>
-      dispatch(receiveItems(catalog)), 100);
+    setTimeout(() => dispatch(receiveItems(catalog)), 100);
   };
 }
 
@@ -32,6 +31,6 @@ export function setItemFilter(filter) {
 export function fetchItem(itemId) {
   return {
     type: types.FETCH_ITEM,
-    detail: catalog.find(item => item.id == itemId)
+    detail: catalog.find(item => item.id === itemId)
   };
 }

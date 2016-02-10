@@ -7,9 +7,15 @@ class CatalogItem extends Component {
 
     return (
       <tr>
-        <td>{item.id}</td>
-        <td>{item.title}</td>
-        <td>{item.description}</td>
+        <td>
+          {item.id}
+        </td>
+        <td>
+          {item.title}
+        </td>
+        <td>
+          {item.description}
+        </td>
         <td>
           <Link to={`/catalog/${item.id}`}>View Item</Link>
         </td>

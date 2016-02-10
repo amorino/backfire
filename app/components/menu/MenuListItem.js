@@ -10,31 +10,23 @@ export default class MenuListItem extends Component {
     text: PropTypes.string.isRequired
   };
 
+  static defaultProps = {
+    isExternal: false
+  };
+
   constructor(props, context) {
     super(props, context);
     this.handleMenuClick = this.handleMenuClick.bind(this);
     this.state = {
       isMenuActive: false
-    }
+    };
   }
 
-  handleMenuClick(evt) {
+  handleMenuClick() {
     // evt.preventDefault();
     this.setState({
       isMenuActive: !this.state.isMenuActive
     });
-  }
-
-  static defaultProps = {
-    isExternal: false
-  };
-
-  render() {
-    return (
-      <li>
-        {this.renderLink()}
-      </li>
-    )
   }
 
   renderLink() {
@@ -42,17 +34,26 @@ export default class MenuListItem extends Component {
     const activeClass = isMenuActive
       ? 'active'
       : '';
-    if (this.props.isExternal)
+    if (this.props.isExternal) {
       return (
         <a href={this.props.link} target="_blank">
           {this.props.text}
         </a>
-      )
-    else
+      );
+    } else {
       return (
         <Link to={`${this.props.link}`} className={classnames('menu-link', activeClass)} onClick={this.handleMenuClick}>
           {this.props.text}
         </Link>
-      )
+      );
+    }
+  }
+
+  render() {
+    return (
+      <li>
+        {this.renderLink()}
+      </li>
+    )
   }
 }

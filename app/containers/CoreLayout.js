@@ -1,8 +1,8 @@
-import React, {PropTypes, Component} from 'react'
-import Menu from '../components/menu/Menu'
-import {connect} from 'react-redux'
-import GSAPTransitionGroup from '../components/utils/GSAPTransitionGroup'
-import RouteTransition from '../components/utils/RouteTransition'
+import React, {PropTypes, Component} from 'react';
+import Menu from '../components/menu/Menu';
+import {connect} from 'react-redux';
+// import GSAPTransitionGroup from '../components/utils/GSAPTransitionGroup';
+import RouteTransition from '../components/utils/RouteTransition';
 
 class App extends Component {
 
@@ -22,11 +22,11 @@ class App extends Component {
     return (
       <div id="layout">
         <Menu/>
-          <RouteTransition pathname={pathname}>
-            {this.props.children}
-          </RouteTransition>
+        <RouteTransition pathname={pathname}>
+          {this.props.children}
+        </RouteTransition>
       </div>
-    )
+    );
   }
 }
 

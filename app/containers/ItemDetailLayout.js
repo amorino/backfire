@@ -7,30 +7,27 @@ import ItemDetail from '../components/catalog/ItemDetail';
 import * as CatalogActions from '../actions/catalog';
 
 class ItemDetailLayout extends Component {
-    componentDidMount() {
-        const {dispatch} = this.props;
-        const {id} = this.props.params;
-        dispatch(CatalogActions.fetchItem(id));
-    }
+  componentDidMount() {
+    const {dispatch} = this.props;
+    const {id} = this.props.params;
+    dispatch(CatalogActions.fetchItem(id));
+  }
 
-    render () {
-        const {
-            dispatch,
-            item
-        } = this.props;
+  render() {
+    const {item} = this.props;
 
-        return (
-            <div>
-                {!item && <h1>Loading Item...</h1>}
-                {item && <ItemDetail item={item}/>}
-                <Link to={'/items'}>Back to Catalog</Link>
-            </div>
-        );
-    }
+    return (
+      <div>
+        {!item && <h1>Loading Item...</h1>}
+        {item && <ItemDetail item={item}/>}
+        <Link to={'/items'}>Back to Catalog</Link>
+      </div>
+    );
+  }
 }
 
 function mapStateToProps(state) {
-    return {item: state.detail};
+  return {item: state.detail};
 }
 
 export default connect(mapStateToProps)(ItemDetailLayout);

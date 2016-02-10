@@ -1,4 +1,4 @@
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
 import ImageLoader from 'react-imageloader';
 import Image from '../utils/Image';
 
@@ -8,9 +8,11 @@ class ItemDetail extends Component {
     const {item} = this.props;
 
     function preloader() {
-      return <p>
-        Loading
-      </p>;
+      return (
+        <p>
+          Loading
+        </p>
+      );
     }
 
     return (

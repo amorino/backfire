@@ -1,6 +1,6 @@
-import React, {PropTypes, Component} from 'react';
+import React, {Component} from 'react';
 import MenuListItem from './MenuListItem';
-import {VelocityTransitionGroup} from 'velocity-react'
+import {VelocityTransitionGroup} from 'velocity-react';
 
 const menuItems = [
   {
@@ -18,11 +18,11 @@ const menuItems = [
 export default class Menu extends Component {
 
   constructor(props, context) {
-    super(props, context)
+    super(props, context);
   }
 
   render() {
-    let items = menuItems.map((item, i) => <MenuListItem {...item} key={i}/>);
+    const items = menuItems.map((item, i) => <MenuListItem {...item} key={i}/>);
     return (
       <div id="menu" ref="menu">
         <VelocityTransitionGroup component='ul' enter={{
@@ -36,6 +36,6 @@ export default class Menu extends Component {
           {items}
         </VelocityTransitionGroup>
       </div>
-    )
+    );
   }
 }

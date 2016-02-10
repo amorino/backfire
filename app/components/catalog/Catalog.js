@@ -3,6 +3,14 @@ import Filter from './Filter';
 import CatalogItem from './CatalogItem';
 
 class Catalog extends Component {
+
+  renderChilds(items) {
+    if (items === 0) {
+      return 'No items found';
+    }
+    return items.map(item => <CatalogItem key={item.id} item={item}/>);
+  }
+
   render() {
     const {items, actions} = this.props;
     return (
@@ -15,13 +23,6 @@ class Catalog extends Component {
         </table>
       </div>
     );
-  }
-
-  renderChilds(items) {
-    if (items == 0) {
-      return 'No items found'
-    }
-    return items.map(item => <CatalogItem key={item.id} item={item}/>);
   }
 }
 

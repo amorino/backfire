@@ -48,7 +48,7 @@ class GSAPTransitionGroup extends Component {
       <div>
         {children}
       </div>
-    )
+    );
   }
 
   componentWillUnmount() {
