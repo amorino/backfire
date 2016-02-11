@@ -31,6 +31,6 @@ export function setItemFilter(filter) {
 export function fetchItem(itemId) {
   return {
     type: types.FETCH_ITEM,
-    detail: catalog.find(item => item.id === itemId)
+    detail: catalog.find(item => item.id == itemId)
   };
 }

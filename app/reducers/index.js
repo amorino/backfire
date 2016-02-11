@@ -1,6 +1,6 @@
 import {catalog, filter} from './catalog';
-import {routeReducer} from 'redux-simple-router';
-import {combineReducers} from 'redux';
+import {routeReducer} from 'react-router-redux';
+import {combineReducers} from 'redux-immutable';
 
 function content(state = null, action) {
   return action.content
@@ -14,4 +14,4 @@ function detail(state = null, action) {
     : state;
 }
 
-export default combineReducers({routing: routeReducer, catalog, filter, content, detail});
+export default combineReducers({route: routeReducer, catalog, filter, content, detail});

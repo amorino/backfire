@@ -14,7 +14,7 @@ const lost = require('lost');
 
 module.exports = require('./webpack.base.babel')({
   type: 'development',
-  devtool: 'cheap-module-eval-source-map',
+  devtool: 'inline-source-map',
   output: { // Compile into js/build.js
     path: path.resolve(__dirname, '..', 'build'),
     filename: 'js/[name].js',

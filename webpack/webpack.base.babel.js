@@ -46,28 +46,30 @@ module.exports = (options) => {
     ]),
     postcss: (webpack) => {
       var plugins = [
-        postcssImport({ addDependencyTo: webpack })
+        postcssImport({
+          addDependencyTo: webpack
+        })
       ];
       return plugins.concat(options.postcssPlugins);
     },
     resolve: {
       modulesDirectories: [
         'app',
-        'assets',
         'containers',
         'components',
+        'selectors',
+        'sagas',
+        'images',
+        'assets',
         'node_modules',
-        'vendor',
-        'bower_directories'
+        'vendor'
       ],
       extensions: [
         '',
         '.js',
         '.jsx',
-        '.react.js',
-        '.json'
-      ],
-      alias: {}
+        '.react.js'
+      ]
     },
     target: 'web', // Make web variables accessible to webpack, e.g. window
     stats: false, // Don't show stats in the console
