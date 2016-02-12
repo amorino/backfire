@@ -54,6 +54,6 @@ export default class MenuListItem extends Component {
       <li>
         {this.renderLink()}
       </li>
-    )
+    );
   }
 }

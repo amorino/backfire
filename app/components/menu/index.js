@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import MenuListItem from './MenuListItem';
-import {VelocityTransitionGroup} from 'velocity-react';
 
 const menuItems = [
   {
@@ -25,16 +24,7 @@ export default class Menu extends Component {
     const items = menuItems.map((item, i) => <MenuListItem {...item} key={i}/>);
     return (
       <div id="menu" ref="menu">
-        <VelocityTransitionGroup component='ul' enter={{
-          animation: 'slideDown',
-          duration: 400,
-          delay: 500
-        }} leave={{
-          animation: 'slideUp',
-          duration: 400
-        }} runOnMount={true}>
-          {items}
-        </VelocityTransitionGroup>
+        <ul>{items}</ul>
       </div>
     );
   }
