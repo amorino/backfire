@@ -1,14 +1,14 @@
 import {createStore, applyMiddleware} from 'redux';
 import {syncHistory} from 'react-router-redux';
-import sagaMiddleware from 'redux-saga';
+import createSagaMiddleware from 'redux-saga';
 import {browserHistory} from 'react-router';
 // import thunk from 'redux-thunk';
 import createLogger from 'redux-logger';
 import reducer from '../reducers';
-import sagas from '../sagas';
+import rootSaga from '../sagas';
 
 const reduxRouterMiddleware = syncHistory(browserHistory);
-const createStoreWithMiddleware = applyMiddleware(reduxRouterMiddleware, sagaMiddleware(...sagas), createLogger({collapsed: true}))(createStore);
+const createStoreWithMiddleware = applyMiddleware(reduxRouterMiddleware, createSagaMiddleware(rootSaga), createLogger({collapsed: true}))(createStore);
 
 export default function configureStore(initialState) {
   const store = createStoreWithMiddleware(reducer, initialState);

@@ -1,14 +1,15 @@
 import React, {Component} from 'react';
+import styles from './styles.styl';
+import Footer from 'components/footer';
 
-export default class About extends Component {
+export default class NotFound extends Component {
   render() {
     return (
-      <div>
-        <div className="header">
+      <div className={styles.notfound}>
+        <div className={styles.wrapper}>
           <h1>Not Found</h1>
-        </div>
-        <div className="content">
           <p>Page not found.</p>
+          <Footer/>
         </div>
       </div>
     );

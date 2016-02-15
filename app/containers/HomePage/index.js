@@ -1,20 +1,17 @@
 import React, {Component} from 'react';
-import styles from './style.styl';
+import styles from './styles.styl';
 import Footer from 'components/footer';
 
-export default class About extends Component {
+export default class Home extends Component {
   render() {
-    // let i = require('images/banner.jpg');
     return (
-      <div>
-        <div>
-          <h1 className={styles.heading1}>Home</h1>
-        </div>
-        <div>
+      <div className={styles.home}>
+        <div className={styles.wrapper}>
+          <h1>Home</h1>
           <p>This is a static page</p>
+          <Footer/>
         </div>
-        <Footer/>
       </div>
-    )
+    );
   }
 }

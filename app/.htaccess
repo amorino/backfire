@@ -25,7 +25,7 @@
   # RewriteCond %{HTTP:X-Forwarded-Proto} !https
 
   # Redirect to the same URL with https://, ignoring all further rules if this one is in effect
-  RewriteRule ^(.*) https://%{HTTP_HOST}/$1 [R,L]
+  # RewriteRule ^(.*) https://%{HTTP_HOST}/$1 [R,L]
 
   # If we get to here, it means we are on https://
 

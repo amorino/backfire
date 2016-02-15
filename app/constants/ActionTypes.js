@@ -1,5 +1,0 @@
-export const SET_ITEM_FILTER = 'SET_ITEM_FILTER';
-export const REQUEST_ITEMS = 'REQUEST_ITEMS';
-export const RECEIVE_ITEMS = 'RECEIVE_ITEMS';
-
-export const FETCH_ITEM = 'FETCH_ITEM';

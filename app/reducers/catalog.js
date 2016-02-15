@@ -1,19 +1,47 @@
-import {REQUEST_ITEMS, RECEIVE_ITEMS, SET_ITEM_FILTER} from '../constants/ActionTypes';
-import {createReducer} from '../utils/createReducer';
+import {combineReducers} from 'redux';
+import {RECEIVE_ITEMS} from '../actions';
 
-export const catalog = createReducer({
-  isFetching: false
-}, {
-  [REQUEST_ITEMS]: (state, action) => {
-    return Object.assign({}, state, {isFetching: true});
-  },
-  [RECEIVE_ITEMS]: (state, action) => {
-    return Object.assign({}, state, {isFetching: false});
-  }
-});
+function items(state) {
+  return state;
+}
 
-export const filter = createReducer('', {
-  [SET_ITEM_FILTER]: (state, action) => {
-    return action.filter;
+function byId(state = {}, action) {
+  switch (action.type) {
+    case RECEIVE_ITEMS:
+      return {
+        ...state,
+        ...action.items.reduce((obj, item) => {
+          obj[item.id] = item;
+          return obj;
+        }, {})
+      };
+    default:
+      const {itemId} = action;
+      if (itemId) {
+        return {
+          ...state,
+          [itemId]: items(state[itemId], action)
+        };
+      }
+      return state;
   }
-});
+}
+
+function visibleIds(state = [], action) {
+  switch (action.type) {
+    case RECEIVE_ITEMS:
+      return action.items.map(item => item.id);
+    default:
+      return state;
+  }
+}
+
+export default combineReducers({byId, visibleIds});
+
+export function getItem(state, id) {
+  return state.byId[id];
+}
+
+export function getVisibleItems(state) {
+  return state.visibleIds.map(id => getItem(state, id));
+}

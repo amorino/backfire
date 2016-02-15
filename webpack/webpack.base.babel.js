@@ -60,6 +60,8 @@ module.exports = (options) => {
         'selectors',
         'sagas',
         'images',
+        'styles',
+        'fonts',
         'assets',
         'node_modules',
         'vendor'
@@ -68,7 +70,8 @@ module.exports = (options) => {
         '',
         '.js',
         '.jsx',
-        '.react.js'
+        '.react.js',
+        '.styl'
       ]
     },
     target: 'web', // Make web variables accessible to webpack, e.g. window
