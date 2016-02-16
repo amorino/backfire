@@ -1,25 +1,25 @@
 import React, {Component, PropTypes} from 'react';
-import ProductItem from './ProductItem';
+import {Link} from 'react-router';
 
 import {connect} from 'react-redux';
 import {getItem} from '../../reducers/catalog';
 
-export default class ProductList extends Component {
+export default class Item extends Component {
   render() {
-    const {item} = this.props;
+    const {description, title} = this.props.item;
     return (
       <div>
-        <h3>Product</h3>
-        <ProductItem key={item.id} product={item}/>
+        <h3>Item</h3>
+        {title} - {description} - <Link to={`/catalog`}>Return</Link>
       </div>
     );
   }
 }
 
-ProductList.propTypes = {
+Item.propTypes = {
   item: PropTypes.object.isRequired
 };
 
 export default connect((state, props) => ({
   item: getItem(state.get('catalog'), props.id)
-}))(ProductList);
+}))(Item);

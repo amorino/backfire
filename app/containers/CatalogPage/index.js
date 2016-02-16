@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import ProductList from './ProductList';
+import CatalogList from './CatalogList';
 
 export default class App extends Component {
   render() {
@@ -7,7 +7,7 @@ export default class App extends Component {
       <div>
         <h2>Shopping Cart Example</h2>
         <hr/>
-        <ProductList/>
+        <CatalogList/>
       </div>
     );
   }

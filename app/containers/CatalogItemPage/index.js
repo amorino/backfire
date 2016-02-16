@@ -1,15 +1,15 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import ProductList from './ProductList';
+import Item from './Item';
 
 class App extends Component {
   render() {
     const id = this.props.params.id;
     return (
       <div>
-        <h2>Shopping Cart Example</h2>
+        <h2>Detail</h2>
         <hr/>
-        <ProductList id={id}/>
+        <Item id={id}/>
       </div>
     );
   }
