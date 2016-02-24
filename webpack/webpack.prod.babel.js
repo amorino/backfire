@@ -31,7 +31,7 @@ module.exports = require('./webpack.base.babel')({
   // of the CSS being in the JS and injected as a style tag
   cssLoaders: ExtractTextPlugin.extract(
     'style',
-    'css?importLoaders=1!postcss'
+    'css?importLoaders=1'
   ),
   stylusLoaders: ExtractTextPlugin.extract(
     'style',
@@ -62,9 +62,6 @@ module.exports = require('./webpack.base.babel')({
   stylusPlugins: [
     lost(),
     postcssFocus(), // Add a :focus to every :hover
-    cssnext({ // Allow future CSS features to be used, also auto-prefixes the CSS...
-      browsers: ['last 2 versions', 'IE 8'] // ...based on this browser list
-    }),
     rucksack({
       autoprefixer: true
     })
@@ -94,7 +91,9 @@ module.exports = require('./webpack.base.babel')({
       inject: true
     }),
     // Extract the CSS into a seperate file
-    new ExtractTextPlugin('css/style.css'),
+    new ExtractTextPlugin('css/main.css', {
+      allChunks: true
+    }),
     // Set the process.env to production so React includes the production
     // version of itself
     new webpack.DefinePlugin({

@@ -28,7 +28,8 @@ module.exports = require('./webpack.base.babel')({
     path.join(__dirname, '..', 'app/app.js') // Start with js/app.js
   ],
   // Load the CSS in a style tag in development
-  cssLoaders: 'style!css?importLoaders=1&sourceMap!postcss',
+  // cssLoaders: 'style!css?importLoaders=1&sourceMap!postcss',
+  cssLoaders: 'style!css?importLoaders=1&sourceMap',
   // Load Stylus with SourceMaps
   stylusLoaders: 'style!css?modules&importLoaders=1&sourceMap&localIdentName=[local]___[hash:base64:10]!stylus',
   // Process the CSS with PostCSS
@@ -49,9 +50,6 @@ module.exports = require('./webpack.base.babel')({
   stylusPlugins: [
     lost(),
     postcssFocus(), // Add a :focus to every :hover
-    cssnext({ // Allow future CSS features to be used, also auto-prefixes the CSS...
-      browsers: ['last 2 versions', 'IE 8'] // ...based on this browser list
-    }),
     rucksack({
       autoprefixer: true
     })
