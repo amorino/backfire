@@ -4,20 +4,28 @@
   "env": {
     "browser": true,
     "node": true,
-    "mocha": true
-  },
-  "ecmaFeatures": {
-    "forOf": true,
-    "jsx": true,
+    "mocha": true,
     "es6": true
   },
+  "parserOptions": {
+    "ecmaVersion": 6,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true,
+      arrowFunctions: true
+    }
+  },
   "rules": {
+    "react/jsx-no-bind": [2, {"ignoreRefs": false, "allowArrowFunctions": true, "allowBind": false}],
     "comma-dangle": 0,
     "indent": [2, 2, {"SwitchCase": 1}],
     "object-curly-spacing": [2, "never"],
     "no-console": 0,
     "react/prop-types": 0,
     "max-len": 0,
-    "no-use-before-define": 0
+    "prefer-template": 0,
+    "no-use-before-define": 0,
+    "newline-per-chained-call": 0,
+    "arrow-body-style": [2, "as-needed"]
   }
 }

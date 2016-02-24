@@ -1,15 +1,15 @@
 import {createStore, applyMiddleware} from 'redux';
 import {syncHistory} from 'react-router-redux';
-import {hashHistory, useRouterHistory} from 'react-router';
-// import thunk from 'redux-thunk'
+import createSagaMiddleware from 'redux-saga';
+import {browserHistory} from 'react-router';
 import reducer from '../reducers';
+import rootSaga from '../sagas';
 
-const history = createHashHistory({ queryKey: false });
-const reduxRouterMiddleware = syncHistory(useRouterHistory(createHashHistory)({queryKey: false}));
-const createStoreWithMiddleware = applyMiddleware(reduxRouterMiddleware)(createStore);
+const reduxRouterMiddleware = syncHistory(browserHistory);
+const createStoreWithMiddleware = applyMiddleware(reduxRouterMiddleware, createSagaMiddleware(rootSaga))(createStore);
 
 export default function configureStore(initialState) {
   const store = createStoreWithMiddleware(reducer, initialState);
-  reduxRouterMiddleware.listenForReplays(store);
+  reduxRouterMiddleware.listenForReplays(store, (state) => state.get('route').location);
   return store;
 }

@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Router, browserHistory, createHashHistory, useRouterHistory} from 'react-router';
+import {Router, browserHistory} from 'react-router';
 import {Provider} from 'react-redux';
 import configureStore from '../store/configureStore';
 import routes from '../routes';
@@ -12,9 +12,7 @@ const rootRoute = {
 };
 
 const store = configureStore(fromJS({}));
-const history = process.env.NODE_ENV === 'production'
-  ? useRouterHistory(createHashHistory)({queryKey: false})
-  : browserHistory;
+const history = browserHistory;
 
 export default class Root extends Component {
   render() {

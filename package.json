@@ -4,7 +4,7 @@
   "description": "A boilerplate with hot reloading React components using redux.",
   "scripts": {
     "clean": "rimraf build",
-    "node": "rimraf node_modules",
+    "clean:modules": "rimraf node_modules",
     "build:webpack": "NODE_ENV=production webpack --config webpack/webpack.prod.babel.js --progress --colors -p",
     "build": "npm run clean && npm run build:webpack",
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -40,6 +40,7 @@
     "babel-preset-react-hmre": "^1.1.0",
     "babel-preset-stage-0": "^6.5.0",
     "classnames": "^2.2.3",
+    "connect-history-api-fallback": "^1.1.0",
     "css-loader": "^0.23.1",
     "cssnano": "^3.5.2",
     "eslint": "^2.2.0",

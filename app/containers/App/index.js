@@ -17,7 +17,7 @@ class App extends React.Component {
           atEnter={{opacity: 0}}
           atLeave={{opacity: 0}}
           atActive={{opacity: 1}}
-          mapStyles={styles => ({opacity: `${styles.opacity}`, position: 'absolute', width: '100%'})}
+          mapStyles={style => ({opacity: `${style.opacity}`, position: 'absolute', width: '100%'})}
         >
           <div className={styles.wrapper}>
             {this.props.children}

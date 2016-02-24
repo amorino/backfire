@@ -2,7 +2,6 @@ const path = require('path');
 const webpack = require('webpack');
 const postcssImport = require('postcss-import');
 const postcss = require('poststylus');
-const rucksack = require('rucksack-css');
 
 module.exports = (options) => {
   return {
@@ -44,10 +43,10 @@ module.exports = (options) => {
     plugins: options.plugins.concat([
       new webpack.optimize.CommonsChunkPlugin('common.js')
     ]),
-    postcss: (webpack) => {
-      var plugins = [
+    postcss: (dependency) => {
+      const plugins = [
         postcssImport({
-          addDependencyTo: webpack
+          addDependencyTo: dependency
         })
       ];
       return plugins.concat(options.postcssPlugins);

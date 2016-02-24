@@ -15,12 +15,12 @@ const rucksack = require('rucksack-css');
 const lost = require('lost');
 
 module.exports = require('./webpack.base.babel')({
-  type: 'development',
+  type: 'production',
   devtool: 'source-map',
   output: {
     path: path.resolve(__dirname, '..', 'build'),
-    filename: 'js/[name].js',
-    chunkFilename: 'js/[name].chunk.js',
+    filename: '[name].js',
+    chunkFilename: '[name].chunk.js',
     publicPath: '/' // Insert the production server folder
   },
   // In production, we skip all hot-reloading stuff
