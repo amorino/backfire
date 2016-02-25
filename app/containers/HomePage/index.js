@@ -9,7 +9,7 @@ export default class Home extends Component {
         <div className={styles.wrapper}>
           <h1>Home</h1>
           <p>This is a static page</p>
-          <Footer/>
+          <Footer />
         </div>
       </div>
     );

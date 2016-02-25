@@ -14,10 +14,6 @@ export default class MenuListItem extends Component {
     isExternal: false
   };
 
-  constructor(props, context) {
-    super(props, context);
-  }
-
   renderLink() {
     const {route, link, text, isExternal} = this.props;
     const active = route === link ? 'active' : '';

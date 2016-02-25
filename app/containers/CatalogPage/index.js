@@ -8,7 +8,7 @@ export default class App extends Component {
       <div className={styles.catalog}>
         <div className={styles.wrapper}>
           <h1>Catalog</h1>
-          <CatalogList/>
+          <CatalogList />
         </div>
       </div>
     );

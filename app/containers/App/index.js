@@ -8,7 +8,7 @@ class App extends React.Component {
   render() {
     return (
       <div id="app">
-        <Menu/>
+        <Menu />
         <RouteTransition pathname={this.props.location.pathname}
           atEnter={{opacity: 0}}
           atLeave={{opacity: 0}}
@@ -20,7 +20,7 @@ class App extends React.Component {
           </div>
         </RouteTransition>
       </div>
-    );
+      );
   }
 }
 

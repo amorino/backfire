@@ -19,7 +19,7 @@ const menuItems = [
 class Menu extends Component {
   render() {
     const {current} = this.props;
-    const items = menuItems.map((item, i) => <MenuListItem {...item} key={i} route={current}/>);
+    const items = menuItems.map((item, i) => <MenuListItem {...item} key={i} route={current} />);
     return (
       <div className={styles.menu}>
         <ul>{items}</ul>

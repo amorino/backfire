@@ -7,4 +7,5 @@ import 'file?name=[name].[ext]!./.htaccess';
 import 'normalize.css';
 require('gsap');
 
-render(< Root />, document.getElementById('root'));
+render(<Root />,
+  document.getElementById('root'));

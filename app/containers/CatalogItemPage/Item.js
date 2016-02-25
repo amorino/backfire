@@ -10,7 +10,7 @@ export default class Item extends Component {
     return (
       <div>
         <h2>Item</h2>
-        {title} - {description} - <Link to={`/catalog`}>Return</Link>
+        {title} - {description} - <Link to={'/catalog'}>Return</Link>
       </div>
     );
   }

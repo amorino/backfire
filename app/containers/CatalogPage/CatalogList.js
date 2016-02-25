@@ -11,7 +11,7 @@ export default class CatalogList extends Component {
     return (
       <div>
         <h3>Items</h3>
-        {items.map(item => <Item key={item.id} item={item}/>)}
+        {items.map(item => <Item key={item.id} item={item} />)}
       </div>
     );
   }

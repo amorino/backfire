@@ -9,7 +9,7 @@ export default class NotFound extends Component {
         <div className={styles.wrapper}>
           <h1>Not Found</h1>
           <p>Page not found.</p>
-          <Footer/>
+          <Footer />
         </div>
       </div>
     );

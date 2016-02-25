@@ -26,6 +26,9 @@
     "prefer-template": 0,
     "no-use-before-define": 0,
     "newline-per-chained-call": 0,
-    "arrow-body-style": [2, "as-needed"]
+    "arrow-body-style": [2, "as-needed"],
+    "react/jsx-closing-bracket-location": 1,
+    "react/jsx-indent-props": 1,
+    "react/jsx-indent": [2, 2]
   }
 }

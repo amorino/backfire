@@ -10,7 +10,7 @@ class App extends Component {
       <div className={styles.catalog_page}>
         <div className={styles.wrapper}>
           <h1>Detail</h1>
-          <Item id={id}/>
+          <Item id={id} />
         </div>
       </div>
     );

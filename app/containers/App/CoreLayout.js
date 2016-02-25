@@ -10,18 +10,14 @@ class App extends Component {
     children: PropTypes.any
   };
 
-  constructor(props, context) {
-    super(props, context);
-  }
-
   render() {
     const {pathname} = this.props.location;
     const key = pathname.split('/') || 'root';
-    const element = this.props.children || <div/>;
+    const element = this.props.children || <div />;
     const elementToAnimate = React.cloneElement(element, {key});
     return (
       <div id="layout">
-        <Menu/>
+        <Menu />
         <RouteTransition pathname={pathname}>
           {elementToAnimate}
         </RouteTransition>
