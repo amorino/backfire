@@ -23,7 +23,7 @@ class App extends Component {
       <div id="layout">
         <Menu/>
         <RouteTransition pathname={pathname}>
-          {this.props.children}
+          {elementToAnimate}
         </RouteTransition>
       </div>
     );

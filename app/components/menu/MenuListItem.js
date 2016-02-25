@@ -16,37 +16,23 @@ export default class MenuListItem extends Component {
 
   constructor(props, context) {
     super(props, context);
-    this.handleMenuClick = this.handleMenuClick.bind(this);
-    this.state = {
-      isMenuActive: false
-    };
-  }
-
-  handleMenuClick() {
-    // evt.preventDefault();
-    this.setState({
-      isMenuActive: !this.state.isMenuActive
-    });
   }
 
   renderLink() {
-    const {isMenuActive} = this.state;
-    const activeClass = isMenuActive
-      ? 'active'
-      : '';
-    if (this.props.isExternal) {
+    const {route, link, text, isExternal} = this.props;
+    const active = route === link ? 'active' : '';
+    if (isExternal) {
       return (
-        <a href={this.props.link} target="_blank">
+        <a href={link} target="_blank">
           {this.props.text}
         </a>
       );
-    } else {
-      return (
-        <Link to={`${this.props.link}`} className={classnames('menu-link', activeClass)} onClick={this.handleMenuClick}>
-          {this.props.text}
-        </Link>
-      );
     }
+    return (
+      <Link to={`${link}`} className={classnames('menu-link', active)}>
+        {text}
+      </Link>
+    );
   }
 
   render() {

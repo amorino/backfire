@@ -9,7 +9,7 @@ export default class Item extends Component {
     const {description, title} = this.props.item;
     return (
       <div>
-        <h3>Item</h3>
+        <h2>Item</h2>
         {title} - {description} - <Link to={`/catalog`}>Return</Link>
       </div>
     );
