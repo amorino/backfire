@@ -93,6 +93,7 @@
     "gsap": "^1.18.2",
     "immutable": "^3.7.6",
     "react": "^0.14.7",
+    "react-burger-menu": "^1.5.2",
     "react-dom": "^0.14.7",
     "react-router": "^2.0.0",
     "redux": "^3.3.1"

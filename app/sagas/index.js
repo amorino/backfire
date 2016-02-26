@@ -1,15 +1,16 @@
-// import {getGithubData} from './getGithubData.saga';
-//
-// export default[getGithubData];
-
-/* eslint-disable no-constant-condition */
+/* eslint-disable */
 
 import {put, call, fork} from 'redux-saga/effects';
 import * as actions from '../actions';
 import {takeEvery} from 'redux-saga';
 import {api} from '../services';
 
+function fetchPostsApi() {
+  return fetch(`https://kokonutstudio.com/catalog.json`).then(response => response.json())
+}
+
 export function * getAllItems() {
+  // const items = yield call(fetchPostsApi);
   const items = yield call(api.getItems);
   yield put(actions.receiveItems(items));
 }
@@ -23,7 +24,8 @@ export function * watchGetProducts(getState) {
 }
 
 export default function * root(getState) {
-  yield[fork(getAllItems),
+  yield[
+    fork(getAllItems),
     fork(watchGetProducts, getState)
   ];
 }

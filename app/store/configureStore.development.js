@@ -6,9 +6,15 @@ import {browserHistory} from 'react-router';
 import createLogger from 'redux-logger';
 import reducer from '../reducers';
 import rootSaga from '../sagas';
+import {Iterable} from 'immutable';
+
+const stateTransformer = (state) => {
+  if (Iterable.isIterable(state)) return state.toJS();
+  return state;
+};
 
 const reduxRouterMiddleware = syncHistory(browserHistory);
-const createStoreWithMiddleware = applyMiddleware(reduxRouterMiddleware, createSagaMiddleware(rootSaga), createLogger({collapsed: true}))(createStore);
+const createStoreWithMiddleware = applyMiddleware(reduxRouterMiddleware, createSagaMiddleware(rootSaga), createLogger({collapsed: true, stateTransformer}))(createStore);
 
 export default function configureStore(initialState) {
   const store = createStoreWithMiddleware(reducer, initialState);
