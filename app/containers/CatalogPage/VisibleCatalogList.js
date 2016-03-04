@@ -1,5 +1,4 @@
 import {connect} from 'react-redux';
-import {toggleTodo} from 'actions';
 import CatalogList from './CatalogList';
 import {getVisibleItems} from '../../reducers/catalog';
 
@@ -20,15 +19,8 @@ const mapStateToProps = (state) => ({
   catalog: getVisibleTodos(getVisibleItems(state.get('catalog')), state.get('filter'))
 });
 
-const mapDispatchToProps = (dispatch) => ({
-  onTodoClick: (id) => {
-    dispatch(toggleTodo(id));
-  }
-});
-
 const VisibleCatalogList = connect(
-  mapStateToProps,
-  mapDispatchToProps
+  mapStateToProps
 )(CatalogList);
 
 export default VisibleCatalogList;

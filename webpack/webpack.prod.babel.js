@@ -19,9 +19,9 @@ module.exports = require('./webpack.base.babel')({
   devtool: 'source-map',
   output: {
     path: path.resolve(__dirname, '..', 'build'),
-    filename: '[name].js',
-    chunkFilename: '[name].chunk.js',
-    publicPath: '/' // Insert the production server folder
+    filename: 'js/[name].js',
+    chunkFilename: 'js/[name].chunk.js',
+    publicPath: '/festival/' // Insert the production server folder
   },
   // In production, we skip all hot-reloading stuff
   entry: [
@@ -35,7 +35,7 @@ module.exports = require('./webpack.base.babel')({
   ),
   stylusLoaders: ExtractTextPlugin.extract(
     'style',
-    'css?importLoaders=1!stylus'
+    'css?modules&importLoaders=2!stylus'
   ),
   // In production, we minify our CSS with cssnano
   postcssPlugins: [

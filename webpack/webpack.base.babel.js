@@ -2,6 +2,7 @@ const path = require('path');
 const webpack = require('webpack');
 const postcssImport = require('postcss-import');
 const postcss = require('poststylus');
+const rupture = require('rupture');
 
 module.exports = (options) => ({
   devtool: options.devtool,
@@ -20,13 +21,13 @@ module.exports = (options) => ({
       loader: options.stylusLoaders
     }, {
       test: /\.jpe?g$|\.gif$|\.png$/i, // Transform all images files required somewhere with file-loader
-      loader: 'file?name=img-[sha512:hash:base64:7].[ext]'
+      loader: 'file?name=assets/img-[sha512:hash:base64:7].[ext]'
     }, {
       test: /\.html$/, // Transform all html files required somewhere with html-loader
       loader: 'html-loader'
     }, {
       test: /\.(ttf|eot|svg|woff(2)?)(\?[a-z0-9]+)?$/, // Transform all font files required somewhere with file-loader
-      loader: 'file?name=font-[sha512:hash:base64:7].[ext]'
+      loader: 'file?name=assets/font-[sha512:hash:base64:7].[ext]'
     }, {
       test: /\.json$/,
       loaders: ['json'], // Transform all .json files required somewhere with json-loader
@@ -36,11 +37,15 @@ module.exports = (options) => ({
   },
   stylus: { // PostCSS plugins for Stylus
     use: [
-      postcss(options.stylusPlugins)
+      postcss(options.stylusPlugins),
+      rupture()
     ]
   },
   plugins: options.plugins.concat([
-    new webpack.optimize.CommonsChunkPlugin('common.js')
+    new webpack.optimize.CommonsChunkPlugin('common.js'),
+    new webpack.ProvidePlugin({
+      fetch: 'imports?this=>global!exports?global.fetch!whatwg-fetch'
+    })
   ]),
   postcss: (dependency) => {
     const plugins = [
