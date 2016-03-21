@@ -6,7 +6,6 @@ import {Provider} from 'react-redux';
 import configureStore from '../store';
 import createRoutes from '../routes';
 import App from 'App';
-// import selectLocationSelector from '../selectors/location';
 
 const rootRoute = {
   component: App,

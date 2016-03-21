@@ -73,9 +73,7 @@
     "react-router-redux": "^4.0.0",
     "react-router-transition": "0.0.4",
     "redux-immutable": "^3.0.3",
-    "redux-logger": "^2.5.2",
     "redux-saga": "^0.9.1",
-    "reselect": "^2.0.3",
     "rimraf": "^2.5.2",
     "rucksack-css": "^0.8.5",
     "rupture": "^0.6.1",
@@ -85,8 +83,7 @@
     "url-loader": "^0.5.7",
     "webpack": "^1.12.13",
     "webpack-dev-middleware": "^1.5.1",
-    "webpack-hot-middleware": "^2.7.1",
-    "whatwg-fetch": "^0.11.0"
+    "webpack-hot-middleware": "^2.7.1"
   },
   "dependencies": {
     "gsap": "^1.18.2",
