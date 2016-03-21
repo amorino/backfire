@@ -3,12 +3,7 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 // PostCSS plugins
-const cssnext = require('postcss-cssnext');
 const postcssFocus = require('postcss-focus');
-const postcssReporter = require('postcss-reporter');
-const postcssSimpleVars = require('postcss-simple-vars');
-const postcssNested = require('postcss-nested');
-const postcssMixins = require('postcss-mixins');
 const rucksack = require('rucksack-css');
 const lost = require('lost');
 
@@ -33,20 +28,6 @@ module.exports = require('./webpack.base.babel')({
   // Load Stylus with SourceMaps
   stylusLoaders: 'style!css?modules&importLoaders=1&sourceMap&localIdentName=[local]___[hash:base64:10]!stylus',
   // Process the CSS with PostCSS
-  postcssPlugins: [
-    lost(),
-    postcssSimpleVars(),
-    postcssNested(),
-    postcssMixins(),
-    postcssFocus(), // Add a :focus to every :hover
-    cssnext({ // Allow future CSS features to be used, also auto-prefixes the CSS...
-      browsers: ['last 2 versions', 'IE 8'] // ...based on this browser list
-    }),
-    rucksack(),
-    postcssReporter({ // Posts messages from plugins to the terminal
-      clearMessages: true
-    })
-  ],
   stylusPlugins: [
     lost(),
     postcssFocus(), // Add a :focus to every :hover

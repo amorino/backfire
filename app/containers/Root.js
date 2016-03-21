@@ -1,24 +1,26 @@
 import React, {Component} from 'react';
 import {Router, browserHistory} from 'react-router';
+import {syncHistoryWithStore} from 'react-router-redux';
+import useScroll from 'scroll-behavior/lib/useScrollToTop';
 import {Provider} from 'react-redux';
-import configureStore from '../store/configureStore';
-import routes from '../routes';
-import {fromJS} from 'immutable';
+import configureStore from '../store';
+import createRoutes from '../routes';
 import App from 'App';
+// import selectLocationSelector from '../selectors/location';
 
 const rootRoute = {
   component: App,
-  childRoutes: routes
+  childRoutes: createRoutes(),
 };
 
-const store = configureStore(fromJS({}));
-const history = browserHistory;
+const store = configureStore();
+const history = syncHistoryWithStore(browserHistory, store);
 
 export default class Root extends Component {
   render() {
     return (
       <Provider store={store}>
-        <Router history={history} routes={rootRoute} />
+        <Router history={useScroll(() => history)()} routes={rootRoute} />
       </Provider>
     );
   }

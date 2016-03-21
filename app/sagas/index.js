@@ -5,10 +5,6 @@ import * as actions from '../actions';
 import {takeEvery} from 'redux-saga';
 import {api} from '../services';
 
-function fetchPostsApi() {
-  return fetch(`https://kokonutstudio.com/catalog.json`).then(response => response.json())
-}
-
 export function * getAllItems() {
   // const items = yield call(fetchPostsApi);
   const items = yield call(api.getItems);
@@ -23,7 +19,7 @@ export function * watchGetProducts(getState) {
   yield * takeEvery(actions.GET_ALL_ITEMS, getState);
 }
 
-export default function * root(getState) {
+export default function* root(getState) {
   yield[
     fork(getAllItems),
     fork(watchGetProducts, getState)

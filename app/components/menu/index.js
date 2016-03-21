@@ -29,7 +29,7 @@ class Menu extends Component {
 }
 
 function mapStateToProps(state) {
-  return {current: state.get('route').location.pathname};
+  return {current: state.routing.locationBeforeTransitions.pathname};
 }
 
 export default connect(mapStateToProps)(Menu);

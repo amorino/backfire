@@ -3,7 +3,7 @@ import {filterItem} from 'actions';
 import Link from './Link';
 
 const mapStateToProps = (state, ownProps) => ({
-  active: ownProps.filter === state.get('filter')
+  active: ownProps.filter === state.filter
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({

@@ -24,5 +24,5 @@ export default class Item extends Component {
 }
 
 export default connect((state, props) => ({
-  item: getItem(state.get('catalog'), props.id)
+  item: getItem(state.catalog, props.id)
 }))(Item);

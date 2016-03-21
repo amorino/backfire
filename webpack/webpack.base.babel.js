@@ -1,6 +1,5 @@
 const path = require('path');
 const webpack = require('webpack');
-const postcssImport = require('postcss-import');
 const postcss = require('poststylus');
 const rupture = require('rupture');
 
@@ -42,19 +41,8 @@ module.exports = (options) => ({
     ]
   },
   plugins: options.plugins.concat([
-    new webpack.optimize.CommonsChunkPlugin('common.js'),
-    new webpack.ProvidePlugin({
-      fetch: 'imports?this=>global!exports?global.fetch!whatwg-fetch'
-    })
+    new webpack.optimize.CommonsChunkPlugin('common.js')
   ]),
-  postcss: (dependency) => {
-    const plugins = [
-      postcssImport({
-        addDependencyTo: dependency
-      })
-    ];
-    return plugins.concat(options.postcssPlugins);
-  },
   resolve: {
     modulesDirectories: [
       'app',

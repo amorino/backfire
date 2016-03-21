@@ -4,13 +4,8 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 // PostCSS plugins
-const cssnext = require('postcss-cssnext');
 const postcssFocus = require('postcss-focus');
-const postcssReporter = require('postcss-reporter');
 const cssnano = require('cssnano');
-const postcssNested = require('postcss-nested');
-const postcssSimpleVars = require('postcss-simple-vars');
-const postcssMixins = require('postcss-mixins');
 const rucksack = require('rucksack-css');
 const lost = require('lost');
 
@@ -38,32 +33,16 @@ module.exports = require('./webpack.base.babel')({
     'css?modules&importLoaders=2!stylus'
   ),
   // In production, we minify our CSS with cssnano
-  postcssPlugins: [
-    lost(),
-    rucksack(),
-    postcssNested(),
-    postcssSimpleVars({
-      silent: false
-    }),
-    postcssMixins(),
-    postcssFocus(),
-    cssnext({
-      browsers: ['last 2 versions', 'IE 8']
-    }),
-    cssnano({
-      autoprefixer: false, // cssnext already runs autoprefixer
-      discardUnused: false, // unsafe, see http://mxs.is/googmr
-      zindex: false // unsafe, see http://mxs.is/googmq
-    }),
-    postcssReporter({
-      clearMessages: true
-    })
-  ],
   stylusPlugins: [
     lost(),
     postcssFocus(), // Add a :focus to every :hover
     rucksack({
       autoprefixer: true
+    }),
+    cssnano({
+      autoprefixer: false, // cssnext already runs autoprefixer
+      discardUnused: false, // unsafe, see http://mxs.is/googmr
+      zindex: false // unsafe, see http://mxs.is/googmq
     })
   ],
   plugins: [
