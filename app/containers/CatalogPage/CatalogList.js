@@ -2,6 +2,7 @@ import React, {Component, PropTypes} from 'react';
 // import Item from './Item';
 import {TransitionMotion, spring, presets} from 'react-motion';
 import {Link} from 'react-router';
+import styles from './styles';
 // import Transition from 'react-motion-ui-pack';
 
 export default class CatalogList extends Component {
@@ -52,28 +53,31 @@ export default class CatalogList extends Component {
   }
 
   render() {
-      // const {catalog} = this.props;
+    const {fetching} = this.props;
       // <ul className="todo-list">
       //   {catalog.map(item => <Item key={item.id} item={item} />)}
       // </ul>
     return (
       <div>
-        <h3>Items</h3>
-        <TransitionMotion
-          defaultStyles={this.getDefaultStyles()} styles={this.getStyles}
-          willLeave={this.willLeave}
-          willEnter={this.willEnter}>
-          {styles =>
-            <ul> {styles.map(config => {
-              return (
-                <li key={config.key} style={{...config.style}}>
-                  {config.data.title} - {config.datadescription} - <Link to={`catalog/${config.data.id}`}>{config.data.id}</Link>
-                </li>
-                );
-            })}
-            </ul>
-          }
-        </TransitionMotion>
+        {fetching && <h3>Loading...</h3>}
+        {!fetching &&
+          <TransitionMotion
+            defaultStyles={this.getDefaultStyles()} styles={this.getStyles}
+            willLeave={this.willLeave}
+            willEnter={this.willEnter}
+          >
+            {style =>
+              <ul> {style.map(config => {
+                return (
+                  <li key={config.key} style={{...config.style}} className={styles.item}>
+                    {config.data.title} - {config.data.description} - <Link to={`catalog/${config.data.id}`}>{config.data.id}</Link>
+                  </li>
+                  );
+              })}
+              </ul>
+            }
+          </TransitionMotion>
+        }
       </div>
       );
   }

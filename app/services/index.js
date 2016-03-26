@@ -3,7 +3,7 @@
  */
 import catalog from './catalog.json';
 
-const TIMEOUT = 100;
+const TIMEOUT = 2000;
 
 export const api = {
   getItems() {

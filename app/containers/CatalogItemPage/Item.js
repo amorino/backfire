@@ -6,18 +6,16 @@ import {getItem} from '../../reducers/catalog';
 
 export default class Item extends Component {
   render() {
-    if (this.props.item) {
-      const {description, title} = this.props.item;
-      return (
-        <div>
-          <h2>Item</h2>
-          {title} - {description} - <Link to={'/catalog'}>Return</Link>
-        </div>
-      );
-    }
+    const {fetching, item} = this.props;
     return (
       <div>
-        <p>Loading</p>
+        {fetching && <h3>Loading...</h3>}
+        {!fetching &&
+          <div>
+            <h2>Item</h2>
+            {item.title} - {item.description} - <Link to={'/catalog'}>Return</Link>
+          </div>
+        }
       </div>
     );
   }

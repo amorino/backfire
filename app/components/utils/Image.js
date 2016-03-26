@@ -18,6 +18,6 @@ export default class Image extends Component {
     const style = this.props.style || {};
     style.transition = `opacity ${this.props.speed || 1}s`;
     style.opacity = this.state.opacity;
-    return (<img {...this.props } style={style} src={this.props.src} onLoad={this.fadeIn}/>);
+    return (<img {...this.props } style={style} src={this.props.src} onLoad={this.fadeIn} />);
   }
 }

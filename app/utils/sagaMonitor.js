@@ -1,35 +1,35 @@
-import { SagaCancellationException } from 'redux-saga'
+import { SagaCancellationException } from 'redux-saga';
 
 import {
   monitorActions as actions,
   is, asEffect,
   MANUAL_CANCEL
-} from 'redux-saga/utils'
+} from 'redux-saga/utils';
 
-const PENDING = 'PENDING'
-const RESOLVED = 'RESOLVED'
-const REJECTED = 'REJECTED'
+const PENDING = 'PENDING';
+const RESOLVED = 'RESOLVED';
+const REJECTED = 'REJECTED';
 
 
 
-export const LOG_EFFECT = 'LOG_EFFECT'
-export const logEffect = (effectId = 0) => ({type: LOG_EFFECT, effectId})
+export const LOG_EFFECT = 'LOG_EFFECT';
+export const logEffect = (effectId = 0) => ({type: LOG_EFFECT, effectId});
 
-const DEFAULT_STYLE = 'color: black'
-const LABEL_STYLE = 'font-weight: bold'
-const EFFECT_TYPE_STYLE = 'color: blue'
-const ERROR_STYLE = 'color: red'
-const AUTO_CANCEL_STYLE = 'color: lightgray'
+const DEFAULT_STYLE = 'color: black';
+const LABEL_STYLE = 'font-weight: bold';
+const EFFECT_TYPE_STYLE = 'color: blue';
+const ERROR_STYLE = 'color: red';
+const AUTO_CANCEL_STYLE = 'color: lightgray';
 
-const time = () => performance.now()
-const env = process.env.NODE_ENV
+const time = () => performance.now();
+const env = process.env.NODE_ENV;
 
 function checkEnv() {
   if (env !== 'production' && env !== 'development') {
     console.error('Saga Monitor cannot be used outside of NODE_ENV === \'development\'. ' +
       'Consult tools such as loose-envify (https://github.com/zertosh/loose-envify) for browserify ' +
       'and DefinePlugin for webpack (http://stackoverflow.com/questions/30030031) ' +
-      'to build with proper NODE_ENV')
+      'to build with proper NODE_ENV');
   }
 }
 
@@ -44,129 +44,129 @@ export default () => next => action => {
           status: PENDING,
           start: time()
         }
-      )
+      );
       break;
     case actions.EFFECT_RESOLVED:
-      resolveEffect(action.effectId, action.result)
+      resolveEffect(action.effectId, action.result);
       break;
     case actions.EFFECT_REJECTED:
-      rejectEffect(action.effectId, action.error)
+      rejectEffect(action.effectId, action.error);
       break;
     case LOG_EFFECT:
-      checkEnv()
-      logEffectTree(action.effectId || 0)
+      checkEnv();
+      logEffectTree(action.effectId || 0);
       break;
     default:
-      return next(action)
+      return next(action);
   }
-}
+};
 
 window.$$LogSagas = () => {
-  checkEnv()
-  logEffectTree(0)
-}
+  checkEnv();
+  logEffectTree(0);
+};
 
-function resolveEffect(effectId, result) {
-  const effect = effectsById[effectId]
-  const now = time()
+function resolveEffect(effectId, res) {
+  const effect = effectsById[effectId];
+  const now = time();
 
-  if(is.task(result)) {
-    result.done.then(
+  if (is.task(res)) {
+    res.done.then(
       taskResult => resolveEffect(effectId, taskResult),
-      taskError  => rejectEffect(effectId, taskError)
-    )
+      taskError => rejectEffect(effectId, taskError)
+    );
   } else {
     effectsById[effectId] = Object.assign({},
       effect,
       {
-        result: result,
+        result: res,
         status: RESOLVED,
         end: now,
         duration: now - effect.start
       }
-    )
-    if(effect && asEffect.race(effect.effect))
-      setRaceWinner(effectId, result)
+    );
+    if (effect && asEffect.race(effect.effect)) {
+      setRaceWinner(effectId, res);
+    }
   }
 }
 
-function rejectEffect(effectId, error) {
-  const effect = effectsById[effectId]
-  const now = time()
+function rejectEffect(effectId, err) {
+  const effect = effectsById[effectId];
+  const now = time();
   effectsById[effectId] = Object.assign({},
     effect,
     {
-      error: error,
+      error: err,
       status: REJECTED,
       end: now,
       duration: now - effect.start
     }
-  )
-  if(effect && asEffect.race(effect.effect))
-    setRaceWinner(effectId, error)
+  );
+  if (effect && asEffect.race(effect.effect)) {
+    setRaceWinner(effectId, err);
+  }
 }
 
 function setRaceWinner(raceEffectId, result) {
-  const winnerLabel = Object.keys(result)[0]
-  const children = getChildEffects(raceEffectId)
-  for (var i = 0; i < children.length; i++) {
-    const childEffect = effectsById[ children[i] ]
-    if(childEffect.label === winnerLabel)
-      childEffect.winner = true
+  const winnerLabel = Object.keys(result)[0];
+  const children = getChildEffects(raceEffectId);
+  for (let i = 0; i < children.length; i++) {
+    const childEffect = effectsById[children[i]];
+    if (childEffect.label === winnerLabel) {
+      childEffect.winner = true;
+    }
   }
 }
 
 function getChildEffects(parentEffectId) {
   return Object.keys(effectsById)
     .filter(effectId => effectsById[effectId].parentEffectId === parentEffectId)
-    .map(effectId => +effectId)
+    .map(effectId => +effectId);
 }
 
 function logEffectTree(effectId) {
-  const effect = effectsById[effectId]
-  if(effectId === undefined) {
-    console.log('Saga monitor: No effect data for', effectId)
-    return
+  const effect = effectsById[effectId];
+  if (effectId === undefined) {
+    console.log('Saga monitor: No effect data for', effectId);
+    return;
   }
-  const childEffects = getChildEffects(effectId)
+  const childEffects = getChildEffects(effectId);
 
-  if(!childEffects.length)
-    logSimpleEffect(effect)
+  if (!childEffects.length) logSimpleEffect(effect)
   else {
-    if(effect) {
-      const {formatter} = getEffectLog(effect)
-      console.group(...formatter.getLog())
-    } else
-      console.group('root')
-    childEffects.forEach(logEffectTree)
-    console.groupEnd()
+    if (effect) {
+      const {formatter} = getEffectLog(effect);
+      console.group(...formatter.getLog());
+    } else {
+      console.group('root');
+    }
+    childEffects.forEach(logEffectTree);
+    console.groupEnd();
   }
 }
 
 function logSimpleEffect(effect) {
-  const {method, formatter} = getEffectLog(effect)
-  console[method](...formatter.getLog())
+  const {method, formatter} = getEffectLog(effect);
+  console[method](...formatter.getLog());
 }
 
-/*eslint-disable no-cond-assign*/
+/* eslint-disable no-cond-assign */
 function getEffectLog(effect) {
-  let data, log
+  let data;
+  let log;
 
-  if(data = asEffect.take(effect.effect)) {
-    log = getLogPrefix('take', effect)
-    log.formatter.addValue(data)
-    logResult(effect, log.formatter)
-  }
-
-  else if(data = asEffect.put(effect.effect)) {
-    log = getLogPrefix('put', effect)
-    logResult(Object.assign({}, effect, { result: data }), log.formatter)
-  }
-
-  else if(data = asEffect.call(effect.effect)) {
-    log = getLogPrefix('call', effect)
-    log.formatter.addCall(data.fn.name, data.args)
-    logResult(effect, log.formatter)
+  if (data = asEffect.take(effect.effect)) {
+    log = getLogPrefix('take', effect);
+    log.formatter.addValue(data);
+    logResult(effect, log.formatter);
+  } else if (data = asEffect.put(effect.effect)) {
+    log = getLogPrefix('put', effect);
+    logResult(Object.assign({}, effect, {result: data}), log.formatter);
+  } else if (data = asEffect.call(effect.effect)) {
+    log = getLogPrefix('call', effect);
+    log.formatter.addCall(data.fn.name, data.args);
+    logResult(effect, log.formatter);
   }
 
   else if(data = asEffect.cps(effect.effect)) {

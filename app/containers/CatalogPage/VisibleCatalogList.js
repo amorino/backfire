@@ -15,9 +15,18 @@ const getVisibleTodos = (catalog, filter) => {
   }
 };
 
-const mapStateToProps = (state) => ({
-  catalog: getVisibleTodos(getVisibleItems(state.catalog), state.filter)
-});
+// const mapStateToProps = (state) => (
+//   console.log(state);
+//   {
+//     catalog: getVisibleItems(state.catalog) ? getVisibleTodos(getVisibleItems(state.catalog), state.filter) : []
+//   });
+
+function mapStateToProps(state) {
+  return {
+    catalog: getVisibleTodos(getVisibleItems(state.catalog), state.filter),
+    fetching: state.catalog.visibleIds.isFetching
+  };
+}
 
 const VisibleCatalogList = connect(
   mapStateToProps

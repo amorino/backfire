@@ -2,7 +2,7 @@ import React, {PropTypes, Component} from 'react';
 import {Link} from 'react-router';
 import classnames from 'classnames';
 
-export default class MenuListItem extends Component {
+export default class ListItem extends Component {
 
   static propTypes = {
     isExternal: PropTypes.bool,
