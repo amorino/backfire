@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import Item from './Item';
 import styles from './styles';
 
-class App extends Component {
+class CatalogItemPage extends Component {
   render() {
     const {id, fetching} = this.props;
     return (
@@ -24,4 +24,4 @@ function mapStateToProps(state, props) {
   };
 }
 
-export default connect(mapStateToProps)(App);
+export default connect(mapStateToProps)(CatalogItemPage);
