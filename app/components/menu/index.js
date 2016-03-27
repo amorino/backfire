@@ -1,9 +1,9 @@
-import React, {Component} from 'react';
+import React from 'react';
 import {connect} from 'react-redux';
 import ListItem from './ListItem';
 import styles from './styles';
 
-const menuItems = [
+const menu = [
   {
     text: 'Home',
     link: '/'
@@ -16,17 +16,14 @@ const menuItems = [
   }
 ];
 
-class Menu extends Component {
-  render() {
-    const {current} = this.props;
-    const items = menuItems.map((item, i) => <ListItem {...item} key={i} route={current} />);
-    return (
-      <div className={styles.menu}>
-        <ul>{items}</ul>
-      </div>
-    );
-  }
-}
+const Menu = ({current}) => {
+  const items = menu.map((item, i) => <ListItem {...item} key={i} route={current} />);
+  return (
+    <div className={styles.menu}>
+      <ul>{items}</ul>
+    </div>
+  );
+};
 
 function mapStateToProps(state) {
   return {current: state.routing.locationBeforeTransitions.pathname};

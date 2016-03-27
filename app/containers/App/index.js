@@ -9,7 +9,8 @@ class App extends React.Component {
     return (
       <div id="app">
         <Menu />
-        <RouteTransition pathname={this.props.location.pathname}
+        <RouteTransition
+          pathname={this.props.location.pathname}
           atEnter={{opacity: 0, translate: 100}}
           atLeave={{opacity: 0, translate: 100}}
           atActive={{opacity: 1, translate: 0}}

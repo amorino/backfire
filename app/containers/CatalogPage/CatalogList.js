@@ -6,48 +6,45 @@ import styles from './styles';
 // import Transition from 'react-motion-ui-pack';
 
 export default class CatalogList extends Component {
-  constructor() {
-    super();
-    this.getStyles = this.getStyles.bind(this);
-    this.getDefaultStyles = this.getDefaultStyles.bind(this);
-    this.willEnter = this.willEnter.bind(this);
-    this.willLeave = this.willLeave.bind(this);
-  }
 
-  getDefaultStyles() {
+  getDefaultStyles = () => {
     return this.props.catalog.map(item => ({
       ...item,
       key: '' + item.id,
       style: {
-        height: 0,
+        size: 0,
+        scale: 0,
         opacity: 1
       }
     }));
   }
 
-  getStyles() {
+  getStyles = () => {
     return this.props.catalog.map((item) => {
       return {
         key: item.id,
         data: item,
         style: {
-          height: spring(60, presets.gentle),
-          opacity: spring(1, presets.gentle),
+          size: spring(99 * (1 / 3)),
+          scale: spring(1),
+          opacity: spring(1),
         }
       };
     });
   }
 
-  willEnter() {
+  willEnter = () => {
     return {
-      height: 0,
+      size: 0,
+      scale: 0,
       opacity: 1,
     };
   }
 
-  willLeave() {
+  willLeave = () => {
     return {
-      height: spring(0),
+      size: spring(0),
+      scale: spring(0),
       opacity: spring(0),
     };
   }
@@ -62,19 +59,34 @@ export default class CatalogList extends Component {
         {fetching && <h3>Loading...</h3>}
         {!fetching &&
           <TransitionMotion
-            defaultStyles={this.getDefaultStyles()} styles={this.getStyles}
+            defaultStyles={this.getDefaultStyles()}
+            styles={this.getStyles}
             willLeave={this.willLeave}
             willEnter={this.willEnter}
           >
-            {style =>
-              <ul> {style.map(config => {
-                return (
-                  <li key={config.key} style={{...config.style}} className={styles.item}>
-                    {config.data.title} - {config.data.description} - <Link to={`catalog/${config.data.id}`}>{config.data.id}</Link>
-                  </li>
-                  );
-              })}
-              </ul>
+            {current =>
+              <div className={styles.items}>
+                {current.map(key => {
+                  const {scale, opacity, size} = key.style;
+                  const style = {
+                    transform: `scale(${scale})`,
+                    // transform: `matrix(${scale}, 0, 0, ${scale}, 0, 0)`,
+                    opacity,
+                    width: `${size}%`,
+                  };
+                  return (
+                    <div
+                      key={key.key}
+                      style={style}
+                      className={styles.item}
+                    >
+                      <div>
+                        {key.data.title} - {key.data.description} - <Link to={`catalog/${key.data.id}`}>></Link>
+                      </div>
+                    </div>
+                    );
+                })}
+              </div>
             }
           </TransitionMotion>
         }

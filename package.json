@@ -60,7 +60,6 @@
     "lodash": "^4.5.0",
     "lost": "^6.7.2",
     "moment": "^2.11.2",
-    "normalize.css": "^4.0.0",
     "normalizr": "^2.0.0",
     "object-assign": "^4.0.1",
     "postcss-focus": "^1.0.0",
@@ -91,6 +90,7 @@
     "react": "^0.14.7",
     "react-dom": "^0.14.7",
     "react-router": "^2.0.0",
-    "redux": "^3.3.1"
+    "redux": "^3.3.1",
+    "sanitize.css": "^3.3.0"
   }
 }

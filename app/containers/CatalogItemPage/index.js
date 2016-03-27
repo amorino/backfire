@@ -7,11 +7,9 @@ class CatalogItemPage extends Component {
   render() {
     const {id, fetching} = this.props;
     return (
-      <div className={styles.catalog_page}>
-        <div className={styles.wrapper}>
-          <h1>Detail</h1>
-          <Item id={id} fetching={fetching} />
-        </div>
+      <div className={styles.container}>
+        <h1>Detail</h1>
+        <Item id={id} fetching={fetching} />
       </div>
     );
   }
@@ -20,7 +18,7 @@ function mapStateToProps(state, props) {
   return {
     id: props.params.id,
     filter: props.location.query.filter,
-    fetching: state.catalog.visibleIds.isFetching
+    fetching: state.catalog.allIds.isFetching
   };
 }
 

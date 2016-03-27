@@ -1,7 +1,19 @@
 @import '~styles/vars'
-.catalog
-  background: $catalog
-.wrapper
-  lost-center: $center
+
 .item
+  display: flex
   border: 1px solid $color
+  list-style: none
+  // lost-column: 1/3 flex
+  // flex: 3
+  transform-origin: 50% 50%
+  &:before
+    content: ''
+    padding-top: 100%
+
+.items
+  lost-align: center flex
+  lost-flex-container: row
+
+.container
+  size: 100%

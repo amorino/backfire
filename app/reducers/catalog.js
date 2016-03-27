@@ -23,7 +23,7 @@ function byId(state = {
   }
 }
 
-function visibleIds(state = {
+function allIds(state = {
   isFetching: false,
   items: []
 }, action) {
@@ -37,15 +37,12 @@ function visibleIds(state = {
   }
 }
 
-export default combineReducers({byId, visibleIds});
+export default combineReducers({byId, allIds});
 
 export function getItem(state, id) {
   return state.byId.items[id];
 }
 
-export function getVisibleItems(state) {
-  if (state.visibleIds.items) {
-    return state.visibleIds.items.map(id => getItem(state, id));
-  }
-  return {};
+export function getItems(state) {
+  return state.allIds.items.map(id => getItem(state, id));
 }

@@ -1,8 +1,8 @@
 import {connect} from 'react-redux';
 import CatalogList from './CatalogList';
-import {getVisibleItems} from '../../reducers/catalog';
+import {getItems} from '../../reducers/catalog';
 
-const getVisibleTodos = (catalog, filter) => {
+const getFilteredItems = (catalog, filter) => {
   switch (filter) {
     case 'all':
       return catalog;
@@ -15,18 +15,10 @@ const getVisibleTodos = (catalog, filter) => {
   }
 };
 
-// const mapStateToProps = (state) => (
-//   console.log(state);
-//   {
-//     catalog: getVisibleItems(state.catalog) ? getVisibleTodos(getVisibleItems(state.catalog), state.filter) : []
-//   });
-
-function mapStateToProps(state) {
-  return {
-    catalog: getVisibleTodos(getVisibleItems(state.catalog), state.filter),
-    fetching: state.catalog.visibleIds.isFetching
-  };
-}
+const mapStateToProps = (state) => ({
+  catalog: getFilteredItems(getItems(state.catalog), state.filter),
+  fetching: state.catalog.allIds.isFetching}
+);
 
 const VisibleCatalogList = connect(
   mapStateToProps
