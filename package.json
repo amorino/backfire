@@ -78,6 +78,7 @@
     "rupture": "^0.6.1",
     "scroll-behavior": "^0.3.3",
     "style-loader": "^0.13.0",
+    "stylus": "^0.54.2",
     "stylus-loader": "^2.0.0",
     "url-loader": "^0.5.7",
     "webpack": "^1.12.13",
@@ -87,10 +88,9 @@
   "dependencies": {
     "gsap": "^1.18.2",
     "immutable": "^3.7.6",
-    "react": "^0.15.0",
-    "react-dom": "^0.15.0",
+    "react": "^15.0.0",
+    "react-dom": "^15.0.0",
     "react-router": "^2.0.0",
-    "react-stonecutter": "^0.1.1",
     "redux": "^3.3.1",
     "sanitize.css": "^3.3.0"
   }
