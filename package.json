@@ -90,6 +90,7 @@
     "react": "^0.14.7",
     "react-dom": "^0.14.7",
     "react-router": "^2.0.0",
+    "react-stonecutter": "^0.1.1",
     "redux": "^3.3.1",
     "sanitize.css": "^3.3.0"
   }

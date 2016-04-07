@@ -1,11 +1,23 @@
 import React, {Component, PropTypes} from 'react';
 // import Item from './Item';
-import {TransitionMotion, spring, presets} from 'react-motion';
+import {TransitionMotion, spring} from 'react-motion';
 import {Link} from 'react-router';
 import styles from './styles';
 // import Transition from 'react-motion-ui-pack';
 
 export default class CatalogList extends Component {
+
+  state = {
+    windowWidth: window.innerWidth
+  };
+
+  componentDidMount() {
+    window.addEventListener('resize', this.handleResize);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.handleResize);
+  }
 
   getDefaultStyles = () => {
     return this.props.catalog.map(item => ({
@@ -20,17 +32,36 @@ export default class CatalogList extends Component {
   }
 
   getStyles = () => {
+    let responsive;
+    switch (true) {
+      case this.state.windowWidth < 560 && this.state.windowWidth > 0:
+        responsive = 4;
+        break;
+      case this.state.windowWidth < 768 && this.state.windowWidth > 560:
+        responsive = 2;
+        break;
+      case this.state.windowWidth > 769:
+        responsive = 1;
+        break;
+      default:
+        responsive = 1;
+    }
     return this.props.catalog.map((item) => {
       return {
         key: item.id,
         data: item,
         style: {
-          size: spring(99 * (1 / 3)),
+          size: spring(99 * (responsive / 4)),
           scale: spring(1),
           opacity: spring(1),
         }
       };
     });
+  }
+
+
+  handleResize = () => {
+    this.setState({windowWidth: window.innerWidth});
   }
 
   willEnter = () => {
@@ -72,7 +103,7 @@ export default class CatalogList extends Component {
                     transform: `scale(${scale})`,
                     // transform: `matrix(${scale}, 0, 0, ${scale}, 0, 0)`,
                     opacity,
-                    width: `${size}%`,
+                    width: `calc(${size}% - 30px`,
                   };
                   return (
                     <div
@@ -80,9 +111,7 @@ export default class CatalogList extends Component {
                       style={style}
                       className={styles.item}
                     >
-                      <div>
-                        {key.data.title} - {key.data.description} - <Link to={`catalog/${key.data.id}`}>></Link>
-                      </div>
+                      {key.data.title} - {key.data.description} - <Link to={`catalog/${key.data.id}`}>></Link>
                     </div>
                     );
                 })}
