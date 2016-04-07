@@ -78,7 +78,7 @@
     "rupture": "^0.6.1",
     "scroll-behavior": "^0.3.3",
     "style-loader": "^0.13.0",
-    "stylus-loader": "^1.5.1",
+    "stylus-loader": "^2.0.0",
     "url-loader": "^0.5.7",
     "webpack": "^1.12.13",
     "webpack-dev-middleware": "^1.5.1",
