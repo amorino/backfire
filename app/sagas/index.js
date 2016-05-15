@@ -1,8 +1,6 @@
-/* eslint-disable */
-
+import {takeEvery} from 'redux-saga';
 import {put, call, fork} from 'redux-saga/effects';
 import * as actions from '../actions';
-import {takeEvery} from 'redux-saga';
 import {api} from '../services';
 
 export function * getAllItems() {
@@ -12,13 +10,13 @@ export function * getAllItems() {
   yield put(actions.receiveItems(items));
 }
 
-export function * watchGetCatalog(getState) {
-  yield * takeEvery(actions.GET_ALL_ITEMS, getState);
+export function * watchGetCatalog() {
+  yield * takeEvery(actions.GET_ALL_ITEMS, getAllItems);
 }
 
-export default function* root(getState) {
+export default function* root() {
   yield[
     fork(getAllItems),
-    fork(watchGetCatalog, getState)
+    fork(watchGetCatalog)
   ];
 }
