@@ -62,8 +62,7 @@ module.exports = (options) => ({
       '.js',
       '.jsx',
       '.react.js',
-      '.styl',
-      '.saga'
+      '.styl'
     ]
   },
   target: 'web', // Make web variables accessible to webpack, e.g. window

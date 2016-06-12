@@ -1,7 +1,9 @@
 import React, {Component, PropTypes} from 'react';
+// import Item from './Item';
 import {TransitionMotion, spring} from 'react-motion';
 import {Link} from 'react-router';
 import styles from './styles';
+// import Transition from 'react-motion-ui-pack';
 
 export default class CatalogList extends Component {
 
@@ -20,7 +22,7 @@ export default class CatalogList extends Component {
   getDefaultStyles = () => {
     return this.props.catalog.map(item => ({
       ...item,
-      key: item.id.toString(),
+      key: '' + item.id,
       style: {
         size: 0,
         scale: 0,
@@ -101,7 +103,7 @@ export default class CatalogList extends Component {
                     transform: `scale(${scale})`,
                     // transform: `matrix(${scale}, 0, 0, ${scale}, 0, 0)`,
                     opacity,
-                    width: `calc(${size}%`
+                    width: `calc(${size}% - 30px`,
                   };
                   return (
                     <div
