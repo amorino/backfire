@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
-import {Router, browserHistory} from 'react-router';
+import {Router, applyRouterMiddleware, browserHistory} from 'react-router';
+import useScroll from 'react-router-scroll';
 import {syncHistoryWithStore} from 'react-router-redux';
-import useScroll from 'scroll-behavior/lib/useScrollToTop';
 import {Provider} from 'react-redux';
 import configureStore from '../store';
 import createRoutes from '../routes';
@@ -19,7 +19,7 @@ export default class Root extends Component {
   render() {
     return (
       <Provider store={store}>
-        <Router history={useScroll(() => history)()} routes={rootRoute} />
+        <Router history={history} routes={rootRoute} render={applyRouterMiddleware(useScroll())} />
       </Provider>
     );
   }

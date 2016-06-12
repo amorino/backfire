@@ -1,40 +1,48 @@
 export default function createRoutes() {
-  return [
-    {
-      path: '/',
-      getComponent: function get(location, cb) {
-        require.ensure([], (require) => {
-          cb(null, require('HomePage').default);
-        }, 'HomePage');
-      }
-    }, {
-      path: '/about',
-      getComponent: function get(location, cb) {
-        require.ensure([], (require) => {
-          cb(null, require('AboutPage').default);
-        }, 'AboutPage');
-      }
-    }, {
-      path: '/catalog',
-      getComponent: function get(location, cb) {
-        require.ensure([], (require) => {
-          cb(null, require('CatalogPage').default);
-        }, 'CatalogPage');
-      }
-    }, {
-      path: '/catalog/:id',
-      getComponent: function get(location, cb) {
-        require.ensure([], (require) => {
-          cb(null, require('CatalogItemPage').default);
-        }, 'CatalogItemPage');
-      }
-    }, {
-      path: '*',
-      getComponent: function get(location, cb) {
-        require.ensure([], (require) => {
-          cb(null, require('NotFoundPage').default);
-        }, 'NotFoundPage');
-      }
-    }
-  ];
+  return [{
+    path: '/',
+    getIndexRoute(location, cb) {
+      require.ensure([], require =>
+        cb(null, {
+          component: require('HomePage').default
+        })
+      );
+    },
+  }, {
+    path: '/about',
+    getIndexRoute(location, cb) {
+      require.ensure([], require =>
+        cb(null, {
+          component: require('AboutPage').default
+        })
+      );
+    },
+  }, {
+    path: '/catalog',
+    getIndexRoute(location, cb) {
+      require.ensure([], require =>
+        cb(null, {
+          component: require('CatalogPage').default
+        })
+      );
+    },
+  }, {
+    path: '/catalog/:id',
+    getIndexRoute(location, cb) {
+      require.ensure([], require =>
+        cb(null, {
+          component: require('CatalogItemPage').default
+        })
+      );
+    },
+  }, {
+    path: '*',
+    getIndexRoute(location, cb) {
+      require.ensure([], require =>
+        cb(null, {
+          component: require('NotFoundPage').default
+        })
+      );
+    },
+  }];
 }
