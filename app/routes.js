@@ -4,7 +4,7 @@ export default function createRoutes() {
     getIndexRoute(location, cb) {
       require.ensure([], require =>
         cb(null, {
-          component: require('containers/HomePage').default
+          component: require('containers/Home').default
         })
       , 'Home');
     },
@@ -13,7 +13,7 @@ export default function createRoutes() {
     getIndexRoute(location, cb) {
       require.ensure([], require =>
         cb(null, {
-          component: require('containers/AboutPage').default
+          component: require('containers/About').default
         })
       , 'About');
     },
@@ -22,7 +22,7 @@ export default function createRoutes() {
     getIndexRoute(location, cb) {
       require.ensure([], require =>
         cb(null, {
-          component: require('containers/CatalogPage').default
+          component: require('containers/Catalog').default
         })
       , 'Catalog');
     },
@@ -31,7 +31,7 @@ export default function createRoutes() {
     getIndexRoute(location, cb) {
       require.ensure([], require =>
         cb(null, {
-          component: require('containers/CatalogItemPage').default
+          component: require('containers/CatalogItem').default
         })
       , 'CatalogItem');
     },
@@ -40,7 +40,7 @@ export default function createRoutes() {
     getIndexRoute(location, cb) {
       require.ensure([], require =>
         cb(null, {
-          component: require('containers/NotFoundPage').default
+          component: require('containers/NotFound').default
         })
       , 'NotFound');
     },

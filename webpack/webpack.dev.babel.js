@@ -20,7 +20,7 @@ module.exports = require('./webpack.base.babel')({
   entry: [
     'eventsource-polyfill', // necessary for hot reloading with IE
     'webpack-hot-middleware/client',
-    path.join(__dirname, '..', 'app/app.js') // Start with js/app.js
+    path.join(__dirname, '..', 'app/main.js') // Start with js/app.js
   ],
   // Load the CSS in a style tag in development
   // cssLoaders: 'style!css?importLoaders=1&sourceMap!postcss',

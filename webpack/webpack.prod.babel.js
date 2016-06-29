@@ -15,11 +15,11 @@ module.exports = require('./webpack.base.babel')({
     path: path.resolve(__dirname, '..', 'build'),
     filename: 'js/[name].js',
     chunkFilename: 'js/[name].chunk.js',
-    publicPath: '/festival/' // Insert the production server folder
+    publicPath: '/' // Insert the production server folder
   },
   // In production, we skip all hot-reloading stuff
   entry: [
-    path.join(__dirname, '..', 'app/app.js')
+    path.join(__dirname, '..', 'app/main.js')
   ],
   // We use ExtractTextPlugin so we get a seperate CSS file instead
   // of the CSS being in the JS and injected as a style tag

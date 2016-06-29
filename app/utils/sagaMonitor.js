@@ -1,172 +1,195 @@
-import { SagaCancellationException } from 'redux-saga';
+/*eslint-disable no-console*/
 
-import {
-  monitorActions as actions,
-  is, asEffect,
-  MANUAL_CANCEL
-} from 'redux-saga/utils';
+import { is, asEffect } from 'redux-saga/utils'
 
-const PENDING = 'PENDING';
-const RESOLVED = 'RESOLVED';
-const REJECTED = 'REJECTED';
+const PENDING = 'PENDING'
+const RESOLVED = 'RESOLVED'
+const REJECTED = 'REJECTED'
+const CANCELLED = 'CANCELLED'
 
+const DEFAULT_STYLE = 'color: black'
+const LABEL_STYLE = 'font-weight: bold'
+const EFFECT_TYPE_STYLE = 'color: blue'
+const ERROR_STYLE = 'color: red'
+const CANCEL_STYLE = 'color: #ccc'
 
+const IS_BROWSER = (typeof window !== 'undefined' && window.document)
 
-export const LOG_EFFECT = 'LOG_EFFECT';
-export const logEffect = (effectId = 0) => ({type: LOG_EFFECT, effectId});
+// `VERBOSE` can be made a setting configured from the outside.
+const VERBOSE = false
 
-const DEFAULT_STYLE = 'color: black';
-const LABEL_STYLE = 'font-weight: bold';
-const EFFECT_TYPE_STYLE = 'color: blue';
-const ERROR_STYLE = 'color: red';
-const AUTO_CANCEL_STYLE = 'color: lightgray';
-
-const time = () => performance.now();
-const env = process.env.NODE_ENV;
-
-function checkEnv() {
-  if (env !== 'production' && env !== 'development') {
-    console.error('Saga Monitor cannot be used outside of NODE_ENV === \'development\'. ' +
-      'Consult tools such as loose-envify (https://github.com/zertosh/loose-envify) for browserify ' +
-      'and DefinePlugin for webpack (http://stackoverflow.com/questions/30030031) ' +
-      'to build with proper NODE_ENV');
-  }
+const time = () => {
+  if(typeof performance !== 'undefined' && performance.now)
+    return performance.now()
+  else
+    return Date.now()
 }
 
 let effectsById = {}
-export default () => next => action => {
 
-  switch (action.type) {
-    case actions.EFFECT_TRIGGERED:
-      effectsById[action.effectId] = Object.assign({},
-        action,
-        {
-          status: PENDING,
-          start: time()
-        }
-      );
-      break;
-    case actions.EFFECT_RESOLVED:
-      resolveEffect(action.effectId, action.result);
-      break;
-    case actions.EFFECT_REJECTED:
-      rejectEffect(action.effectId, action.error);
-      break;
-    case LOG_EFFECT:
-      checkEnv();
-      logEffectTree(action.effectId || 0);
-      break;
-    default:
-      return next(action);
-  }
-};
-
-window.$$LogSagas = () => {
-  checkEnv();
-  logEffectTree(0);
-};
-
-function resolveEffect(effectId, res) {
-  const effect = effectsById[effectId];
-  const now = time();
-
-  if (is.task(res)) {
-    res.done.then(
-      taskResult => resolveEffect(effectId, taskResult),
-      taskError => rejectEffect(effectId, taskError)
-    );
-  } else {
-    effectsById[effectId] = Object.assign({},
-      effect,
-      {
-        result: res,
-        status: RESOLVED,
-        end: now,
-        duration: now - effect.start
-      }
-    );
-    if (effect && asEffect.race(effect.effect)) {
-      setRaceWinner(effectId, res);
+function effectTriggered(desc) {
+  if (VERBOSE)
+    console.log('Saga monitor: effectTriggered:', desc)
+  effectsById[desc.effectId] = Object.assign({},
+    desc,
+    {
+      status: PENDING,
+      start: time()
     }
+  )
+}
+
+function effectResolved(effectId, result) {
+  if (VERBOSE)
+    console.log('Saga monitor: effectResolved:', effectId, result)
+  resolveEffect(effectId, result)
+}
+
+function effectRejected(effectId, error) {
+  if (VERBOSE)
+    console.log('Saga monitor: effectRejected:', effectId, error)
+  rejectEffect(effectId, error)
+}
+
+function effectCancelled(effectId) {
+  if (VERBOSE)
+    console.log('Saga monitor: effectCancelled:', effectId)
+  cancelEffect(effectId)
+}
+
+function computeEffectDur(effect) {
+  const now = time()
+  Object.assign(effect, {
+    end: now,
+    duration: now - effect.start
+  })
+}
+
+function resolveEffect(effectId, result) {
+  const effect = effectsById[effectId]
+
+  if(is.task(result)) {
+    result.done.then(
+      taskResult => {
+        if(result.isCancelled())
+          cancelEffect(effectId)
+        else
+          resolveEffect(effectId, taskResult)
+      },
+      taskError  => rejectEffect(effectId, taskError)
+    )
+  } else {
+    computeEffectDur(effect)
+    effect.status = RESOLVED
+    effect.result = result
+    if(effect && asEffect.race(effect.effect))
+      setRaceWinner(effectId, result)
   }
 }
 
-function rejectEffect(effectId, err) {
-  const effect = effectsById[effectId];
-  const now = time();
-  effectsById[effectId] = Object.assign({},
-    effect,
-    {
-      error: err,
-      status: REJECTED,
-      end: now,
-      duration: now - effect.start
-    }
-  );
-  if (effect && asEffect.race(effect.effect)) {
-    setRaceWinner(effectId, err);
-  }
+function rejectEffect(effectId, error) {
+  const effect = effectsById[effectId]
+  computeEffectDur(effect)
+  effect.status = REJECTED
+  effect.error = error
+  if(effect && asEffect.race(effect.effect))
+    setRaceWinner(effectId, error)
+}
+
+function cancelEffect(effectId) {
+  const effect = effectsById[effectId]
+  computeEffectDur(effect)
+  effect.status = CANCELLED
 }
 
 function setRaceWinner(raceEffectId, result) {
-  const winnerLabel = Object.keys(result)[0];
-  const children = getChildEffects(raceEffectId);
-  for (let i = 0; i < children.length; i++) {
-    const childEffect = effectsById[children[i]];
-    if (childEffect.label === winnerLabel) {
-      childEffect.winner = true;
-    }
+  const winnerLabel = Object.keys(result)[0]
+  const children = getChildEffects(raceEffectId)
+  for (var i = 0; i < children.length; i++) {
+    const childEffect = effectsById[ children[i] ]
+    if(childEffect.label === winnerLabel)
+      childEffect.winner = true
   }
 }
 
 function getChildEffects(parentEffectId) {
   return Object.keys(effectsById)
     .filter(effectId => effectsById[effectId].parentEffectId === parentEffectId)
-    .map(effectId => +effectId);
+    .map(effectId => +effectId)
+}
+
+// Poor man's `console.group` and `console.groupEnd` for Node.
+// Can be overridden by the `console-group` polyfill.
+// The poor man's groups look nice, too, so whether to use
+// the polyfilled methods or the hand-made ones can be made a preference.
+let groupPrefix = '';
+const GROUP_SHIFT = '   ';
+const GROUP_ARROW = '▼';
+
+function consoleGroup(...args) {
+  if(console.group)
+    console.group(...args)
+  else {
+    console.log('')
+    console.log(groupPrefix + GROUP_ARROW, ...args)
+    groupPrefix += GROUP_SHIFT
+  }
+}
+
+function consoleGroupEnd() {
+  if(console.groupEnd)
+    console.groupEnd()
+  else
+    groupPrefix = groupPrefix.substr(0, groupPrefix.length - GROUP_SHIFT.length)
 }
 
 function logEffectTree(effectId) {
-  const effect = effectsById[effectId];
-  if (effectId === undefined) {
-    console.log('Saga monitor: No effect data for', effectId);
-    return;
+  const effect = effectsById[effectId]
+  if(effectId === undefined) {
+    console.log(groupPrefix, 'Saga monitor: No effect data for', effectId)
+    return
   }
-  const childEffects = getChildEffects(effectId);
+  const childEffects = getChildEffects(effectId)
 
-  if (!childEffects.length) logSimpleEffect(effect)
+  if(!childEffects.length)
+    logSimpleEffect(effect)
   else {
-    if (effect) {
-      const {formatter} = getEffectLog(effect);
-      console.group(...formatter.getLog());
-    } else {
-      console.group('root');
-    }
-    childEffects.forEach(logEffectTree);
-    console.groupEnd();
+    if(effect) {
+      const {formatter} = getEffectLog(effect)
+      consoleGroup(...formatter.getLog())
+    } else
+      consoleGroup('root')
+
+    childEffects.forEach(logEffectTree)
+
+    consoleGroupEnd()
   }
 }
 
 function logSimpleEffect(effect) {
-  const {method, formatter} = getEffectLog(effect);
-  console[method](...formatter.getLog());
+  const {method, formatter} = getEffectLog(effect)
+  console[method](...formatter.getLog())
 }
 
-/* eslint-disable no-cond-assign */
+/*eslint-disable no-cond-assign*/
 function getEffectLog(effect) {
-  let data;
-  let log;
+  let data, log
 
-  if (data = asEffect.take(effect.effect)) {
-    log = getLogPrefix('take', effect);
-    log.formatter.addValue(data);
-    logResult(effect, log.formatter);
-  } else if (data = asEffect.put(effect.effect)) {
-    log = getLogPrefix('put', effect);
-    logResult(Object.assign({}, effect, {result: data}), log.formatter);
-  } else if (data = asEffect.call(effect.effect)) {
-    log = getLogPrefix('call', effect);
-    log.formatter.addCall(data.fn.name, data.args);
-    logResult(effect, log.formatter);
+  if(data = asEffect.take(effect.effect)) {
+    log = getLogPrefix('take', effect)
+    log.formatter.addValue(data)
+    logResult(effect, log.formatter)
+  }
+
+  else if(data = asEffect.put(effect.effect)) {
+    log = getLogPrefix('put', effect)
+    logResult(Object.assign({}, effect, { result: data }), log.formatter)
+  }
+
+  else if(data = asEffect.call(effect.effect)) {
+    log = getLogPrefix('call', effect)
+    log.formatter.addCall(data.fn.name, data.args)
+    logResult(effect, log.formatter)
   }
 
   else if(data = asEffect.cps(effect.effect)) {
@@ -224,15 +247,16 @@ function getEffectLog(effect) {
 
 function getLogPrefix(type, effect) {
 
-  const autoCancel = isAutoCancel(effect.error)
-  const isError = effect && effect.status === REJECTED && !autoCancel
+  const isCancel = effect.status === CANCELLED
+  const isError = effect.status === REJECTED
+
   const method = isError ? 'error' : 'log'
   const winnerInd = effect && effect.winner
     ? ( isError ? '✘' : '✓' )
     : ''
 
   const style = s =>
-      autoCancel  ? AUTO_CANCEL_STYLE
+      isCancel  ? CANCEL_STYLE
     : isError     ? ERROR_STYLE
     : s
 
@@ -274,28 +298,17 @@ function logResult({status, result, error, duration}, formatter, ignoreResult) {
   }
 
   else if(status === REJECTED) {
-    if(isAutoCancel(error))
-      return
-
-    if(isManualCancel(error))
-      formatter.appendData('→ ⚠', 'Cancelled!')
-    else
-      formatter.appendData('→ ⚠', error)
+    formatter.appendData('→ ⚠', error)
   }
 
   else if(status === PENDING)
     formatter.appendData('⌛')
 
+  else if(status === CANCELLED)
+    formatter.appendData('→ Cancelled!')
+
   if(status !== PENDING)
     formatter.appendData(`(${duration.toFixed(2)}ms)`)
-}
-
-function isAutoCancel(error) {
-  return error instanceof SagaCancellationException && error.type !== MANUAL_CANCEL
-}
-
-function isManualCancel(error) {
-  return error instanceof SagaCancellationException && error.type === MANUAL_CANCEL
 }
 
 function isPrimitive(val) {
@@ -312,6 +325,15 @@ function logFormatter() {
   let suffix = []
 
   function add(msg, ...args) {
+    // Remove the `%c` CSS styling that is not supported by the Node console.
+    if(!IS_BROWSER && typeof msg === 'string') {
+      const prevMsg = msg
+      msg = msg.replace(/^%c\s*/, '')
+      if(msg !== prevMsg) {
+        // Remove the first argument which is the CSS style string.
+        args.shift()
+      }
+    }
     logs.push({msg, args})
   }
 
@@ -322,8 +344,13 @@ function logFormatter() {
   function addValue(value) {
     if(isPrimitive(value))
       add(value)
-    else
-      add('%O', value)
+    else {
+      // The browser console supports `%O`, the Node console does not.
+      if(IS_BROWSER)
+        add('%O', value)
+      else
+        add('%s', require('util').inspect(value))
+    }
   }
 
   function addCall(name, args) {
@@ -352,3 +379,21 @@ function logFormatter() {
     add, addValue, addCall, appendData, getLog
   }
 }
+
+const logSaga = () => {
+  console.log('')
+  console.log('Saga monitor:', Date.now(), (new Date()).toISOString())
+  logEffectTree(0)
+  console.log('')
+}
+
+// Export the snapshot-logging function to run from the browser console or extensions.
+if(IS_BROWSER) {
+  window.$$LogSagas = logSaga
+}
+
+// Export the snapshot-logging function for arbitrary use by external code.
+export { logSaga }
+
+// Export the `sagaMonitor` to pass to the middleware.
+export default { effectTriggered, effectResolved, effectRejected, effectCancelled }

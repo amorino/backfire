@@ -4,12 +4,6 @@ import classnames from 'classnames';
 
 export default class ListItem extends Component {
 
-  static propTypes = {
-    isExternal: PropTypes.bool,
-    link: PropTypes.string.isRequired,
-    text: PropTypes.string.isRequired
-  };
-
   static defaultProps = {
     isExternal: false
   };
@@ -20,7 +14,7 @@ export default class ListItem extends Component {
     if (isExternal) {
       return (
         <a href={link} target="_blank">
-          {this.props.text}
+          {text}
         </a>
       );
     }
@@ -39,3 +33,10 @@ export default class ListItem extends Component {
     );
   }
 }
+
+ListItem.propTypes = {
+  route: PropTypes.string,
+  link: PropTypes.string,
+  text: PropTypes.string,
+  isExternal: PropTypes.bool
+};

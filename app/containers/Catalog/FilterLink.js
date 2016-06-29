@@ -1,5 +1,5 @@
-import {connect} from 'react-redux';
-import {filterItem} from 'actions';
+import { connect } from 'react-redux';
+import { filterItem } from 'actions';
 import Link from './Link';
 
 const mapStateToProps = (state, ownProps) => ({

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import ListItem from './ListItem';
 import styles from './styles.styl';
@@ -16,7 +16,7 @@ const menu = [
   }
 ];
 
-class Menu extends Component {  
+class Menu extends Component {
   render() {
     const { current } = this.props;
     const items = menu.map((item, i) => <ListItem {...item} key={i} route={current} />);
@@ -27,6 +27,10 @@ class Menu extends Component {
     );
   }
 }
+
+Menu.propTypes = {
+  current: PropTypes.string
+};
 
 function mapStateToProps(state) {
   return { current: state.routing.locationBeforeTransitions.pathname };

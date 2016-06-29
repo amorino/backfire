@@ -1,7 +1,7 @@
-import React, {Component, PropTypes} from 'react';
+import React, { Component, PropTypes } from 'react';
 // import Item from './Item';
-import {TransitionMotion, spring} from 'react-motion';
-import {Link} from 'react-router';
+import { TransitionMotion, spring } from 'react-motion';
+import { Link } from 'react-router';
 import styles from './styles';
 // import Transition from 'react-motion-ui-pack';
 
@@ -82,7 +82,7 @@ export default class CatalogList extends Component {
   }
 
   render() {
-    const {fetching} = this.props;
+    const { fetching } = this.props;
       // <ul className="todo-list">
       //   {catalog.map(item => <Item key={item.id} item={item} />)}
       // </ul>
@@ -126,6 +126,7 @@ export default class CatalogList extends Component {
 }
 
 CatalogList.propTypes = {
+  fetching: PropTypes.bool,
   catalog: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.number.isRequired,
     title: PropTypes.string.isRequired,

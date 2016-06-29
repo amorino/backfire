@@ -1,11 +1,12 @@
-import React, {Component} from 'react';
-import {connect} from 'react-redux';
+import React, { Component, PropTypes } from 'react';
+import { connect } from 'react-redux';
 import Item from './Item';
 import styles from './styles';
 
-class CatalogItemPage extends Component {
+class CatalogItem extends Component {
+  PropTypes
   render() {
-    const {id, fetching} = this.props;
+    const { id, fetching } = this.props;
     return (
       <div className={styles.container}>
         <h1>Detail</h1>
@@ -14,6 +15,12 @@ class CatalogItemPage extends Component {
     );
   }
 }
+
+CatalogItem.propTypes = {
+  id: PropTypes.string,
+  fetching: PropTypes.any
+};
+
 function mapStateToProps(state, props) {
   return {
     id: props.params.id,
@@ -22,4 +29,4 @@ function mapStateToProps(state, props) {
   };
 }
 
-export default connect(mapStateToProps)(CatalogItemPage);
+export default connect(mapStateToProps)(CatalogItem);

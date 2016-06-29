@@ -1,7 +1,7 @@
-import React, {Component, PropTypes} from 'react';
+import React, { Component, PropTypes } from 'react';
 // import Item from './Item';
-import {SpringGrid, makeResponsive, layout} from 'react-stonecutter';
-import {Link} from 'react-router';
+import { SpringGrid, makeResponsive, layout } from 'react-stonecutter';
+import { Link } from 'react-router';
 import styles from './styles';
 
 export default class CatalogListCutter extends Component {
@@ -16,11 +16,11 @@ export default class CatalogListCutter extends Component {
       maxWidth: 1024,
       minPadding: 100
     });
-    this.setState({Grid});
+    this.setState({ Grid });
   }
 
   render() {
-    const {fetching, catalog} = this.props;
+    const { fetching, catalog } = this.props;
     const itemHeight = 190;
     const items = catalog.map(item => {
       return (
@@ -38,7 +38,7 @@ export default class CatalogListCutter extends Component {
         </li>
       );
     });
-    const {Grid} = this.state;
+    const { Grid } = this.state;
 
     return (
       <div>
@@ -52,7 +52,7 @@ export default class CatalogListCutter extends Component {
             gutterHeight={5}
             itemHeight={200}
             layout={layout.simple}
-            springConfig={{stiffness: 170, damping: 26}}
+            springConfig={{ stiffness: 170, damping: 26 }}
           >
             {items}
           </Grid>
@@ -63,6 +63,7 @@ export default class CatalogListCutter extends Component {
 }
 
 CatalogListCutter.propTypes = {
+  fetching: PropTypes.bool,
   catalog: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.number.isRequired,
     title: PropTypes.string.isRequired,
