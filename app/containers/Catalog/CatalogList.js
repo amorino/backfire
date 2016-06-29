@@ -3,7 +3,6 @@ import React, { Component, PropTypes } from 'react';
 import { TransitionMotion, spring } from 'react-motion';
 import { Link } from 'react-router';
 import styles from './styles';
-// import Transition from 'react-motion-ui-pack';
 
 export default class CatalogList extends Component {
 
