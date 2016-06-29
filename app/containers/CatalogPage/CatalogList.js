@@ -46,7 +46,8 @@ export default class CatalogList extends Component {
       default:
         responsive = 1;
     }
-    return this.props.catalog.map((item) => {
+
+    return this.props.catalog.map(item => {
       return {
         key: item.id,
         data: item,
@@ -61,7 +62,7 @@ export default class CatalogList extends Component {
 
 
   handleResize = () => {
-    this.setState({windowWidth: window.innerWidth});
+    this.setState({ windowWidth: window.innerWidth });
   }
 
   willEnter = () => {
@@ -98,7 +99,7 @@ export default class CatalogList extends Component {
             {current =>
               <div className={styles.items}>
                 {current.map(key => {
-                  const {scale, opacity, size} = key.style;
+                  const { scale, opacity, size } = key.style;
                   const style = {
                     transform: `scale(${scale})`,
                     // transform: `matrix(${scale}, 0, 0, ${scale}, 0, 0)`,

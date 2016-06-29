@@ -1,5 +1,5 @@
-import React, {PropTypes, Component} from 'react';
-import {Link} from 'react-router';
+import React, { PropTypes, Component } from 'react';
+import { Link } from 'react-router';
 import classnames from 'classnames';
 
 export default class ListItem extends Component {
@@ -15,7 +15,7 @@ export default class ListItem extends Component {
   };
 
   renderLink() {
-    const {route, link, text, isExternal} = this.props;
+    const { route, link, text, isExternal } = this.props;
     const active = route === link ? 'active' : '';
     if (isExternal) {
       return (

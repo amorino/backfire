@@ -4,45 +4,45 @@ export default function createRoutes() {
     getIndexRoute(location, cb) {
       require.ensure([], require =>
         cb(null, {
-          component: require('HomePage').default
+          component: require('containers/HomePage').default
         })
-      );
+      , 'Home');
     },
   }, {
     path: '/about',
     getIndexRoute(location, cb) {
       require.ensure([], require =>
         cb(null, {
-          component: require('AboutPage').default
+          component: require('containers/AboutPage').default
         })
-      );
+      , 'About');
     },
   }, {
     path: '/catalog',
     getIndexRoute(location, cb) {
       require.ensure([], require =>
         cb(null, {
-          component: require('CatalogPage').default
+          component: require('containers/CatalogPage').default
         })
-      );
+      , 'Catalog');
     },
   }, {
     path: '/catalog/:id',
     getIndexRoute(location, cb) {
       require.ensure([], require =>
         cb(null, {
-          component: require('CatalogItemPage').default
+          component: require('containers/CatalogItemPage').default
         })
-      );
+      , 'CatalogItem');
     },
   }, {
     path: '*',
     getIndexRoute(location, cb) {
       require.ensure([], require =>
         cb(null, {
-          component: require('NotFoundPage').default
+          component: require('containers/NotFoundPage').default
         })
-      );
+      , 'NotFound');
     },
   }];
 }

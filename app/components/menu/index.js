@@ -1,7 +1,7 @@
-import React, {Component} from 'react';
-import {connect} from 'react-redux';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import ListItem from './ListItem';
-import styles from './styles';
+import styles from './styles.styl';
 
 const menu = [
   {
@@ -16,9 +16,9 @@ const menu = [
   }
 ];
 
-class Menu extends Component {
+class Menu extends Component {  
   render() {
-    const {current} = this.props;
+    const { current } = this.props;
     const items = menu.map((item, i) => <ListItem {...item} key={i} route={current} />);
     return (
       <div className={styles.menu}>
@@ -29,7 +29,7 @@ class Menu extends Component {
 }
 
 function mapStateToProps(state) {
-  return {current: state.routing.locationBeforeTransitions.pathname};
+  return { current: state.routing.locationBeforeTransitions.pathname };
 }
 
 export default connect(mapStateToProps)(Menu);

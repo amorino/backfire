@@ -5,7 +5,6 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 // PostCSS plugins
 const postcssFocus = require('postcss-focus');
-const cssnano = require('cssnano');
 const rucksack = require('rucksack-css');
 const lost = require('lost');
 
@@ -38,11 +37,6 @@ module.exports = require('./webpack.base.babel')({
     postcssFocus(), // Add a :focus to every :hover
     rucksack({
       autoprefixer: true
-    }),
-    cssnano({
-      autoprefixer: false, // cssnext already runs autoprefixer
-      discardUnused: false, // unsafe, see http://mxs.is/googmr
-      zindex: false // unsafe, see http://mxs.is/googmq
     })
   ],
   plugins: [
