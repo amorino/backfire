@@ -19,8 +19,8 @@
     "comma-dangle": 0,
     "no-console": 0,
     "max-len": 0,
-    "prefer-template": 0,
-    "no-use-before-define": 0,
+    # "prefer-template": 0,
+    # "no-use-before-define": 0,
     "arrow-body-style": 0,
     "react/prefer-stateless-function": 0
   },

@@ -5,7 +5,7 @@ import { api } from 'services';
 
 export function* getAllItems() {
   // const items = yield call(fetchPostsApi);
-  yield put(actions.requestItems(items));
+  yield put(actions.requestItems());
   const items = yield call(api.getItems);
   yield put(actions.receiveItems(items));
 }
