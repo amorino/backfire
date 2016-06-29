@@ -85,6 +85,7 @@
     "react-router-redux": "^4.0.5",
     "react-router-scroll": "^0.2.0",
     "react-router-transition": "0.0.5",
+    "react-share": "^1.8.0",
     "redux": "^3.3.1",
     "redux-saga": "^0.10.5",
     "sanitize.css": "^4.0.0",

@@ -3,24 +3,12 @@
   "extends": "airbnb",
   "env": {
     "browser": true,
-    "node": true,
-    "mocha": true,
-    "es6": true
-  },
-  "parserOptions": {
-    "ecmaVersion": 6,
-    "sourceType": "module",
-    "ecmaFeatures": {
-      "jsx": true,
-      arrowFunctions: true
-    }
+    "node": true
   },
   "rules": {
-    "comma-dangle": 0,
+    "comma-dangle": [2, "never"],
     "no-console": 0,
     "max-len": 0,
-    # "prefer-template": 0,
-    # "no-use-before-define": 0,
     "arrow-body-style": 0,
     "react/prefer-stateless-function": 0
   },
