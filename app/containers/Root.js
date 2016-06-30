@@ -9,7 +9,7 @@ import App from 'containers/App';
 
 const rootRoute = {
   component: App,
-  childRoutes: createRoutes(),
+  childRoutes: createRoutes()
 };
 
 const store = configureStore();

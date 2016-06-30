@@ -1,4 +1,4 @@
-/*eslint-disable no-console*/
+/*eslint-disable*/
 
 import { is, asEffect } from 'redux-saga/utils'
 

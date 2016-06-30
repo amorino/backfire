@@ -7,7 +7,7 @@ export default function createRoutes() {
           component: require('containers/Home').default
         })
       , 'Home');
-    },
+    }
   }, {
     path: '/about',
     getIndexRoute(location, cb) {
@@ -16,7 +16,7 @@ export default function createRoutes() {
           component: require('containers/About').default
         })
       , 'About');
-    },
+    }
   }, {
     path: '/catalog',
     getIndexRoute(location, cb) {
@@ -25,7 +25,7 @@ export default function createRoutes() {
           component: require('containers/Catalog').default
         })
       , 'Catalog');
-    },
+    }
   }, {
     path: '/catalog/:id',
     getIndexRoute(location, cb) {
@@ -34,7 +34,7 @@ export default function createRoutes() {
           component: require('containers/CatalogItem').default
         })
       , 'CatalogItem');
-    },
+    }
   }, {
     path: '*',
     getIndexRoute(location, cb) {
@@ -43,6 +43,6 @@ export default function createRoutes() {
           component: require('containers/NotFound').default
         })
       , 'NotFound');
-    },
+    }
   }];
 }

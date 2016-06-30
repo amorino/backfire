@@ -5,6 +5,6 @@ import { render } from 'react-dom';
 import Root from 'containers/Root';
 import 'file?name=[name].[ext]!./.htaccess';
 import 'sanitize.css/sanitize.css';
-// require('gsap');
+require('gsap');
 
 render(<Root />, document.getElementById('root'));

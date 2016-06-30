@@ -1,3 +1,4 @@
+/*eslint-disable*/
 import React, { Component, PropTypes } from 'react';
 // import Item from './Item';
 import { SpringGrid, makeResponsive, layout } from 'react-stonecutter';

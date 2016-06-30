@@ -28,7 +28,7 @@ class App extends Component {
 
 App.propTypes = {
   location: PropTypes.object,
-  children: PropTypes.any,
+  children: PropTypes.any
 };
 
 export default connect()(App);

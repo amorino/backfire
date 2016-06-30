@@ -1,10 +1,7 @@
 import { combineReducers } from 'redux';
 import { RECEIVE_ITEMS, REQUEST_ITEMS } from '../actions';
 
-function byId(state = {
-  isFetching: false,
-  items: []
-}, action) {
+function byId(state = { isFetching: false, items: [] }, action) {
   switch (action.type) {
     case REQUEST_ITEMS:
       return { ...state, isFetching: true };
@@ -23,10 +20,7 @@ function byId(state = {
   }
 }
 
-function allIds(state = {
-  isFetching: false,
-  items: []
-}, action) {
+function allIds(state = { isFetching: false, items: [] }, action) {
   switch (action.type) {
     case REQUEST_ITEMS:
       return { ...state, isFetching: true };
@@ -37,8 +31,6 @@ function allIds(state = {
   }
 }
 
-export default combineReducers({ byId, allIds });
-
 export function getItem(state, id) {
   return state.byId.items[id];
 }
@@ -46,3 +38,5 @@ export function getItem(state, id) {
 export function getItems(state) {
   return state.allIds.items.map(id => getItem(state, id));
 }
+
+export default combineReducers({ byId, allIds });
