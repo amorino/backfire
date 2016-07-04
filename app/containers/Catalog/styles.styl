@@ -1,21 +1,26 @@
 @import '~styles/vars'
 
-.item
-  display: flex
+.item-motion
+  display: flex;
   border: 1px solid $color
-  lost-column: 1/4 4
   transform-origin: 50% 50%
-  +below($tablet)
-    lost-column: 2/4 2
-  +below($mobile)
-    lost-column: 4/4 1
   &:before
     content: ''
     padding-top: 100%
 
+.item
+  border: 1px solid $color
+  size 200px
+  display: inline-block
+  margin: 10px
+  +below($tablet)
+    lost-column: 2/4
+  +below($mobile)
+    lost-column: 4/4
+
 .items
-  lost-align: center flex
-  lost-flex-container: row
+  // lost-flex-container: row
+  display block
 
 .container
   size: 100%

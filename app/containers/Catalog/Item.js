@@ -1,52 +1,46 @@
 import React, { Component, PropTypes } from 'react';
-import { findDOMNode } from 'react-dom';
+// import { findDOMNode } from 'react-dom';
 import { Link } from 'react-router';
-import _ from 'underscore';
+import styles from './styles';
+import GSAP from 'react-gsap-enhancer';
 
-const states = {
-  beforeEnter: { y: 100, scale: 1.6, opacity: 0 },
-  idle: { y: 0, scale: 1, opacity: 1 },
-  afterLeave: { y: -100, scale: 0.7, opacity: 0 }
-};
 
-export default class Item extends Component {
-  static animationStates = states;
+function appearAnim(utils) {
+  return new TimelineMax()
+    .from(utils.target, 0.7, {
+      height: 0,
+      ease: Back.easeOut,
+      onComplete: utils.options.callback
+    });
+}
 
-  componentDidMount() {
-    const el = findDOMNode(this);
-    this.timeline = new TimelineMax()
-      .pause()
-      .add(TweenMax.to(el, 1, _.extend({}, Item.animationStates.beforeEnter, { ease: Linear.easeNone })))
-      .add('beforeEnter')
-      .add(TweenMax.to(el, 1, _.extend({}, Item.animationStates.idle, { ease: Linear.easeNone })))
-      .add('idle')
-      .add(TweenMax.to(el, 1, _.extend({}, Item.animationStates.afterLeave, { ease: Linear.easeNone })))
-      .add('afterLeave')
+function leaveAnim(utils) {
+  return new TimelineMax()
+    .to(utils.target, 0.5, {
+      height: 0,
+      ease: Sine.easeOut,
+      onComplete: utils.options.callback
+    });
+}
 
-    this.timeline.seek('beforeEnter');
-  }
+class Item extends Component {
 
   componentWillAppear(callback) {
-    this.timeline.seek('idle');
-    callback();
+    this.addAnimation(appearAnim, { callback });
   }
 
   componentWillEnter(callback) {
-    this.timeline.seek('beforeEnter');
-    TweenMax.killTweensOf(this.timeline);
-    TweenMax.to(this.timeline, this.props.enterDuration, { time: this.timeline.getLabelTime('idle'), onComplete: callback, ease: Sine.easeOut });
+    this.addAnimation(appearAnim, { callback });
   }
 
   componentWillLeave(callback) {
-    this.timeline.pause();
-    TweenMax.killTweensOf(this.timeline);
-    TweenMax.to(this.timeline, this.props.leaveDuration, { time: this.timeline.getLabelTime('afterLeave'), onComplete: callback, ease: Sine.easeIn });
+    this.addAnimation(leaveAnim, { callback });
   }
 
   render() {
     const { description, title, id } = this.props.item;
     return (
-      <div>
+      <div className={styles.item}>
         {title} - {description} <Link to={`catalog/${id}`}>></Link>
       </div>
     );
@@ -54,10 +48,14 @@ export default class Item extends Component {
 }
 
 Item.propTypes = {
+  enterDuration: PropTypes.number,
+  leaveDuration: PropTypes.number,
   item: PropTypes.shape({
     title: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
     image: PropTypes.string.isRequired,
-    id: PropTypes.string.number
+    id: PropTypes.number
   }).isRequired
 };
+
+export default GSAP()(Item);

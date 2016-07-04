@@ -1,42 +1,47 @@
 import React, { Component, PropTypes } from 'react';
 import Item from './Item';
 import ReactTransitionGroupPlus from 'react-transition-group-plus';
-// import { Link } from 'react-router';
-// import styles from './styles';
+import styles from './styles';
 
 export default class CatalogList extends Component {
 
   state = {
-    transitionMode: 'out-in',
-    transitionGroupComponent: ReactTransitionGroupPlus,
-    enterDuration: 0.8,
+    counter: 0,
+    transitionMode: 'simultaneous',
+    enterDuration: 0.3,
     leaveDuration: 0.3
+  };
+
+  handleClick = () => {
+    this.setState({ counter: this.state.counter + 1 });
   };
 
   render() {
     const { fetching, catalog } = this.props;
-    // const items = ;
+    const items = catalog.map(
+      item =>
+        <Item
+          key={item.id}
+          enterDuration={this.state.enterDuration}
+          leaveDuration={this.state.leaveDuration}
+          item={item}
+        />
+    );
     return (
       <div>
+        <button className="cta-button" onClick={this.handleClick}>
+          Animate!
+        </button>
         {fetching && <h3>Loading...</h3>}
         {!fetching &&
-          <ul className="todo-list">
-            <ReactTransitionGroupPlus
-              transitionMode={this.state.transitionMode}
-              component="div"
-              className="output-panel"
-            >
-            {catalog.map(
-              item =>
-                <Item
-                  key={item.id + item.description}
-                  enterDuration={this.state.enterDuration}
-                  leaveDuration={this.state.leaveDuration}
-                  item={item}
-                />
-            )}
-            </ReactTransitionGroupPlus>
-          </ul>
+          <ReactTransitionGroupPlus
+            component="div"
+            className={styles.group}
+            transitionMode={this.state.transitionMode}
+            deferLeavingComponentRemoval={false}
+          >
+            {items}
+          </ReactTransitionGroupPlus>
         }
       </div>
       );

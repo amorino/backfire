@@ -5,12 +5,21 @@
     "browser": true,
     "node": true
   },
+  "globals": {
+    "TweenMax": true,
+    "TimelineMax": true,
+    "Linear": true,
+    "Sine": true,
+    "Power2": true,
+    "Back": true
+  },
   "rules": {
     "comma-dangle": [2, "never"],
     "no-console": 0,
     "max-len": 0,
     "arrow-body-style": 0,
-    "react/prefer-stateless-function": 0
+    "react/prefer-stateless-function": 0,
+    "react/jsx-boolean-value": 0
   },
   "settings": {
     "import/resolver": {
