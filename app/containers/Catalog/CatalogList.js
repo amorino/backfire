@@ -12,10 +12,6 @@ export default class CatalogList extends Component {
     leaveDuration: 0.3
   };
 
-  handleClick = () => {
-    this.setState({ counter: this.state.counter + 1 });
-  };
-
   render() {
     const { fetching, catalog } = this.props;
     const items = catalog.map(
@@ -29,9 +25,6 @@ export default class CatalogList extends Component {
     );
     return (
       <div>
-        <button className="cta-button" onClick={this.handleClick}>
-          Animate!
-        </button>
         {fetching && <h3>Loading...</h3>}
         {!fetching &&
           <ReactTransitionGroupPlus

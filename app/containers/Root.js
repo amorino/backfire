@@ -4,12 +4,12 @@ import useScroll from 'react-router-scroll';
 import { syncHistoryWithStore } from 'react-router-redux';
 import { Provider } from 'react-redux';
 import configureStore from 'store';
-import createRoutes from 'routes';
+import routes from 'routes';
 import App from 'containers/App';
 
 const rootRoute = {
   component: App,
-  childRoutes: createRoutes()
+  childRoutes: routes()
 };
 
 const store = configureStore();

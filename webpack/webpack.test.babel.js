@@ -1,6 +1,6 @@
 const modules = [
   'app',
-  'node_modules',
+  'node_modules'
 ];
 
 module.exports = {
@@ -14,7 +14,7 @@ module.exports = {
     fs: 'empty',
     child_process: 'empty',
     net: 'empty',
-    tls: 'empty',
+    tls: 'empty'
   },
   resolve: {
     modulesDirectories: modules,
@@ -26,5 +26,5 @@ module.exports = {
       '.jsx',
       '.react.js'
     ]
-  },
+  }
 };

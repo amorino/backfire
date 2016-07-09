@@ -1,4 +1,4 @@
-export default function createRoutes() {
+export default function routes() {
   return [{
     path: '/',
     getIndexRoute(location, cb) {
