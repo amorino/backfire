@@ -61,7 +61,6 @@
     "object-assign": "^4.0.1",
     "postcss-focus": "^1.0.0",
     "poststylus": "^0.2.3",
-    "raw-loader": "^0.5.1",
     "rimraf": "^2.5.2",
     "rucksack-css": "^0.8.5",
     "rupture": "^0.6.1",
@@ -79,7 +78,6 @@
     "react": "^15.2.1",
     "react-dom": "^15.2.1",
     "react-gsap-enhancer": "^0.2.2",
-    "react-motion": "^0.4.4",
     "react-redux": "^4.4.5",
     "react-router": "^2.0.0",
     "react-router-redux": "^4.0.5",
@@ -91,7 +89,6 @@
     "redux-saga": "^0.11.0",
     "sanitize.css": "^4.0.0",
     "stylus": "^0.54.5",
-    "underscore": "^1.8.3",
     "whatwg-fetch": "^1.0.0"
   }
 }

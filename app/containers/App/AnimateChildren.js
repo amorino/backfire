@@ -1,10 +1,9 @@
-import React, { Component } from 'react';
-import styles from './styles';
-import Footer from 'components/footer';
-import { appearAnim, leaveAnim } from 'animations';
+import React, { Component, PropTypes } from 'react';
 import gsap from 'react-gsap-enhancer';
+import styles from './styles';
+import { appearAnim, leaveAnim } from 'animations';
 
-class About extends Component {
+class AnimateChildren extends Component {
 
   componentWillAppear(callback) {
     this.addAnimation(appearAnim, { callback });
@@ -19,14 +18,19 @@ class About extends Component {
   }
 
   render() {
+    const { children } = this.props;
     return (
-      <div className={styles.container}>
-        <h1>About</h1>
-        <p>This is a static pages</p>
-        <Footer />
+      <div className={styles.container} >
+        <div className={styles.wrapper}>
+         {children}
+        </div>
       </div>
     );
   }
 }
 
-export default gsap()(About);
+AnimateChildren.propTypes = {
+  children: PropTypes.any
+};
+
+export default gsap()(AnimateChildren);
