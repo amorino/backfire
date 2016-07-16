@@ -1,36 +1,33 @@
 import React, { Component, PropTypes } from 'react';
 import gsap from 'react-gsap-enhancer';
-import styles from './styles';
-import { appearAnim, leaveAnim } from 'animations';
+import { routeAppear, routeLeave } from 'animations';
 
 class AnimateChildren extends Component {
-
   componentWillAppear(callback) {
-    this.addAnimation(appearAnim, { callback });
+    this.addAnimation(routeAppear, { callback });
   }
 
   componentWillEnter(callback) {
-    this.addAnimation(appearAnim, { callback });
+    this.addAnimation(routeAppear, { callback });
   }
 
   componentWillLeave(callback) {
-    this.addAnimation(leaveAnim, { callback });
+    this.addAnimation(routeLeave, { callback });
   }
 
   render() {
-    const { children } = this.props;
+    const { children, style } = this.props;
     return (
-      <div className={styles.container} >
-        <div className={styles.wrapper}>
+      <div className={style} >
          {children}
-        </div>
       </div>
     );
   }
 }
 
 AnimateChildren.propTypes = {
-  children: PropTypes.any
+  children: PropTypes.any,
+  style: PropTypes.string
 };
 
 export default gsap()(AnimateChildren);

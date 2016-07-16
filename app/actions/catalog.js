@@ -1,7 +1,6 @@
 export const GET_ALL_ITEMS = 'GET_ALL_ITEMS';
 export const RECEIVE_ITEMS = 'RECEIVE_ITEMS';
 export const REQUEST_ITEMS = 'REQUEST_ITEMS';
-
 export const SET_VISIBILITY_FILTER = 'SET_VISIBILITY_FILTER';
 
 export function getAllItems() {

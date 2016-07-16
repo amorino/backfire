@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import Item from './Item';
-import ReactTransitionGroupPlus from 'react-transition-group-plus';
+// import ReactTransitionGroupPlus from 'react-transition-group-plus';
+import ReactTransitionGroup from 'react-addons-transition-group';
 import styles from './styles';
 
 export default class CatalogList extends Component {
@@ -8,12 +9,14 @@ export default class CatalogList extends Component {
   state = {
     counter: 0,
     transitionMode: 'simultaneous',
-    enterDuration: 0.3,
-    leaveDuration: 0.3
+    enterDuration: 0.8,
+    leaveDuration: 0.8
   };
 
   render() {
     const { fetching, catalog } = this.props;
+    // transitionMode={this.state.transitionMode}
+    // deferLeavingComponentRemoval={false}
     const items = catalog.map(
       item =>
         <Item
@@ -24,17 +27,15 @@ export default class CatalogList extends Component {
         />
     );
     return (
-      <div>
+      <div className={styles.list}>
         {fetching && <h3>Loading...</h3>}
         {!fetching &&
-          <ReactTransitionGroupPlus
+          <ReactTransitionGroup
             component="div"
-            className={styles.group}
-            transitionMode={this.state.transitionMode}
-            deferLeavingComponentRemoval={false}
+            className={styles.items}
           >
             {items}
-          </ReactTransitionGroupPlus>
+          </ReactTransitionGroup>
         }
       </div>
       );

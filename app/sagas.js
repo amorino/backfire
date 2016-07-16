@@ -1,5 +1,5 @@
 import { put, call, fork } from 'redux-saga/effects';
-import * as actions from 'actions';
+import * as actions from 'actions/catalog';
 import { takeEvery } from 'redux-saga';
 import { api } from 'services';
 

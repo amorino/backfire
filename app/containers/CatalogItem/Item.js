@@ -21,15 +21,21 @@ class Item extends Component {
 }
 
 Item.propTypes = {
+  id: PropTypes.string,
   fetching: PropTypes.bool,
   item: PropTypes.shape({
     title: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
     image: PropTypes.string.isRequired,
-    id: PropTypes.string.number
-  }).isRequired
+    id: PropTypes.number.isRequired
+  })
 };
 
-export default connect((state, props) => ({
-  item: getItem(state.catalog, props.id)
-}))(Item);
+function mapStateToProps(state, props) {
+  return {
+    fetching: state.catalog.allIds.isFetching,
+    item: getItem(state.catalog, props.id)
+  };
+}
+
+export default connect(mapStateToProps)(Item);

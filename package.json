@@ -76,6 +76,7 @@
     "gsap": "^1.18.2",
     "history": "^2.1.0",
     "react": "^15.2.1",
+    "react-addons-transition-group": "^15.2.1",
     "react-dom": "^15.2.1",
     "react-gsap-enhancer": "^0.2.2",
     "react-redux": "^4.4.5",

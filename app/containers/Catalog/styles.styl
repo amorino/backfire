@@ -1,32 +1,15 @@
 @import '~styles/vars'
 
-.item-motion
-  display: flex;
-  border: 1px solid $color
-  transform-origin: 50% 50%
-  &:before
-    content: ''
-    padding-top: 100%
+.container
+  lost-center $center
+
+.list
+  size: 100%
 
 .item
   border: 1px solid $color
-  size 200px
   display: inline-block
-  margin: 10px
-  +below($tablet)
-    lost-column: 2/4
-  +below($mobile)
-    lost-column: 4/4
+  overflow: hidden
 
 .items
-  // lost-flex-container: row
   display block
-
-.container
-  size: 100%
-
-.animates
-  margin: 50px
-  width: 50px
-  height: 50px
-  background-color: #3498DB

@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import { RECEIVE_ITEMS, REQUEST_ITEMS } from '../actions';
+import { RECEIVE_ITEMS, REQUEST_ITEMS } from 'actions/catalog';
 
 function byId(state = { isFetching: false, items: [] }, action) {
   switch (action.type) {

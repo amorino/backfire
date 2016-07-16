@@ -12,7 +12,7 @@ export default class Catalog extends Component {
             Show:
           {" "}
           <FilterLink filter="all">
-              All
+            All
           </FilterLink>
           {", "}
           <FilterLink filter="music">

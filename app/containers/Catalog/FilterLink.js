@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
-import { filterItem } from 'actions';
 import Link from './Link';
+import { filterItem } from 'actions/catalog';
 
 const mapStateToProps = (state, ownProps) => ({
   active: ownProps.filter === state.filter

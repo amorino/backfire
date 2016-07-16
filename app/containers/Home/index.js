@@ -1,25 +1,11 @@
 import React, { Component } from 'react';
 import styles from './styles';
 import Footer from 'components/footer';
-import { appearAnim, leaveAnim } from 'animations';
-import gsap from 'react-gsap-enhancer';
 
-class Home extends Component {
-  componentWillAppear(callback) {
-    this.addAnimation(appearAnim, { callback });
-  }
-
-  componentWillEnter(callback) {
-    this.addAnimation(appearAnim, { callback });
-  }
-
-  componentWillLeave(callback) {
-    this.addAnimation(leaveAnim, { callback });
-  }
-
+export default class Home extends Component {
   render() {
     return (
-      <div className={styles.home}>
+      <div className={styles.container}>
         <h1>Home</h1>
         <p>This is a static page</p>
         <Footer />
@@ -27,4 +13,3 @@ class Home extends Component {
     );
   }
 }
-export default gsap()(Home);

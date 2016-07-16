@@ -1,8 +1,10 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import Menu from 'components/menu';
-import ReactTransitionGroupPlus from 'react-transition-group-plus';
+// import ReactTransitionGroupPlus from 'react-transition-group-plus';
+import ReactTransitionGroup from 'react-addons-transition-group';
 import styles from './styles';
+import AnimateChildren from './AnimateChildren';
 
 class App extends Component {
   render() {
@@ -10,16 +12,12 @@ class App extends Component {
     return (
       <div id="app">
         <Menu />
-        <ReactTransitionGroupPlus
+        <ReactTransitionGroup
           component="div"
-          transitionMode={'simultaneous'}
-          deferLeavingComponentRemoval={false}
-          className={styles.route}
+          className={styles.routes}
         >
-        {React.cloneElement(children, {
-          key: location.pathname
-        })}
-        </ReactTransitionGroupPlus>
+          <AnimateChildren style={styles.wrapper} children={children} key={location.pathname} />
+        </ReactTransitionGroup>
       </div>
       );
   }
