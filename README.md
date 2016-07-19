@@ -1,13 +1,11 @@
-# Backfire
-Work in progress.
 
-[![Dependency Status][dep-status-img]] [dep-status-link]
-[![devDependency Status][dev-dep-status-img]][dev-dep-status-link]
+<div align='center'>
+  <h3>Backfire</h3>
 
-[dep-status-img]: https://david-dm.org/amorino/backfire.svg
-[dep-status-link]: https://david-dm.org/amorino/backfire
-[dev-dep-status-img]: https://david-dm.org/amorino/backfire/dev-status.svg
-[dev-dep-status-link]: https://david-dm.org/amorino/backfire#info=devDependencies
+    <p>Work in progress.</p>
+  <a href="https://david-dm.org/amorino/backfire" title="Dependency status"><img src="https://david-dm.org/amorino/backfire.svg"/></a>
+  <a href="https://david-dm.org/amorino/backfire#info=devDependencies" title="devDependency status"><img src="https://david-dm.org/amorino/backfire/dev-status.svg"/></a>
 
-## License
-MIT
+  <h3>License</h3>
+  <p>MIT.</p>
+</div>
