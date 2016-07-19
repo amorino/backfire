@@ -27,14 +27,14 @@ Detail.propTypes = {
     title: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
     image: PropTypes.string.isRequired,
-    id: PropTypes.number.isRequired
-  })
+    id: PropTypes.number.isRequired,
+  }),
 };
 
 function mapStateToProps(state, props) {
   return {
-    fetching: state.catalog.allIds.isFetching,
-    item: getItem(state.catalog, props.id)
+    fetching: state.catalog.catalogIds.fetching,
+    item: getItem(state.catalog, props.id),
   };
 }
 

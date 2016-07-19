@@ -1,25 +1,25 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import ListItem from 'components/menu/ListItem';
+import LinkItem from 'components/utils/LinkItem';
 import styles from 'styles/components/menu';
 
 const menu = [
   {
     text: 'Home',
-    link: '/'
+    link: '/',
   }, {
     text: 'About',
-    link: '/about'
+    link: '/about',
   }, {
     text: 'Items',
-    link: '/catalog'
-  }
+    link: '/catalog',
+  },
 ];
 
 class Menu extends Component {
   render() {
     const { current } = this.props;
-    const items = menu.map((item, i) => <ListItem {...item} key={i} route={current} />);
+    const items = menu.map((item, i) => <LinkItem {...item} key={i} route={current} />);
     return (
       <div className={styles.menu}>
         <ul>{items}</ul>
@@ -29,7 +29,7 @@ class Menu extends Component {
 }
 
 Menu.propTypes = {
-  current: PropTypes.string
+  current: PropTypes.string,
 };
 
 function mapStateToProps(state) {

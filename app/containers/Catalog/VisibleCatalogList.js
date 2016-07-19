@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import CatalogList from './CatalogList';
+import CatalogList from 'containers/Catalog/CatalogList';
 import { getItems } from 'reducers/catalog';
 
 const getFilteredItems = (catalog, filter) => {
@@ -17,7 +17,7 @@ const getFilteredItems = (catalog, filter) => {
 
 const mapStateToProps = (state) => ({
   catalog: getFilteredItems(getItems(state.catalog), state.filter),
-  fetching: state.catalog.allIds.isFetching
+  fetching: state.catalog.catalogItems.fetching,
 });
 
 const VisibleCatalogList = connect(

@@ -4,7 +4,7 @@ export default class Image extends Component {
   constructor() {
     super();
     this.state = {
-      opacity: 0
+      opacity: 0,
     };
   }
 
@@ -32,5 +32,5 @@ export default class Image extends Component {
 Image.propTypes = {
   src: PropTypes.string,
   speed: PropTypes.int,
-  style: PropTypes.string
+  style: PropTypes.string,
 };

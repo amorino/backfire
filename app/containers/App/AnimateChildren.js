@@ -27,7 +27,7 @@ class AnimateChildren extends Component {
 
 AnimateChildren.propTypes = {
   children: PropTypes.any,
-  style: PropTypes.string
+  style: PropTypes.string,
 };
 
 export default gsap()(AnimateChildren);

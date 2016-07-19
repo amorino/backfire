@@ -1,8 +1,8 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import Detail from './Detail';
+import Detail from 'containers/CatalogItem/Detail';
 import styles from 'styles/containers/CatalogItem';
-import { getItem } from 'reducers/catalog';
+import Footer from 'components/footer';
 
 class CatalogItem extends Component {
   PropTypes
@@ -12,19 +12,19 @@ class CatalogItem extends Component {
       <div className={styles.container}>
         <h1>Detail</h1>
         <Detail id={id} />
+        <Footer />
       </div>
     );
   }
 }
 
 CatalogItem.propTypes = {
-  id: PropTypes.string
+  id: PropTypes.string,
 };
 
 function mapStateToProps(state, props) {
   return {
     id: props.params.id,
-    item: getItem(state.catalog, props.id)
   };
 }
 

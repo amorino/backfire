@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import VisibleCatalogList from './VisibleCatalogList';
-import FilterLink from './FilterLink';
+import VisibleCatalogList from 'containers/Catalog/VisibleCatalogList';
+import FilterLink from 'containers/Catalog/FilterLink';
 import styles from 'styles/containers/Catalog';
+import Footer from 'components/footer';
 
 export default class Catalog extends Component {
   render() {
@@ -24,6 +25,7 @@ export default class Catalog extends Component {
           </FilterLink>
         </p>
         <VisibleCatalogList />
+        <Footer />
       </div>
     );
   }

@@ -26,6 +26,5 @@ export default function configureStore(initialState, history) {
       });
     });
   }
-
   return store;
 }

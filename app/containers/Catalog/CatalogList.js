@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import Item from './Item';
+import Item from 'containers/Catalog/Item';
 // import ReactTransitionGroupPlus from 'react-transition-group-plus';
 import ReactTransitionGroup from 'react-addons-transition-group';
 import styles from 'styles/containers/Catalog';
@@ -9,14 +9,10 @@ export default class CatalogList extends Component {
   state = {
     counter: 0,
     transitionMode: 'simultaneous',
-    enterDuration: 0.8,
-    leaveDuration: 0.8
   };
 
   render() {
     const { fetching, catalog } = this.props;
-    // transitionMode={this.state.transitionMode}
-    // deferLeavingComponentRemoval={false}
     const items = catalog.map(
       item =>
         <Item
@@ -48,6 +44,6 @@ CatalogList.propTypes = {
     id: PropTypes.number.isRequired,
     title: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
-    image: PropTypes.string.isRequired
-  })).isRequired
+    image: PropTypes.string.isRequired,
+  })).isRequired,
 };

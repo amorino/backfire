@@ -2,10 +2,10 @@ import React, { PropTypes, Component } from 'react';
 import { Link } from 'react-router';
 import classnames from 'classnames';
 
-export default class ListItem extends Component {
+export default class LinkItem extends Component {
 
   static defaultProps = {
-    isExternal: false
+    isExternal: false,
   };
 
   renderLink() {
@@ -34,9 +34,9 @@ export default class ListItem extends Component {
   }
 }
 
-ListItem.propTypes = {
+LinkItem.propTypes = {
   route: PropTypes.string,
   link: PropTypes.string,
   text: PropTypes.string,
-  isExternal: PropTypes.bool
+  isExternal: PropTypes.bool,
 };

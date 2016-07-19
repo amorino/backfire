@@ -4,45 +4,45 @@ export default function routes() {
     getIndexRoute(location, cb) {
       require.ensure([], require =>
         cb(null, {
-          component: require('containers/Home').default
+          component: require('containers/Home').default,
         })
       , 'Home');
-    }
+    },
   }, {
     path: '/about',
     getIndexRoute(location, cb) {
       require.ensure([], require =>
         cb(null, {
-          component: require('containers/About').default
+          component: require('containers/About').default,
         })
       , 'About');
-    }
+    },
   }, {
     path: '/catalog',
     getIndexRoute(location, cb) {
       require.ensure([], require =>
         cb(null, {
-          component: require('containers/Catalog').default
+          component: require('containers/Catalog').default,
         })
       , 'Catalog');
-    }
+    },
   }, {
     path: '/catalog/:id',
     getIndexRoute(location, cb) {
       require.ensure([], require =>
         cb(null, {
-          component: require('containers/CatalogItem').default
+          component: require('containers/CatalogItem').default,
         })
       , 'CatalogItem');
-    }
+    },
   }, {
     path: '*',
     getIndexRoute(location, cb) {
       require.ensure([], require =>
         cb(null, {
-          component: require('containers/NotFound').default
+          component: require('containers/NotFound').default,
         })
       , 'NotFound');
-    }
+    },
   }];
 }

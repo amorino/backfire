@@ -5,7 +5,7 @@ export function routeAppear(utils) {
       alpha: 0,
       ease: Sine.easeOut,
       overwrite: 'all',
-      onComplete: utils.options.callback
+      onComplete: utils.options.callback,
     });
 }
 
@@ -15,6 +15,6 @@ export function routeLeave(utils) {
       alpha: 0,
       ease: Sine.easeIn,
       overwrite: 'all',
-      onComplete: utils.options.callback
+      onComplete: utils.options.callback,
     });
 }

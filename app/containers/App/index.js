@@ -4,9 +4,22 @@ import Menu from 'components/menu';
 // import ReactTransitionGroupPlus from 'react-transition-group-plus';
 import ReactTransitionGroup from 'react-addons-transition-group';
 import styles from 'styles/containers/App';
-import AnimateChildren from './AnimateChildren';
+import AnimateChildren from 'containers/App/AnimateChildren';
+import { resize } from 'actions/app';
 
 class App extends Component {
+  componentDidMount() {
+    window.addEventListener('resize', this.handleResize);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.handleResize);
+  }
+
+  handleResize = () => {
+    this.props.dispatch(resize(window.innerHeight, window.innerWidth));
+  }
+
   render() {
     const { location, children } = this.props;
     return (
@@ -24,8 +37,9 @@ class App extends Component {
 }
 
 App.propTypes = {
-  location: PropTypes.object,
-  children: PropTypes.any
+  location: PropTypes.object.isRequired,
+  children: PropTypes.object.isRequired,
+  dispatch: PropTypes.func.isRequired,
 };
 
 export default connect()(App);

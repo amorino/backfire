@@ -1,7 +1,7 @@
 /**
  * Mocking client-server processing
  */
-import catalog from './catalog.json';
+import catalog from 'services/catalog.json';
 
 const TIMEOUT = 2000;
 
@@ -10,5 +10,5 @@ export const api = {
     return new Promise(resolve => {
       setTimeout(() => resolve(catalog), TIMEOUT);
     });
-  }
+  },
 };

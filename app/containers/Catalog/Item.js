@@ -32,8 +32,8 @@ Item.propTypes = {
     title: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
     image: PropTypes.string.isRequired,
-    id: PropTypes.number
-  }).isRequired
+    id: PropTypes.number,
+  }).isRequired,
 };
 
 export default gsap()(Item);

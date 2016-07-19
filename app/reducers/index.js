@@ -1,12 +1,9 @@
 import { combineReducers } from 'redux';
-import { routerReducer } from 'react-router-redux';
-import items from './catalog';
-import visibilityFilter from './visibility';
+import { routerReducer as routing } from 'react-router-redux';
+import catalog from 'reducers/catalog';
+import app from 'reducers/app';
+import filter from 'reducers/visibility';
 
 export default function createReducer() {
-  return combineReducers({
-    routing: routerReducer,
-    catalog: items,
-    filter: visibilityFilter
-  });
+  return combineReducers({ routing, catalog, filter, app });
 }

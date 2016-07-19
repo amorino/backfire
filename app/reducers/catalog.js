@@ -1,42 +1,42 @@
 import { combineReducers } from 'redux';
 import { RECEIVE_ITEMS, REQUEST_ITEMS } from 'actions/catalog';
 
-function byId(state = { isFetching: false, items: [] }, action) {
+function catalogItems(state = { fetching: false, items: [] }, action) {
   switch (action.type) {
     case REQUEST_ITEMS:
-      return { ...state, isFetching: true };
+      return { ...state, fetching: true };
     case RECEIVE_ITEMS:
       return {
         ...state,
-        isFetching: false,
+        fetching: false,
         items: action.items.reduce((obj, item) => {
           const result = obj;
           result[item.id] = item;
           return result;
-        }, {})
+        }, {}),
       };
     default:
       return state;
   }
 }
 
-function allIds(state = { isFetching: false, items: [] }, action) {
+function catalogIds(state = { ids: [] }, action) {
   switch (action.type) {
     case REQUEST_ITEMS:
-      return { ...state, isFetching: true };
+      return { ...state };
     case RECEIVE_ITEMS:
-      return { isFetching: false, items: action.items.map(item => item.id) };
+      return { ids: action.items.map(item => item.id) };
     default:
       return state;
   }
 }
 
 export function getItem(state, id) {
-  return state.byId.items[id];
+  return state.catalogItems.items[id];
 }
 
 export function getItems(state) {
-  return state.allIds.items.map(id => getItem(state, id));
+  return state.catalogIds.ids.map(id => getItem(state, id));
 }
 
-export default combineReducers({ byId, allIds });
+export default combineReducers({ catalogItems, catalogIds });
