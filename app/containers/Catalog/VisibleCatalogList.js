@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import CatalogList from './CatalogList';
-import { getItems } from '../../reducers/catalog';
+import { getItems } from 'reducers/catalog';
 
 const getFilteredItems = (catalog, filter) => {
   switch (filter) {

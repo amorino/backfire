@@ -1,9 +1,9 @@
 import React, { Component, PropTypes } from 'react';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
-import { getItem } from '../../reducers/catalog';
+import { getItem } from 'reducers/catalog';
 
-class Item extends Component {
+class Detail extends Component {
   render() {
     const { fetching, item } = this.props;
     return (
@@ -20,7 +20,7 @@ class Item extends Component {
   }
 }
 
-Item.propTypes = {
+Detail.propTypes = {
   id: PropTypes.string,
   fetching: PropTypes.bool,
   item: PropTypes.shape({
@@ -38,4 +38,4 @@ function mapStateToProps(state, props) {
   };
 }
 
-export default connect(mapStateToProps)(Item);
+export default connect(mapStateToProps)(Detail);

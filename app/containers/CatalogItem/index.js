@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import Item from './Item';
-import styles from './styles';
+import Detail from './Detail';
+import styles from 'styles/containers/CatalogItem';
 import { getItem } from 'reducers/catalog';
 
 class CatalogItem extends Component {
@@ -11,7 +11,7 @@ class CatalogItem extends Component {
     return (
       <div className={styles.container}>
         <h1>Detail</h1>
-        <Item id={id} />
+        <Detail id={id} />
       </div>
     );
   }

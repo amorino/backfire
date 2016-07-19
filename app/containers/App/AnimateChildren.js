@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import gsap from 'react-gsap-enhancer';
-import { routeAppear, routeLeave } from 'animations';
+import { routeAppear, routeLeave } from 'animations/routes';
 
 class AnimateChildren extends Component {
   componentWillAppear(callback) {

@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import Item from './Item';
 // import ReactTransitionGroupPlus from 'react-transition-group-plus';
 import ReactTransitionGroup from 'react-addons-transition-group';
-import styles from './styles';
+import styles from 'styles/containers/Catalog';
 
 export default class CatalogList extends Component {
 

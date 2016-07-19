@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import ListItem from './ListItem';
-import styles from './styles';
+import ListItem from 'components/menu/ListItem';
+import styles from 'styles/components/menu';
 
 const menu = [
   {

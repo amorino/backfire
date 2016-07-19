@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import Menu from 'components/menu';
 // import ReactTransitionGroupPlus from 'react-transition-group-plus';
 import ReactTransitionGroup from 'react-addons-transition-group';
-import styles from './styles';
+import styles from 'styles/containers/App';
 import AnimateChildren from './AnimateChildren';
 
 class App extends Component {

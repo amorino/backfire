@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import styles from './styles';
+import styles from 'styles/containers/Home';
 import Footer from 'components/footer';
 
 export default class Home extends Component {

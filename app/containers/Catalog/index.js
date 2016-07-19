@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import VisibleCatalogList from './VisibleCatalogList';
 import FilterLink from './FilterLink';
-import styles from './styles';
+import styles from 'styles/containers/Catalog';
 
 export default class Catalog extends Component {
   render() {

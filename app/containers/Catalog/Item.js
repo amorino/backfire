@@ -1,9 +1,9 @@
 import React, { Component, PropTypes } from 'react';
 // import { findDOMNode } from 'react-dom';
 import { Link } from 'react-router';
-import styles from './styles';
+import styles from 'styles/containers/Catalog';
 import gsap from 'react-gsap-enhancer';
-import { appearAnim, leaveAnim } from 'animations';
+import { appearAnim, leaveAnim } from 'animations/catalog';
 
 class Item extends Component {
 
