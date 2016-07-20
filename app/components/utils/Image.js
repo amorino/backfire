@@ -1,19 +1,15 @@
 import React, { Component, PropTypes } from 'react';
 
 export default class Image extends Component {
-  constructor() {
-    super();
-    this.state = {
-      opacity: 0,
-    };
-  }
+  state = {
+    opacity: 0,
+  };
 
   fadeIn = () => {
     this.setState({ opacity: 1 });
   };
 
   render() {
-    // this vs including an Object.assign polyfill
     const { src, speed } = this.props;
     const style = this.props.style || {};
     style.transition = `opacity ${speed || 1}s`;
@@ -30,7 +26,7 @@ export default class Image extends Component {
 }
 
 Image.propTypes = {
-  src: PropTypes.string,
-  speed: PropTypes.int,
+  src: PropTypes.string.isRequired,
+  speed: PropTypes.number,
   style: PropTypes.string,
 };

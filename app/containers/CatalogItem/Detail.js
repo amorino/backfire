@@ -2,6 +2,8 @@ import React, { Component, PropTypes } from 'react';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
 import { getItem } from 'reducers/catalog';
+import Image from 'components/utils/Image';
+import styles from 'styles/containers/CatalogItem';
 
 class Detail extends Component {
   render() {
@@ -13,6 +15,9 @@ class Detail extends Component {
           <div>
             <h2>Item</h2>
             {item.title} - {item.description} - <Link to={'/catalog'}>Return</Link>
+            <div className={styles.imageContainer}>
+              <Image src={item.image} />
+            </div>
           </div>
         }
       </div>
@@ -33,7 +38,7 @@ Detail.propTypes = {
 
 function mapStateToProps(state, props) {
   return {
-    fetching: state.catalog.catalogIds.fetching,
+    fetching: state.catalog.catalogItems.fetching,
     item: getItem(state.catalog, props.id),
   };
 }

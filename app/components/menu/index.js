@@ -29,7 +29,7 @@ class Menu extends Component {
 }
 
 Menu.propTypes = {
-  current: PropTypes.string,
+  current: PropTypes.string.isRequired,
 };
 
 function mapStateToProps(state) {

@@ -7,6 +7,10 @@ import { appearAnim, leaveAnim } from 'animations/catalog';
 
 class Item extends Component {
 
+  componentWillAppear(callback) {
+    this.addAnimation(appearAnim, { callback });
+  }
+
   componentWillEnter(callback) {
     this.addAnimation(appearAnim, { callback });
   }

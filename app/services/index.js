@@ -1,6 +1,3 @@
-/**
- * Mocking client-server processing
- */
 import catalog from 'services/catalog.json';
 
 const TIMEOUT = 2000;

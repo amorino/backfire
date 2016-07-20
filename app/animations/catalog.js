@@ -12,7 +12,7 @@ export function appearAnim(utils) {
 
 export function leaveAnim(utils) {
   return new TimelineMax()
-    .to(utils.target, 0.7, {
+    .to(utils.target, 1.1, {
       height: 0,
       ease: Back.easeIn,
       onComplete: utils.options.callback,

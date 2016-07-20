@@ -13,15 +13,6 @@ export default class CatalogList extends Component {
 
   render() {
     const { fetching, catalog } = this.props;
-    const items = catalog.map(
-      item =>
-        <Item
-          key={item.id}
-          enterDuration={this.state.enterDuration}
-          leaveDuration={this.state.leaveDuration}
-          item={item}
-        />
-    );
     return (
       <div className={styles.list}>
         {fetching && <h3>Loading...</h3>}
@@ -30,7 +21,15 @@ export default class CatalogList extends Component {
             component="div"
             className={styles.items}
           >
-            {items}
+            {catalog.map(
+              item =>
+                <Item
+                  key={item.id}
+                  enterDuration={this.state.enterDuration}
+                  leaveDuration={this.state.leaveDuration}
+                  item={item}
+                />
+            )}
           </ReactTransitionGroup>
         }
       </div>
