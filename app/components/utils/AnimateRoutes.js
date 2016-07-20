@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import gsap from 'react-gsap-enhancer';
 import { routeAppear, routeLeave } from 'animations/routes';
 
-class AnimateChildren extends Component {
+class AnimateRoutes extends Component {
   componentWillAppear(callback) {
     this.addAnimation(routeAppear, { callback });
   }
@@ -25,9 +25,9 @@ class AnimateChildren extends Component {
   }
 }
 
-AnimateChildren.propTypes = {
-  children: PropTypes.any,
-  style: PropTypes.string,
+AnimateRoutes.propTypes = {
+  children: PropTypes.object.isRequired,
+  style: PropTypes.string.isRequired,
 };
 
-export default gsap()(AnimateChildren);
+export default gsap()(AnimateRoutes);

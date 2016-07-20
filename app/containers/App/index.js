@@ -4,7 +4,7 @@ import Menu from 'components/menu';
 // import ReactTransitionGroupPlus from 'react-transition-group-plus';
 import ReactTransitionGroup from 'react-addons-transition-group';
 import styles from 'styles/containers/App';
-import AnimateChildren from 'containers/App/AnimateChildren';
+import AnimateRoutes from 'components/utils/AnimateRoutes';
 import { resize } from 'actions/app';
 
 class App extends Component {
@@ -29,7 +29,7 @@ class App extends Component {
           component="div"
           className={styles.routes}
         >
-          <AnimateChildren style={styles.wrapper} children={children} key={location.pathname} />
+          <AnimateRoutes style={styles.wrapper} children={children} key={location.pathname} />
         </ReactTransitionGroup>
       </div>
       );
