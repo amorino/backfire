@@ -7,7 +7,7 @@ import configureStore from 'store';
 import routes from 'routes';
 import App from 'containers/App';
 
-const rootRoute = {
+const router = {
   component: App,
   childRoutes: routes(),
 };
@@ -19,7 +19,7 @@ export default class Root extends Component {
   render() {
     return (
       <Provider store={store}>
-        <Router history={history} routes={rootRoute} render={applyRouterMiddleware(useScroll())} />
+        <Router history={history} routes={router} render={applyRouterMiddleware(useScroll())} />
       </Provider>
     );
   }

@@ -1,6 +1,7 @@
 export default function routes() {
   return [{
     path: '/',
+    index: 0,
     getIndexRoute(location, cb) {
       require.ensure([], require =>
         cb(null, {
@@ -10,6 +11,7 @@ export default function routes() {
     },
   }, {
     path: '/about',
+    index: 1,
     getIndexRoute(location, cb) {
       require.ensure([], require =>
         cb(null, {
@@ -19,6 +21,7 @@ export default function routes() {
     },
   }, {
     path: '/catalog',
+    index: 3,
     getIndexRoute(location, cb) {
       require.ensure([], require =>
         cb(null, {
@@ -28,6 +31,7 @@ export default function routes() {
     },
   }, {
     path: '/catalog/:id',
+    index: 3,
     getIndexRoute(location, cb) {
       require.ensure([], require =>
         cb(null, {

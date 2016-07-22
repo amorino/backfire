@@ -3,16 +3,14 @@ import gsap from 'react-gsap-enhancer';
 import { routeAppear, routeLeave } from 'animations/routes';
 
 class AnimateRoutes extends Component {
-  componentWillAppear(callback) {
-    this.addAnimation(routeAppear, { callback });
-  }
-
   componentWillEnter(callback) {
-    this.addAnimation(routeAppear, { callback });
+    const { direction } = this.props;
+    this.addAnimation(routeAppear, { callback, direction });
   }
 
   componentWillLeave(callback) {
-    this.addAnimation(routeLeave, { callback });
+    const { direction } = this.props;
+    this.addAnimation(routeLeave, { callback, direction });
   }
 
   render() {
@@ -28,6 +26,7 @@ class AnimateRoutes extends Component {
 AnimateRoutes.propTypes = {
   children: PropTypes.object.isRequired,
   style: PropTypes.string.isRequired,
+  direction: PropTypes.object.isRequired,
 };
 
 export default gsap()(AnimateRoutes);
