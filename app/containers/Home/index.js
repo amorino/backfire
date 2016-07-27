@@ -5,22 +5,27 @@ import { CanvasSpace, Form, Circle, Point, Line } from 'ptjs';
 
 export default class Home extends Component {
   componentDidMount() {
-    this.space = new CanvasSpace('#play')
-      .setup({ bgcolor: '#4234d3' });
+    this.space = new CanvasSpace('#play').setup({ bgcolor: '#4234d3' });
+    console.log(this.space.size);
+    // Form
     this.form = new Form(this.space);
+
+    // Objects
     this.dot = new Circle(250, 250).setRadius(50);
     this.another = new Circle(100, 100).setRadius(50);
-    this.bot = {
+
+    // Bind
+    this.space.add({
       animate: this.animates,
       onMouseAction: this.mouse,
-    };
-    this.space.add(this.bot);
+    });
     this.space.bindMouse();
     this.space.play();
   }
 
   componentWillUnmount() {
-    this.space.destroy();
+    this.space.clear();
+    this.space.stop();
   }
 
   animates = (time, fs) => {
@@ -48,13 +53,14 @@ export default class Home extends Component {
     }
   }
 
-
   render() {
     return (
       <div className={styles.container}>
         <h1>Home</h1>
         <p>This is a static page</p>
-        <canvas id="play"></canvas>
+        <div className={styles.canvas}>
+          <canvas id="play"></canvas>
+        </div>
         <Footer />
       </div>
     );

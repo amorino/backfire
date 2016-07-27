@@ -16,7 +16,6 @@ class App extends Component {
 
   componentWillReceiveProps(nextProps) {
     const { location } = this.props;
-    console.log(location);
     this.setState({
       direction: this.getIndex(location.pathname.split('/')[1]) < this.getIndex(nextProps.location.pathname.split('/')[1]),
     });
@@ -28,7 +27,6 @@ class App extends Component {
 
   getIndex = (pathname) => {
     let index;
-    console.log(pathname);
     switch (pathname) {
       case 'catalog':
         index = 2;
