@@ -1,8 +1,8 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import Detail from 'containers/CatalogItem/Detail';
 import styles from 'styles/containers/CatalogItem';
-import Footer from 'components/footer';
+import Footer from 'components/Footer';
+import Detail from 'containers/CatalogItem/Detail';
 
 class CatalogItem extends Component {
   PropTypes

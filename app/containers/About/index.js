@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import styles from 'styles/containers/About';
-import Footer from 'components/footer';
+import Footer from 'components/Footer';
 
 export default class About extends Component {
   render() {

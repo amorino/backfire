@@ -1,13 +1,27 @@
 import React, { Component, PropTypes } from 'react';
+import { connect } from 'react-redux';
 import Item from 'containers/Catalog/Item';
-// import ReactTransitionGroupPlus from 'react-transition-group-plus';
+// import ReactTransitionGroup from 'react-transition-group-plus';
 import ReactTransitionGroup from 'react-addons-transition-group';
 import styles from 'styles/containers/Catalog';
+import { getItems } from 'reducers/catalog';
 
-export default class CatalogList extends Component {
+const getFilteredItems = (catalog, filter) => {
+  switch (filter) {
+    case 'all':
+      return catalog;
+    case 'art':
+      return catalog.filter(t => t.type === 'art');
+    case 'music':
+      return catalog.filter(t => t.type === 'music');
+    default:
+      return catalog;
+  }
+};
+
+class CatalogList extends Component {
 
   state = {
-    counter: 0,
     transitionMode: 'simultaneous',
   };
 
@@ -46,3 +60,10 @@ CatalogList.propTypes = {
     image: PropTypes.string.isRequired,
   })).isRequired,
 };
+
+const mapStateToProps = (state) => ({
+  catalog: getFilteredItems(getItems(state.catalog), state.filter),
+  fetching: state.catalog.catalogItems.fetching,
+});
+
+export default connect(mapStateToProps)(CatalogList);

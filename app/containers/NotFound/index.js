@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import styles from 'styles/containers/NotFound';
-import Footer from 'components/footer';
+import Footer from 'components/Footer';
 
 export default class NotFound extends Component {
   render() {

@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import Menu from 'components/menu';
+import Menu from 'components/Menu';
 import styles from 'styles/containers/App';
 import { resize } from 'actions/app';
 import { RouteTransition } from 'react-router-transition';

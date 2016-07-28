@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import LinkItem from 'components/utils/LinkItem';
-import styles from 'styles/components/menu';
+import styles from 'styles/components/Menu';
 
 const menu = [
   {

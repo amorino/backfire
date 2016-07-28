@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import styles from 'styles/containers/Home';
-import Footer from 'components/footer';
+import Footer from 'components/Footer';
 import { CanvasSpace, Form, Circle, Point, Line } from 'ptjs';
 
 export default class Home extends Component {
