@@ -7,11 +7,16 @@
   },
   "globals": {
     "TweenMax": true,
+    "TweenLite": true,
     "TimelineMax": true,
-    "Linear": true,
     "Sine": true,
+    "Power1": true,
     "Power2": true,
-    "Back": true
+    "Power3": true,
+    "Power4": true,
+    "Back": true,
+    "Elastic": true,
+    "Linear": true
   },
   "rules": {
     "no-unused-vars": 1,
@@ -19,7 +24,8 @@
     "max-len": 0,
     "arrow-body-style": 0,
     "react/prefer-stateless-function": 0,
-    "react/jsx-boolean-value": 0
+    "react/jsx-boolean-value": 0,
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
   },
   "settings": {
     "import/resolver": {
