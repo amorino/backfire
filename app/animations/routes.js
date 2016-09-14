@@ -1,4 +1,3 @@
-// Routes
 export function routeAppear(utils) {
   const direction = utils.options.direction;
   return new TimelineMax()

@@ -1,4 +1,3 @@
-// Catalog Items
 export function appearAnim(utils) {
   return new TimelineMax()
     .fromTo(utils.target, 0.7, {
