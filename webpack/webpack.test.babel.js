@@ -1,5 +1,5 @@
 const modules = [
-  'app',
+  'src',
   'node_modules',
 ];
 

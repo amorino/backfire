@@ -43,8 +43,8 @@ module.exports = (options) => ({
     new webpack.optimize.CommonsChunkPlugin('common.js'),
   ]),
   resolve: {
-    root: path.join(__dirname, '..', 'app'),
-    modules: ['app', 'node_modules'],
+    root: path.join(__dirname, '..', 'src'),
+    modules: ['src', 'node_modules'],
     extensions: [
       '',
       '.js',

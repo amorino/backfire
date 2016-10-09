@@ -19,7 +19,7 @@ module.exports = require('./webpack.base.babel')({
   },
   // In production, we skip all hot-reloading stuff
   entry: [
-    path.join(__dirname, '..', 'app/main.js'),
+    path.join(__dirname, '..', 'src/main.js'),
   ],
   // We use ExtractTextPlugin so we get a seperate CSS file instead
   // of the CSS being in the JS and injected as a style tag
@@ -49,7 +49,7 @@ module.exports = require('./webpack.base.babel')({
     }),
     // Minify and optimize the index.html
     new HtmlWebpackPlugin({
-      template: 'app/index.html',
+      template: 'src/index.html',
       minify: {
         removeComments: true,
         collapseWhitespace: true,
