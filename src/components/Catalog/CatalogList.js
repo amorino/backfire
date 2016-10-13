@@ -31,20 +31,17 @@ class CatalogList extends Component {
       <div className={styles.list}>
         {fetching && <h3>Loading...</h3>}
         {!fetching &&
-          <ReactTransitionGroup
-            component="div"
-            className={styles.items}
-          >
-            {catalog.map(
-              item =>
-                <Item
-                  key={item.id}
-                  enterDuration={this.state.enterDuration}
-                  leaveDuration={this.state.leaveDuration}
-                  item={item}
-                />
-            )}
-          </ReactTransitionGroup>
+        <ReactTransitionGroup component="div" className={styles.items} >
+          {catalog.map(
+            item =>
+              <Item
+                key={item.id}
+                enterDuration={this.state.enterDuration}
+                leaveDuration={this.state.leaveDuration}
+                item={item}
+              />
+          )}
+        </ReactTransitionGroup>
         }
       </div>
       );

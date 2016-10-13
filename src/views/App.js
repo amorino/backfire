@@ -3,15 +3,10 @@ import styles from 'styles/views/App';
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import Menu from 'components/App/Menu';
-import ReactTransitionGroup from 'react-transition-group-plus';
-import AnimateRoutes from 'components/utils/AnimateRoutes';
 import { resize } from 'actions/app';
+import { RouteTransition } from 'react-router-transition';
 
 class App extends Component {
-  state = {
-    direction: 0,
-  }
-
   componentDidMount() {
     window.addEventListener('resize', this.handleResize);
   }
@@ -21,31 +16,37 @@ class App extends Component {
   }
 
   handleResize = () => {
-    this.props.dispatch(resize(window.innerWidth, window.innerHeight));
+    const { dispatch } = this.props;
+    dispatch(resize(window.innerWidth, window.innerHeight));
   }
 
   render() {
     const { location, children } = this.props;
-    const direction = { in: '100%', out: '100%' };
+    const direction = { enter: 100, leave: -100 };
     return (
       <div id="app">
         <Menu />
-        <ReactTransitionGroup
-          component="div"
-          transitionMode={'simultaneous'}
-          deferLeavingComponentRemoval={false}
+        <RouteTransition
           className={styles.router}
+          runOnMount={false}
+          component={false}
+          pathname={location.pathname}
+          atEnter={{ opacity: 0, translate: direction.enter }}
+          atLeave={{ opacity: 0, translate: direction.leave }}
+          atActive={{ opacity: 1, translate: 0 }}
+          mapStyles={style => ({
+            opacity: `${style.opacity}`,
+            WebkitTransform: `translate3d(0, ${style.translate}%, 0)`,
+            MsTranform: `translate3d(0, ${style.translate}%, 0)`,
+            transform: `translate3d(0, ${style.translate}%, 0)`,
+          })}
         >
-          <AnimateRoutes
-            style={styles.wrapper}
-            direction={direction}
-            key={location.pathname}
-          >
+          <div className={styles.wrapper}>
             {children}
-          </AnimateRoutes>
-        </ReactTransitionGroup>
+          </div>
+        </RouteTransition>
       </div>
-    );
+      );
   }
 }
 
@@ -55,4 +56,8 @@ App.propTypes = {
   dispatch: PropTypes.func.isRequired,
 };
 
-export default connect()(App);
+function mapStateToProps(state) {
+  return { index: state.app.index };
+}
+
+export default connect(mapStateToProps)(App);
