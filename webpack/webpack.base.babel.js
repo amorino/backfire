@@ -1,9 +1,9 @@
-const path = require('path');
-const webpack = require('webpack');
-const postcss = require('poststylus');
-const rupture = require('rupture');
+const path = require('path')
+const webpack = require('webpack')
+const postcss = require('poststylus')
+const rupture = require('rupture')
 
-module.exports = (options) => ({
+module.exports = options => ({
   devtool: options.devtool,
   entry: options.entry,
   output: options.output,
@@ -54,4 +54,4 @@ module.exports = (options) => ({
   target: 'web', // Make web variables accessible to webpack, e.g. window
   stats: false, // Don't show stats in the console
   progress: true,
-});
+})

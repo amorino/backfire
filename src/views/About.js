@@ -1,7 +1,7 @@
-import styles from 'styles/views/About';
+import styles from 'styles/views/About'
 
-import React, { Component } from 'react';
-import Footer from 'components/App/Footer';
+import React, { Component } from 'react'
+import Footer from 'components/App/Footer'
 
 export default class About extends Component {
   render() {
@@ -11,6 +11,6 @@ export default class About extends Component {
         <p>Static page.</p>
         <Footer />
       </div>
-    );
+    )
   }
 }

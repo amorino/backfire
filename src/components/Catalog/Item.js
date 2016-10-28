@@ -1,5 +1,4 @@
 import React, { Component, PropTypes } from 'react';
-// import { findDOMNode } from 'react-dom';
 import { Link } from 'react-router';
 import styles from 'styles/views/Catalog';
 import gsap from 'react-gsap-enhancer';
@@ -23,7 +22,7 @@ class Item extends Component {
     const { description, title, id } = this.props.item;
     return (
       <div className={styles.item}>
-        {title} - {description} <Link to={`catalog/${id}`}>{'>'}</Link>
+        <span>{title}</span> - <span>{description}</span> - <Link to={`catalog/${id}`}>{'Go'}</Link>
       </div>
     );
   }

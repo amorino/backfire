@@ -1,7 +1,7 @@
-import styles from 'styles/views/NotFound';
+import styles from 'styles/views/NotFound'
 
-import React, { Component } from 'react';
-import Footer from 'components/App/Footer';
+import React, { Component } from 'react'
+import Footer from 'components/App/Footer'
 
 export default class NotFound extends Component {
   render() {
@@ -11,6 +11,6 @@ export default class NotFound extends Component {
         <p>Page not found.</p>
         <Footer />
       </div>
-    );
+    )
   }
 }

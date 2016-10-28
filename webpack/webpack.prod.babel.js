@@ -1,12 +1,12 @@
-const path = require('path');
-const webpack = require('webpack');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const path = require('path')
+const webpack = require('webpack')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const ExtractTextPlugin = require('extract-text-webpack-plugin')
 
 // PostCSS plugins
-const postcssFocus = require('postcss-focus');
-const rucksack = require('rucksack-css');
-const lost = require('lost');
+const postcssFocus = require('postcss-focus')
+const rucksack = require('rucksack-css')
+const lost = require('lost')
 
 module.exports = require('./webpack.base.babel')({
   type: 'production',
@@ -76,4 +76,4 @@ module.exports = require('./webpack.base.babel')({
       },
     }),
   ],
-});
+})

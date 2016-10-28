@@ -1,13 +1,13 @@
-import React, { Component, PropTypes } from 'react';
-import { Link } from 'react-router';
-import { connect } from 'react-redux';
-import { getItem } from 'reducers/catalog';
-import Image from 'components/utils/Image';
-import styles from 'styles/views/CatalogItem';
+import React, { Component, PropTypes } from 'react'
+import { Link } from 'react-router'
+import { connect } from 'react-redux'
+import { getItem } from 'reducers/catalog'
+import Image from 'components/utils/Image'
+import styles from 'styles/views/CatalogItem'
 
 class Detail extends Component {
   render() {
-    const { fetching, item } = this.props;
+    const { fetching, item } = this.props
     return (
       <div>
         {fetching && <h3>Loading...</h3>}
@@ -21,7 +21,7 @@ class Detail extends Component {
           </div>
         }
       </div>
-    );
+    )
   }
 }
 
@@ -33,13 +33,13 @@ Detail.propTypes = {
     image: PropTypes.string.isRequired,
     id: PropTypes.number.isRequired,
   }),
-};
+}
 
 function mapStateToProps(state, props) {
   return {
     fetching: state.catalog.catalogItems.fetching,
     item: getItem(state.catalog, props.id),
-  };
+  }
 }
 
-export default connect(mapStateToProps)(Detail);
+export default connect(mapStateToProps)(Detail)

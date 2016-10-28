@@ -22,6 +22,7 @@
     "no-unused-vars": 1,
     "no-console": 0,
     "max-len": 0,
+    "semi": ["error", "never"],
     "arrow-body-style": 0,
     "react/prefer-stateless-function": 0,
     "react/jsx-boolean-value": 0,

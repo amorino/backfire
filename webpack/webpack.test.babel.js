@@ -1,7 +1,7 @@
 const modules = [
   'src',
   'node_modules',
-];
+]
 
 module.exports = {
   devtool: 'inline-source-map',
@@ -27,4 +27,4 @@ module.exports = {
       '.react.js',
     ],
   },
-};
+}

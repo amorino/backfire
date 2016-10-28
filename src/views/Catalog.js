@@ -1,9 +1,9 @@
-import styles from 'styles/views/Catalog';
+import styles from 'styles/views/Catalog'
 
-import React, { Component } from 'react';
-import CatalogList from 'components/Catalog/CatalogList';
-import FilterLink from 'components/Catalog/Link';
-import Footer from 'components/App/Footer';
+import React, { Component } from 'react'
+import CatalogList from 'components/Catalog/CatalogList'
+import FilterLink from 'components/Catalog/Link'
+import Footer from 'components/App/Footer'
 
 export default class Catalog extends Component {
   render() {
@@ -28,6 +28,6 @@ export default class Catalog extends Component {
         <CatalogList />
         <Footer />
       </div>
-    );
+    )
   }
 }
