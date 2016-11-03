@@ -1,4 +1,4 @@
-import styles from 'styles/views/CatalogItem'
+import app from 'styles/views/App'
 
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
@@ -10,7 +10,7 @@ class CatalogItem extends Component {
   render() {
     const { id } = this.props
     return (
-      <div className={styles.container}>
+      <div className={app.container}>
         <h1>Detail</h1>
         <Detail id={id} />
         <Footer />

@@ -1,4 +1,4 @@
-import styles from 'styles/views/Catalog'
+import app from 'styles/views/App'
 
 import React, { Component } from 'react'
 import CatalogList from 'components/Catalog/CatalogList'
@@ -8,7 +8,7 @@ import Footer from 'components/App/Footer'
 export default class Catalog extends Component {
   render() {
     return (
-      <div className={styles.container}>
+      <div className={app.container}>
         <h1>Catalog</h1>
         <p>
             Show:

@@ -29,7 +29,7 @@ module.exports = options => ({
       loader: 'file?name=assets/[sha512:hash:base64:7].[ext]',
     }, {
       test: /\.json$/,
-      loaders: ['json'], // Transform all .json files required somewhere with json-loader
+      loader: 'file', // Transform all .json files required somewhere with json-loader
       exclude: path.join(__dirname, '..', '/node_modules/'),
     }],
   },

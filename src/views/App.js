@@ -1,4 +1,4 @@
-import styles from 'styles/views/App'
+import app from 'styles/views/App'
 
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
@@ -27,7 +27,7 @@ class App extends Component {
       <div id="app">
         <Menu />
         <RouteTransition
-          className={styles.router}
+          className={app.router}
           runOnMount={false}
           component={false}
           pathname={location.pathname}
@@ -41,7 +41,7 @@ class App extends Component {
             transform: `translate3d(0, ${style.translate}%, 0)`,
           })}
         >
-          <div className={styles.wrapper}>
+          <div className={app.wrapper}>
             {children}
           </div>
         </RouteTransition>

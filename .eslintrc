@@ -24,12 +24,14 @@
     "max-len": 0,
     "semi": ["error", "never"],
     "arrow-body-style": 0,
+    "indent": [1, 2, { "SwitchCase": 1 }],
     "react/prefer-stateless-function": 0,
     "react/jsx-boolean-value": 0,
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
     "react/forbid-prop-types": 0,
     "react/no-unused-prop-types": [1, { skipShapeProps: true }],
     "import/extensions": 0,
+    "no-tabs": 0
   },
   "settings": {
     "import/resolver": {
