@@ -10,7 +10,7 @@ const lost = require('lost')
 
 module.exports = require('./webpack.base.babel')({
   type: 'production',
-  devtool: 'source-map',
+  devtool: '',
   output: {
     path: path.resolve(__dirname, '..', 'build'),
     filename: 'js/[name].js',

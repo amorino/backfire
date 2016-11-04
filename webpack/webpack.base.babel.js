@@ -13,6 +13,9 @@ module.exports = options => ({
       loader: 'babel',
       exclude: path.join(__dirname, '..', '/node_modules/'),
     }, {
+      test: /\.modernizrrc$/,
+      loader: 'modernizr',
+    }, {
       test: /\.css$/, // Transform all .css files required somewhere with PostCSS
       loader: options.cssLoaders,
     }, {
@@ -50,6 +53,9 @@ module.exports = options => ({
       '.js',
       '.styl',
     ],
+    alias: {
+      modernizr$: path.join(__dirname, '..', '.modernizrrc'),
+    },
   },
   target: 'web', // Make web variables accessible to webpack, e.g. window
   stats: false, // Don't show stats in the console

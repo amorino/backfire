@@ -1,30 +1,30 @@
-import React, { Component, PropTypes } from 'react';
-import { Link } from 'react-router';
-import styles from 'styles/views/Catalog';
-import gsap from 'react-gsap-enhancer';
-import { appearAnim, leaveAnim } from 'animations/catalog';
+import React, { Component, PropTypes } from 'react'
+import { Link } from 'react-router'
+import styles from 'styles/views/Catalog'
+import gsap from 'react-gsap-enhancer'
+import { appearAnim, leaveAnim } from 'animations/catalog'
 
 class Item extends Component {
 
   componentWillAppear(callback) {
-    this.addAnimation(appearAnim, { callback });
+    this.addAnimation(appearAnim, { callback })
   }
 
   componentWillEnter(callback) {
-    this.addAnimation(appearAnim, { callback });
+    this.addAnimation(appearAnim, { callback })
   }
 
   componentWillLeave(callback) {
-    this.addAnimation(leaveAnim, { callback });
+    this.addAnimation(leaveAnim, { callback })
   }
 
   render() {
-    const { description, title, id } = this.props.item;
+    const { description, title, id } = this.props.item
     return (
       <div className={styles.item}>
         <span>{title}</span> - <span>{description}</span> - <Link to={`catalog/${id}`}>{'Go'}</Link>
       </div>
-    );
+    )
   }
 }
 
@@ -35,6 +35,6 @@ Item.propTypes = {
     image: PropTypes.string.isRequired,
     id: PropTypes.number,
   }).isRequired,
-};
+}
 
-export default gsap()(Item);
+export default gsap()(Item)

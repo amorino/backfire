@@ -1,6 +1,6 @@
-const stagingRoute = 'clients/foo/'
+const stagingRoute = ''
 const stagingURL = `http://amorino.com/${stagingRoute}`
-const productionRoute = 'clients/foo/'
+const productionRoute = ''
 const productionURL = `http://amorino.com/${productionRoute}`
 const developmentRoute = ''
 const developmentURL = `http://amorino.com/${developmentRoute}`
@@ -74,28 +74,18 @@ let env = 'development'
 const host = document.location.host
 
 switch (host.split(':').shift()) {
-  case 'localhost':
-    {
-      env = 'development'
-      break
-    }
-
-  case 'amorino.com':
-    {
-      env = 'staging'
-      break
-    }
-
-  case 'production.com':
-    {
-      env = 'production'
-      break
-    }
-  default:
-    {
-      env = 'development'
-      break
-    }
+case 'localhost':
+  env = 'development'
+  break
+case 'amorino.com':
+  env = 'staging'
+  break
+case 'production.com':
+  env = 'production'
+  break
+default:
+  env = 'development'
+  break
 }
 
 const environment = config.environments[env]

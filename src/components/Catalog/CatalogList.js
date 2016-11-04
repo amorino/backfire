@@ -103,7 +103,7 @@ class CatalogList extends Component {
             </TransitionMotion>
         }
       </div>
-      )
+    )
   }
 }
 

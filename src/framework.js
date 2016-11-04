@@ -1,11 +1,22 @@
 import React, { Component } from 'react'
 import { Router, applyRouterMiddleware, browserHistory } from 'react-router'
 import { useScroll } from 'react-router-scroll'
+import ReactGA from 'react-ga'
 import { syncHistoryWithStore } from 'react-router-redux'
 import { Provider } from 'react-redux'
 import configureStore from 'store'
 import routes from 'routes'
 import App from 'views/App'
+
+ReactGA.initialize('UA-000000-01', {
+  debug: true,
+  titleCase: false,
+})
+
+function logPageView() {
+  ReactGA.set({ page: window.location.pathname })
+  ReactGA.pageview(window.location.pathname)
+}
 
 const router = {
   component: App,
@@ -19,7 +30,12 @@ export default class Root extends Component {
   render() {
     return (
       <Provider store={store}>
-        <Router history={history} routes={router} render={applyRouterMiddleware(useScroll())} />
+        <Router
+          history={history}
+          onUpdate={logPageView}
+          routes={router}
+          render={applyRouterMiddleware(useScroll())}
+        />
       </Provider>
     )
   }
