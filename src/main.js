@@ -10,8 +10,7 @@ import 'file?name=[name].[ext]!./.htaccess'
 import 'sanitize.css/sanitize.css'
 import 'styles/base'
 
-import request from 'utils/request'
-import data from 'assets/json/data.json'
+// import data from 'assets/json/data.json'
 import Modernizr from 'modernizr'
 
 console.info(Modernizr)
@@ -30,11 +29,4 @@ preload.on('complete', () => {
   render(<Framework />, document.getElementById('root'))
 })
 
-request(data)
-.then((json) => {
-  json.data.assets.forEach((item) => {
-    preload.add(item)
-  })
-  preload.load()
-})
-.catch(error => console.console.error(error))
+preload.load()
