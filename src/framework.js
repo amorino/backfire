@@ -13,17 +13,14 @@ ReactGA.initialize('UA-000000-01', {
   titleCase: false,
 })
 
-function logPageView() {
-  ReactGA.pageview(window.location.pathname)
-}
-
 const router = {
   component: App,
   childRoutes: routes(),
 }
 
-const store = configureStore()
+const store = configureStore(browserHistory)
 const history = syncHistoryWithStore(browserHistory, store)
+history.listen(location => ReactGA.pageview(location.pathname))
 
 export default class Root extends Component {
   render() {
@@ -31,7 +28,6 @@ export default class Root extends Component {
       <Provider store={store}>
         <Router
           history={history}
-          onUpdate={logPageView}
           routes={router}
           render={applyRouterMiddleware(useScroll())}
         />

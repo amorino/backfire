@@ -3,5 +3,5 @@
   "options": [
     "setClasses"
   ],
-  "feature-detects": []
+  "feature-detects": ["eventlistener"]
 }

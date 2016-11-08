@@ -6,13 +6,15 @@ import createReducer from 'reducers'
 import sagaMonitor from 'utils/sagaMonitor'
 
 const sagaMiddleware = createSagaMiddleware({ sagaMonitor })
+const devtools = window.devToolsExtension || (() => f => f)
 
-export default function configureStore(initialState, history) {
-  const createStoreWithMiddleware = compose(
+export default function configureStore(history, initialState = {}) {
+  const enhancers = [
     applyMiddleware(routerMiddleware(history), sagaMiddleware),
-    window.devToolsExtension ? window.devToolsExtension() : f => f
-  )(createStore)
-  const store = createStoreWithMiddleware(createReducer(), initialState)
+    devtools(),
+  ]
+
+  const store = createStore(createReducer(), initialState, compose(...enhancers))
 
   store.runSaga = sagaMiddleware.run(sagas)
 
@@ -21,7 +23,6 @@ export default function configureStore(initialState, history) {
       System.import('./reducers').then((reducerModule) => {
         const createReducers = reducerModule.default
         const nextReducers = createReducers(store.asyncReducers)
-
         store.replaceReducer(nextReducers)
       })
     })
