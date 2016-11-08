@@ -1,4 +1,4 @@
-/*eslint-disable*/
+/* eslint-disable */
 
 import { is, asEffect } from 'redux-saga/utils'
 

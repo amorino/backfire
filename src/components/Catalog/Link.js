@@ -19,13 +19,13 @@ const FilterLink = ({ active, children, onClick }) => {
   )
 }
 
-const mapStateToProps = (state, ownProps) => ({
-  active: ownProps.filter === state.filter,
+const mapStateToProps = (state, props) => ({
+  active: props.filter === state.filter,
 })
 
-const mapDispatchToProps = (dispatch, ownProps) => ({
+const mapDispatchToProps = (dispatch, props) => ({
   onClick: () => {
-    dispatch(filterItem(ownProps.filter))
+    dispatch(filterItem(props.filter))
   },
 })
 

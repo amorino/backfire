@@ -1,9 +1,10 @@
 import app from 'styles/views/App'
 
-import React, { Component } from 'react'
+import React, { Component, PropTypes } from 'react'
 import Footer from 'components/App/Footer'
+import { connect } from 'react-redux'
 
-export default class About extends Component {
+class About extends Component {
   render() {
     return (
       <div className={app.container}>
@@ -14,3 +15,9 @@ export default class About extends Component {
     )
   }
 }
+
+About.propTypes = {
+  dispatch: PropTypes.func.isRequired,
+}
+
+export default connect()(About)

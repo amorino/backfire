@@ -48,13 +48,11 @@ module.exports = options => ({
   resolve: {
     root: path.join(__dirname, '..', 'src'),
     modules: ['src', 'node_modules'],
-    extensions: [
-      '',
-      '.js',
-      '.styl',
-    ],
+    extensions: ['', '.js', '.styl'],
     alias: {
-      modernizr$: path.join(__dirname, '..', '.modernizrrc'),
+      modernizr$: path.resolve(__dirname, '../.modernizrrc'),
+      src: path.resolve(__dirname, '../src'),
+      assets: path.resolve(__dirname, '../src/assets'),
     },
   },
   target: 'web', // Make web variables accessible to webpack, e.g. window

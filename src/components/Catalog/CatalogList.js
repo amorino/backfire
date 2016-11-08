@@ -22,13 +22,6 @@ const getFilteredItems = (catalog, filter) => {
 
 class CatalogList extends Component {
 
-  state = {
-    transitionMode: 'simultaneous',
-  };
-
-  componentDidMount() {
-  }
-
   getDefaultStyles = () => {
     const { catalog } = this.props
     return catalog.map(item => ({
@@ -49,8 +42,8 @@ class CatalogList extends Component {
         data: item,
         key: item.id.toString(),
         style: {
-          width: 200,
-          height: 200,
+          width: spring(200),
+          height: spring(200),
           opacity: spring(1),
         },
       }

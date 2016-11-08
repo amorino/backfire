@@ -5,6 +5,23 @@ import { connect } from 'react-redux'
 import Menu from 'components/App/Menu'
 import { resize } from 'actions/app'
 import { RouteTransition } from 'react-router-transition'
+import { spring } from 'react-motion'
+import { quick } from 'animations/motion'
+
+const motion = {
+  atEnter: {
+    opacity: 0,
+    translate: -100,
+  },
+  atLeave: {
+    opacity: spring(0, quick),
+    translate: spring(100, quick),
+  },
+  atActive: {
+    opacity: spring(1, quick),
+    translate: spring(0, quick),
+  },
+}
 
 class App extends Component {
   componentDidMount() {
@@ -22,7 +39,7 @@ class App extends Component {
 
   render() {
     const { location, children } = this.props
-    const direction = { enter: -100, leave: 100 }
+    // const direction = { enter: -100, leave: 100 }
     return (
       <div id="app">
         <Menu />
@@ -31,9 +48,7 @@ class App extends Component {
           runOnMount={false}
           component={false}
           pathname={location.pathname}
-          atEnter={{ opacity: 0, translate: direction.enter }}
-          atLeave={{ opacity: 0, translate: direction.leave }}
-          atActive={{ opacity: 1, translate: 0 }}
+          {...motion}
           mapStyles={style => ({
             opacity: `${style.opacity}`,
             WebkitTransform: `translate3d(0, ${style.translate}%, 0)`,
@@ -56,8 +71,8 @@ App.propTypes = {
   dispatch: PropTypes.func.isRequired,
 }
 
-function mapStateToProps(state) {
-  return { index: state.app.index }
-}
+const mapStateToProps = state => ({
+  index: state.app.index,
+})
 
 export default connect(mapStateToProps)(App)
