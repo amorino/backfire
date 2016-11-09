@@ -5,13 +5,12 @@ import request from 'utils/request'
 import catalog from 'assets/json/catalog.json'
 
 export function* getAllItems() {
-  // const items = yield call(fetchPostsApi)
   yield put(actions.requestItems())
   const items = yield call(request, catalog)
   if (!items.err) {
     yield put(actions.receiveItems(items.data))
   } else {
-    console.log(items.err)
+    console.error(items.err)
   }
 }
 
