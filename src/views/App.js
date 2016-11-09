@@ -11,11 +11,11 @@ import { quick } from 'animations/motion'
 const motion = {
   atEnter: {
     opacity: 0,
-    translate: -100,
+    translate: -200,
   },
   atLeave: {
     opacity: spring(0, quick),
-    translate: spring(100, quick),
+    translate: spring(200, quick),
   },
   atActive: {
     opacity: spring(1, quick),
@@ -51,9 +51,9 @@ class App extends Component {
           {...motion}
           mapStyles={style => ({
             opacity: `${style.opacity}`,
-            WebkitTransform: `translate3d(0, ${style.translate}%, 0)`,
-            MsTranform: `translate3d(0, ${style.translate}%, 0)`,
-            transform: `translate3d(0, ${style.translate}%, 0)`,
+            WebkitTransform: `translate3d(0, ${style.translate}px, 0)`,
+            MsTranform: `translate3d(0, ${style.translate}px, 0)`,
+            transform: `translate3d(0, ${style.translate}px, 0)`,
           })}
         >
           <div className={app.wrapper}>
