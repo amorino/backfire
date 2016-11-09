@@ -13,13 +13,23 @@ class Home extends Component {
   }
 
   componentDidMount() {
-    this.eventListen(window, 'message', (event) => {
+    this.addEvent(window, 'message', (event) => {
       this.receiveData(event.data)
     })
   }
 
-  eventListen = (obj, evt, func) => {
+  componentWillUnmount() {
+    this.removeEvent(window, 'message', (event) => {
+      this.receiveData(event.data)
+    })
+  }
+
+  addEvent = (obj, evt, func) => {
     return Modernizr.eventlistener ? obj.addEventListener(evt, func, false) : obj.attachEvent(`on${evt}`, func)
+  }
+
+  removeEvent = (obj, evt, func) => {
+    return Modernizr.eventlistener ? obj.removeEventListener(evt, func, false) : obj.detachEvent(`on${evt}`, func)
   }
 
   pushAbout = () => {
