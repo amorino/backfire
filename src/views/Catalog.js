@@ -11,18 +11,18 @@ export default class Catalog extends Component {
       <div className={app.container}>
         <h1>Catalog</h1>
         <p>
-            Show:
+          Show:
           {''}
           <FilterLink filter="all">
             All
           </FilterLink>
           {', '}
           <FilterLink filter="music">
-              Music
+            Music
           </FilterLink>
           {', '}
           <FilterLink filter="art">
-              Art
+            Art
           </FilterLink>
         </p>
         <CatalogList />

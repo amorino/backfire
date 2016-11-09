@@ -7,8 +7,9 @@ import { Provider } from 'react-redux'
 import configureStore from 'store'
 import routes from 'routes'
 import App from 'views/App'
+import { environment } from 'config'
 
-ReactGA.initialize('UA-000000-01', {
+ReactGA.initialize(environment.properties.ga, {
   debug: true,
   titleCase: false,
 })

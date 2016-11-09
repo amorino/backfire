@@ -2,9 +2,10 @@ import app from 'styles/views/App'
 
 import React, { Component, PropTypes } from 'react'
 import Footer from 'components/App/Footer'
-import Modernizr from 'modernizr'
+import { addEvent, removeEvent } from 'utils/events'
 import { push } from 'react-router-redux'
 import { connect } from 'react-redux'
+import isPlainObject from 'lodash/isPlainObject'
 
 class Home extends Component {
 
@@ -13,23 +14,13 @@ class Home extends Component {
   }
 
   componentDidMount() {
-    this.addEvent(window, 'message', (event) => {
-      this.receiveData(event.data)
-    })
+    addEvent(window, 'message', this.receiveData)
   }
 
   componentWillUnmount() {
-    this.removeEvent(window, 'message', (event) => {
-      this.receiveData(event.data)
-    })
-  }
-
-  addEvent = (obj, evt, func) => {
-    return Modernizr.eventlistener ? obj.addEventListener(evt, func, false) : obj.attachEvent(`on${evt}`, func)
-  }
-
-  removeEvent = (obj, evt, func) => {
-    return Modernizr.eventlistener ? obj.removeEventListener(evt, func, false) : obj.detachEvent(`on${evt}`, func)
+    removeEvent(window, 'message', this.receiveData)
+    this.checkCookie && clearInterval(this.checkCookie)
+    this.checkCookie = false
   }
 
   pushAbout = () => {
@@ -38,25 +29,26 @@ class Home extends Component {
   }
 
   loginFB = (event, size = { width: 500, height: 475 }) => {
-    let checkCookie
     const url = 'https://indio.com.mx/agegate/socialLogin/socialLoginCallback.php?socialNetwork=FB'
     window.open(url, 'Login', `width=${size.width}, height=${size.height}, scrollbars=yes`)
     if (navigator.appName === 'Microsoft Internet Explorer' || !!(navigator.userAgent.match(/Trident/) || navigator.userAgent.match(/rv 11/))) {
-      if (checkCookie) clearInterval(checkCookie)
-      checkCookie = setInterval(() => {
+      if (this.checkCookie) clearInterval(this.checkCookie)
+      this.checkCookie = setInterval(() => {
         const cookie = this.readCookie()
         if (cookie) {
-          clearInterval(checkCookie)
+          clearInterval(this.checkCookie)
           this.receiveData(cookie)
         }
       }, 100)
     }
   }
 
-  receiveData = (data) => {
-    const facebook = JSON.parse(data)
-    console.info('Facebook', facebook)
-    this.setState({ facebook })
+  receiveData = (event) => {
+    if (!isPlainObject(event.data)) {
+      const facebook = JSON.parse(event.data)
+      console.info('Facebook', facebook)
+      if (this.state.facebook !== facebook) this.setState({ facebook })
+    }
   }
 
   readCookie = () => {
@@ -77,7 +69,7 @@ class Home extends Component {
   render() {
     const { facebook } = this.state
     return (
-      <div className={app.container}>
+      <div className={app.container} ref={node => this.node = node}>
         <h1>Home</h1>
         <p>This is a static page</p>
         <p>{facebook && facebook.user.name}</p>

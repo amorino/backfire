@@ -7,9 +7,8 @@ const developmentURL = `http://amorino.com/${developmentRoute}`
 
 const config = {
   locale: 'en-US',
-  analytics: 'google',
-  data_loading: true,
-  asset_loading: true,
+  data: false,
+  assets: false,
   facebook_permissions: 'email',
   apis: {
     facebook: false,
@@ -17,10 +16,9 @@ const config = {
     google: false,
   },
   vars: {
-    animate: true,
+    animate: false,
     resize: true,
   },
-  urls: {},
   environments: {
     production: {
       vars: {
@@ -32,8 +30,8 @@ const config = {
         api: `${productionURL}endpoint/`,
       },
       properties: {
-        fb: '1495584274016685',
-        ga: 'ua2423423',
+        fb: 'xxxxxxxxx',
+        ga: 'UA-000000-01',
         gp: 'xxxxxxxxx',
       },
     },
@@ -47,8 +45,8 @@ const config = {
         api: `${stagingURL}endpoint/`,
       },
       properties: {
-        fb: '1495584274016685',
-        ga: 'ua2423423',
+        fb: 'xxxxxxxxx',
+        ga: 'UA-000000-01',
         gp: 'xxxxxxxxx',
       },
     },
@@ -62,30 +60,27 @@ const config = {
         api: `${developmentURL}endpoint/`,
       },
       properties: {
-        fb: '1495584274016685',
-        ga: 'ua2423423',
+        fb: 'xxxxxxxxx',
+        ga: 'UA-000000-01',
         gp: 'xxxxxxxxx',
       },
     },
   },
 }
 
-let env = 'development'
+let env
 const host = document.location.host
 
 switch (host.split(':').shift()) {
-case 'localhost':
-  env = 'development'
-  break
-case 'amorino.com':
-  env = 'staging'
-  break
-case 'production.com':
-  env = 'production'
-  break
-default:
-  env = 'development'
-  break
+  case 'amorino.com':
+    env = 'staging'
+    break
+  case 'production.com':
+    env = 'production'
+    break
+  default:
+    env = 'development'
+    break
 }
 
 const environment = config.environments[env]

@@ -32,7 +32,9 @@
     "react/no-unused-prop-types": [1, { skipShapeProps: true }],
     "import/extensions": 0,
     "import/no-extraneous-dependencies": 0,
-    "no-tabs": 0
+    "no-tabs": 0,
+    "no-return-assign": 0,
+    "no-unused-expressions": 0
   },
   "settings": {
     "import/resolver": {

@@ -1,26 +1,26 @@
 import { put, call, fork } from 'redux-saga/effects'
-import * as actions from 'actions/catalog'
+import { requestItems, receiveItems, GET_ALL_ITEMS } from 'actions/catalog'
 import { takeEvery } from 'redux-saga'
 import request from 'utils/request'
 import catalog from 'assets/json/catalog.json'
 
-export function* getAllItems() {
-  yield put(actions.requestItems())
+export function* getCatalog() {
+  yield put(requestItems())
   const items = yield call(request, catalog)
   if (!items.err) {
-    yield put(actions.receiveItems(items.data))
+    yield put(receiveItems(items.data))
   } else {
     console.error(items.err)
   }
 }
 
 export function* watchGetCatalog() {
-  yield* takeEvery(actions.GET_ALL_ITEMS, getAllItems)
+  yield* takeEvery(GET_ALL_ITEMS, getCatalog)
 }
 
 export default function* root() {
   yield [
-    fork(getAllItems),
+    fork(getCatalog),
     fork(watchGetCatalog),
   ]
 }

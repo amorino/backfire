@@ -78,6 +78,7 @@
     "classnames": "^2.2.5",
     "gsap": "^1.18.2",
     "history": "^2.1.0",
+    "lodash": "^4.16.6",
     "modernizr": "^3.3.1",
     "preloader": "^2.0.1",
     "react": "^15.3.2",

@@ -10,23 +10,26 @@ import 'file?name=[name].[ext]!./.htaccess'
 import 'sanitize.css/sanitize.css'
 import 'styles/base'
 
-// import data from 'assets/json/data.json'
 import Modernizr from 'modernizr'
+import { config } from 'config'
 
 console.info(Modernizr)
 
-const preload = preloader({
-  xhrImages: true,
-  loadFullAudio: true,
-  loadFullVideo: true,
-})
+if (config.assets) {
+  console.info('Load Assets')
+  const preload = preloader({ xhrImages: true, loadFullAudio: true, loadFullVideo: true })
 
-preload.on('progress', (progress) => {
-  console.log(progress)
-})
+  preload.on('progress', (progress) => {
+    console.log(progress)
+  })
 
-preload.on('complete', () => {
+  preload.on('complete', () => {
+    console.info('Assets Loaded')
+    render(<Framework />, document.getElementById('root'))
+  })
+
+  preload.load()
+} else {
+  console.warn('Do Not Load Assets')
   render(<Framework />, document.getElementById('root'))
-})
-
-preload.load()
+}
