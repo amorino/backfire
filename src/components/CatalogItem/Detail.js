@@ -10,10 +10,10 @@ class Detail extends Component {
     const { fetching, item } = this.props
     return (
       <div>
-        {fetching && <h3>Loading...</h3>}
+        {fetching && <h2>Loading...</h2>}
         {!fetching &&
           <div>
-            <h2>Item</h2>
+            <h3>Item</h3>
             {item.title} - {item.description} - <Link to={'/catalog'}>Return</Link>
             <div className={styles.imageContainer}>
               <Image src={item.image} />

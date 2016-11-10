@@ -70,8 +70,8 @@ class Home extends Component {
     const { facebook } = this.state
     return (
       <div className={app.container} ref={node => this.node = node}>
-        <h1>Home</h1>
-        <p>This is a static page</p>
+        <h2>Welcome to Backfire</h2>
+        <p>This is a static page.</p>
         <p>{facebook && facebook.user.name}</p>
         <button onClick={this.loginFB}>Login</button>
         <button onClick={this.pushAbout}>About</button>

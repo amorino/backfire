@@ -9,7 +9,7 @@ export default class Catalog extends Component {
   render() {
     return (
       <div className={app.container}>
-        <h1>Catalog</h1>
+        <h2>Catalog</h2>
         <p>
           Show:
           {''}

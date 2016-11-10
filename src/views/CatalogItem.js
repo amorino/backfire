@@ -11,7 +11,7 @@ class CatalogItem extends Component {
     const { id } = this.props
     return (
       <div className={app.container}>
-        <h1>Detail</h1>
+        <h2>Detail</h2>
         <Detail id={id} />
         <Footer />
       </div>
