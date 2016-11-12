@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react'
 import { connect } from 'react-redux'
 import { filterItem } from 'actions/catalog'
 
-const FilterLink = ({ active, children, onClick }) => {
+const FilterLink = ({ filterFunc, filter, active, children }) => {
   if (active) {
     return <span>{children}</span>
   }
@@ -11,7 +11,7 @@ const FilterLink = ({ active, children, onClick }) => {
     <button
       onClick={(e) => {
         e.preventDefault()
-        onClick()
+        filterFunc(filter)
       }}
     >
       {children}
@@ -23,16 +23,12 @@ const mapStateToProps = (state, props) => ({
   active: props.filter === state.filter,
 })
 
-const mapDispatchToProps = (dispatch, props) => ({
-  onClick: () => {
-    dispatch(filterItem(props.filter))
-  },
-})
 
 FilterLink.propTypes = {
   active: PropTypes.bool.isRequired,
   children: PropTypes.node.isRequired,
-  onClick: PropTypes.func.isRequired,
+  filter: PropTypes.string.isRequired,
+  filterFunc: PropTypes.func.isRequired,
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(FilterLink)
+export default connect(mapStateToProps, { filterFunc: filterItem })(FilterLink)

@@ -35,11 +35,9 @@ Detail.propTypes = {
   }),
 }
 
-function mapStateToProps(state, props) {
-  return {
-    fetching: state.catalog.catalogItems.fetching,
-    item: getItem(state.catalog, props.id),
-  }
-}
+const mapStateToProps = (state, props) => ({
+  fetching: state.catalog.fetching,
+  item: getItem(state.catalog, props.id),
+})
 
 export default connect(mapStateToProps)(Detail)

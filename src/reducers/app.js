@@ -7,11 +7,13 @@ const initialState = {
   },
 }
 
-export default function update(state = initialState, action) {
-  switch (action.type) {
+const app = (state = initialState, { type, payload }) => {
+  switch (type) {
     case RESIZE:
-      return { ...state, size: action.size }
+      return { ...state, size: payload }
     default:
       return state
   }
 }
+
+export default app

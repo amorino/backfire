@@ -32,8 +32,4 @@ Menu.propTypes = {
   current: PropTypes.string.isRequired,
 }
 
-function mapStateToProps(state) {
-  return { current: state.routing.locationBeforeTransitions.pathname }
-}
-
-export default connect(mapStateToProps)(Menu)
+export default connect()(Menu)

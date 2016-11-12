@@ -112,7 +112,7 @@ CatalogList.propTypes = {
 
 const mapStateToProps = state => ({
   catalog: getFilteredItems(getItems(state.catalog), state.filter),
-  fetching: state.catalog.catalogItems.fetching,
+  fetching: state.catalog.fetching,
 })
 
 export default connect(mapStateToProps)(CatalogList)

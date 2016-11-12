@@ -42,7 +42,7 @@ class App extends Component {
     // const direction = { enter: -100, leave: 100 }
     return (
       <div id="app">
-        <Menu />
+        <Menu current={location.pathname} />
         <RouteTransition
           className={app.router}
           runOnMount={false}

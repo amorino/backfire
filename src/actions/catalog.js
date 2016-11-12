@@ -1,31 +1,23 @@
 export const GET_ALL_ITEMS = 'catalog/all'
-export const RECEIVE_ITEMS = 'catalog/recive'
+export const RECEIVE_ITEMS = 'catalog/recieve'
 export const REQUEST_ITEMS = 'catalog/request'
 export const SET_VISIBILITY_FILTER = 'catalog/filter'
 
-export function getAllItems() {
-  return {
-    type: GET_ALL_ITEMS,
-  }
-}
+export const getAllItems = () => ({
+  type: GET_ALL_ITEMS,
+})
 
-export function receiveItems(items) {
-  return {
-    type: RECEIVE_ITEMS,
-    items,
-  }
-}
+export const receiveItems = payload => ({
+  type: RECEIVE_ITEMS,
+  payload,
+})
 
-export function requestItems(items) {
-  return {
-    type: REQUEST_ITEMS,
-    items,
-  }
-}
+export const requestItems = payload => ({
+  type: REQUEST_ITEMS,
+  payload,
+})
 
-export function filterItem(filter) {
-  return {
-    type: SET_VISIBILITY_FILTER,
-    filter,
-  }
-}
+export const filterItem = payload => ({
+  type: SET_VISIBILITY_FILTER,
+  payload,
+})

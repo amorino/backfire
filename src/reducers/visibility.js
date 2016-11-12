@@ -1,12 +1,12 @@
 import { SET_VISIBILITY_FILTER } from 'actions/catalog'
 
-const visibilityFilter = (state = 'all', action) => {
-  switch (action.type) {
+const filter = (state = 'all', { type, payload }) => {
+  switch (type) {
     case SET_VISIBILITY_FILTER:
-      return action.filter
+      return payload
     default:
       return state
   }
 }
 
-export default visibilityFilter
+export default filter
