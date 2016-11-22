@@ -7,6 +7,7 @@ import { resize } from 'actions/app'
 import { RouteTransition } from 'react-router-transition'
 import { spring } from 'react-motion'
 import { quick } from 'animations/motion'
+import { addEvent, removeEvent } from 'utils/events'
 
 const motion = {
   atEnter: {
@@ -24,17 +25,23 @@ const motion = {
 }
 
 class App extends Component {
+
+  static propTypes = {
+    location: PropTypes.object.isRequired,
+    children: PropTypes.object.isRequired,
+    resize: PropTypes.func.isRequired,
+  }
+
   componentDidMount() {
-    window.addEventListener('resize', this.handleResize)
+    addEvent(window, 'resize', this.handleResize)
   }
 
   componentWillUnmount() {
-    window.removeEventListener('resize', this.handleResize)
+    removeEvent(window, 'resize', this.handleResize)
   }
 
   handleResize = () => {
-    const { dispatch } = this.props
-    dispatch(resize(window.innerWidth, window.innerHeight))
+    this.props.resize(window.innerWidth, window.innerHeight)
   }
 
   render() {
@@ -65,14 +72,9 @@ class App extends Component {
   }
 }
 
-App.propTypes = {
-  location: PropTypes.object.isRequired,
-  children: PropTypes.object.isRequired,
-  dispatch: PropTypes.func.isRequired,
-}
 
 const mapStateToProps = state => ({
   index: state.app.index,
 })
 
-export default connect(mapStateToProps)(App)
+export default connect(mapStateToProps, { resize })(App)

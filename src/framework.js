@@ -16,7 +16,7 @@ ReactGA.initialize(environment.properties.ga, {
 
 const router = {
   component: App,
-  childRoutes: routes(),
+  childRoutes: routes,
 }
 
 const store = configureStore(browserHistory)
