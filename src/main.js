@@ -14,6 +14,7 @@ import Modernizr from 'modernizr'
 import { config } from 'config'
 
 console.info(Modernizr)
+window.Modernizr = Modernizr
 
 if (config.assets) {
   console.info('Load Assets')

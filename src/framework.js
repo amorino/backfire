@@ -9,8 +9,10 @@ import routes from 'routes'
 import App from 'views/App'
 import { environment } from 'config'
 
+const debug = !(process.env.NODE_ENV === 'production')
+
 ReactGA.initialize(environment.properties.ga, {
-  debug: true,
+  debug,
   titleCase: false,
 })
 

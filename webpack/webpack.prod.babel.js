@@ -25,11 +25,11 @@ module.exports = require('./webpack.base.babel')({
   // of the CSS being in the JS and injected as a style tag
   cssLoaders: ExtractTextPlugin.extract(
     'style',
-    'css?importLoaders=1'
+    'css?importLoaders=1',
   ),
   stylusLoaders: ExtractTextPlugin.extract(
     'style',
-    'css?modules&importLoaders=2!stylus'
+    'css?importLoaders=2!stylus',
   ),
   // In production, we minify our CSS with cssnano
   stylusPlugins: [
@@ -45,6 +45,7 @@ module.exports = require('./webpack.base.babel')({
     new webpack.optimize.UglifyJsPlugin({
       compress: {
         warnings: false, // ...but do not show warnings in the console (there is a lot of them)
+        drop_console: true,
       },
     }),
     // Minify and optimize the index.html

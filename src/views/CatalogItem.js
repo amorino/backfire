@@ -1,16 +1,18 @@
-import app from 'styles/views/App'
-
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import Footer from 'components/App/Footer'
 import Detail from 'components/CatalogItem/Detail'
 
 class CatalogItem extends Component {
-  PropTypes
+
+  static propTypes = {
+    id: PropTypes.string,
+  }
+
   render() {
     const { id } = this.props
     return (
-      <div className={app.container}>
+      <div className="app__container">
         <h2>Detail</h2>
         <Detail id={id} />
         <Footer />
@@ -19,14 +21,8 @@ class CatalogItem extends Component {
   }
 }
 
-CatalogItem.propTypes = {
-  id: PropTypes.string,
-}
-
-function mapStateToProps(state, props) {
-  return {
-    id: props.params.id,
-  }
-}
+const mapStateToProps = (state, props) => ({
+  id: props.params.id,
+})
 
 export default connect(mapStateToProps)(CatalogItem)

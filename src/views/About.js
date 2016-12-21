@@ -1,4 +1,4 @@
-import app from 'styles/views/App'
+import 'styles/views/About'
 
 import React, { Component, PropTypes } from 'react'
 import Footer from 'components/App/Footer'
@@ -8,9 +8,14 @@ import { ShareButtons } from 'react-share'
 const { FacebookShareButton } = ShareButtons
 
 class About extends Component {
+
+  static propTypes = {
+    dispatch: PropTypes.func.isRequired,
+  }
+
   render() {
     return (
-      <div className={app.container}>
+      <div className="app__container">
         <h2>About</h2>
         <p>This is a static page.</p>
         <FacebookShareButton
@@ -23,10 +28,6 @@ class About extends Component {
       </div>
     )
   }
-}
-
-About.propTypes = {
-  dispatch: PropTypes.func.isRequired,
 }
 
 export default connect()(About)

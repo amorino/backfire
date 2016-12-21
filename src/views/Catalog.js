@@ -1,14 +1,14 @@
-import app from 'styles/views/App'
+import 'styles/views/Catalog'
 
 import React, { Component } from 'react'
 import CatalogList from 'components/Catalog/CatalogList'
 import FilterLink from 'components/Catalog/Link'
 import Footer from 'components/App/Footer'
 
-export default class Catalog extends Component {
+class Catalog extends Component {
   render() {
     return (
-      <div className={app.container}>
+      <div className="app__container">
         <h2>Catalog</h2>
         <p>
           Show:
@@ -31,3 +31,5 @@ export default class Catalog extends Component {
     )
   }
 }
+
+export default Catalog

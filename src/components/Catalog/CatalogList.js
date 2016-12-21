@@ -1,9 +1,6 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router'
-// import Item from 'components/Catalog/Item'
-// import ReactTransitionGroup from 'react-addons-transition-group'
-import styles from 'styles/views/Catalog'
 import { getItems } from 'reducers/catalog'
 import { TransitionMotion, spring } from 'react-motion'
 
@@ -21,6 +18,16 @@ const getFilteredItems = (catalog, filter) => {
 }
 
 class CatalogList extends Component {
+
+  static propTypes = {
+    fetching: PropTypes.bool,
+    catalog: PropTypes.arrayOf(PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      title: PropTypes.string.isRequired,
+      description: PropTypes.string.isRequired,
+      image: PropTypes.string.isRequired,
+    })).isRequired,
+  }
 
   getDefaultStyles = () => {
     const { catalog } = this.props
@@ -70,7 +77,7 @@ class CatalogList extends Component {
     const { fetching } = this.props
 
     return (
-      <div className={styles.list}>
+      <div className="list__component">
         {fetching && <h3>Loading...</h3>}
         {!fetching &&
           <TransitionMotion
@@ -100,15 +107,6 @@ class CatalogList extends Component {
   }
 }
 
-CatalogList.propTypes = {
-  fetching: PropTypes.bool,
-  catalog: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    title: PropTypes.string.isRequired,
-    description: PropTypes.string.isRequired,
-    image: PropTypes.string.isRequired,
-  })).isRequired,
-}
 
 const mapStateToProps = state => ({
   catalog: getFilteredItems(getItems(state.catalog), state.filter),

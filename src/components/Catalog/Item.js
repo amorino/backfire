@@ -6,6 +6,15 @@ import { appearAnim, leaveAnim } from 'animations/catalog'
 
 class Item extends Component {
 
+  static propTypes = {
+    item: PropTypes.shape({
+      title: PropTypes.string.isRequired,
+      description: PropTypes.string.isRequired,
+      image: PropTypes.string.isRequired,
+      id: PropTypes.number,
+    }).isRequired,
+  }
+
   componentWillAppear(callback) {
     this.addAnimation(appearAnim, { callback })
   }
@@ -26,15 +35,6 @@ class Item extends Component {
       </div>
     )
   }
-}
-
-Item.propTypes = {
-  item: PropTypes.shape({
-    title: PropTypes.string.isRequired,
-    description: PropTypes.string.isRequired,
-    image: PropTypes.string.isRequired,
-    id: PropTypes.number,
-  }).isRequired,
 }
 
 export default gsap()(Item)

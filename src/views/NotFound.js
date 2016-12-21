@@ -1,16 +1,23 @@
-import app from 'styles/views/App'
+import 'styles/views/NotFound'
 
-import React, { Component } from 'react'
+import React, { Component, PropTypes } from 'react'
 import Footer from 'components/App/Footer'
+import { connect } from 'react-redux'
 
-export default class NotFound extends Component {
+class NotFound extends Component {
+
+  static propTypes = {
+    dispatch: PropTypes.func.isRequired,
+  }
+
   render() {
     return (
-      <div className={app.container}>
-        <h1>Not Found</h1>
-        <p>Page not found.</p>
+      <div className="app__wrapper">
+        <h2>Not Found</h2>
         <Footer />
       </div>
     )
   }
 }
+
+export default connect()(NotFound)

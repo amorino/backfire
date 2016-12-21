@@ -1,5 +1,4 @@
-import 'whatwg-fetch'
-
+import agent from 'superagent'
 /**
  * Parses the JSON returned by a network request
  *
@@ -8,7 +7,7 @@ import 'whatwg-fetch'
  * @return {object}          The parsed JSON from the request
  */
 function parseJSON(response) {
-  return response.json()
+  return response.body
 }
 
 /**
@@ -36,8 +35,9 @@ function checkStatus(response) {
  *
  * @return {object}           An object containing either "data" or "err"
  */
-export default function request(url, options) {
-  return fetch(url, options)
+export default function request(url) {
+  return agent
+    .get(url)
     .then(checkStatus)
     .then(parseJSON)
     .then(data => ({ data }))

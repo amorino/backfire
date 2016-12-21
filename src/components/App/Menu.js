@@ -1,7 +1,8 @@
+import 'styles/components/Menu'
+
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import LinkItem from 'components/Menu/LinkItem'
-import styles from 'styles/components/Menu'
 
 const menu = [
   {
@@ -17,19 +18,19 @@ const menu = [
 ]
 
 class Menu extends Component {
+  static propTypes = {
+    current: PropTypes.string.isRequired,
+  }
+
   render() {
     const { current } = this.props
     const items = menu.map((item, i) => <LinkItem {...item} key={i} route={current} />)
     return (
-      <div className={styles.menu}>
+      <div className="menu">
         <ul>{items}</ul>
       </div>
     )
   }
-}
-
-Menu.propTypes = {
-  current: PropTypes.string.isRequired,
 }
 
 export default connect()(Menu)

@@ -3,9 +3,18 @@ import { Link } from 'react-router'
 import { connect } from 'react-redux'
 import { getItem } from 'reducers/catalog'
 import Image from 'components/utils/Image'
-import styles from 'styles/views/CatalogItem'
 
 class Detail extends Component {
+  static propTypes = {
+    fetching: PropTypes.bool,
+    item: PropTypes.shape({
+      title: PropTypes.string.isRequired,
+      description: PropTypes.string.isRequired,
+      image: PropTypes.string.isRequired,
+      id: PropTypes.number.isRequired,
+    }),
+  }
+
   render() {
     const { fetching, item } = this.props
     return (
@@ -15,7 +24,7 @@ class Detail extends Component {
           <div>
             <h3>Item</h3>
             {item.title} - {item.description} - <Link to={'/catalog'}>Return</Link>
-            <div className={styles.imageContainer}>
+            <div className="image__item">
               <Image src={item.image} />
             </div>
           </div>
@@ -23,16 +32,6 @@ class Detail extends Component {
       </div>
     )
   }
-}
-
-Detail.propTypes = {
-  fetching: PropTypes.bool,
-  item: PropTypes.shape({
-    title: PropTypes.string.isRequired,
-    description: PropTypes.string.isRequired,
-    image: PropTypes.string.isRequired,
-    id: PropTypes.number.isRequired,
-  }),
 }
 
 const mapStateToProps = (state, props) => ({

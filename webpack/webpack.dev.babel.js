@@ -26,7 +26,7 @@ module.exports = require('./webpack.base.babel')({
   // cssLoaders: 'style!css?importLoaders=1&sourceMap!postcss',
   cssLoaders: 'style!css?importLoaders=1&sourceMap',
   // Load Stylus with SourceMaps
-  stylusLoaders: 'style!css?modules&importLoaders=1&sourceMap&localIdentName=[local]___[hash:base64:10]!stylus',
+  stylusLoaders: 'style!css?importLoaders=1&sourceMap&localIdentName=[local]___[hash:base64:10]!stylus',
   // Process the CSS with PostCSS
   stylusPlugins: [
     lost(),
