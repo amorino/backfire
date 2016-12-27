@@ -6,7 +6,7 @@ var path = require('path');
 
 var app = express();
 var compiler = webpack(config);
-var server = 5000;
+var server = 7777;
 
 app.use(require('connect-history-api-fallback')({
   verbose: false
