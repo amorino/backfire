@@ -14,7 +14,7 @@ module.exports = require('./webpack.base.babel')({
     path: path.resolve(__dirname, '..', 'build'),
     filename: 'js/[name].js',
     chunkFilename: 'js/[name].chunk.js',
-    publicPath: 'http://localhost:5000/',
+    publicPath: 'http://localhost:7777/',
   },
   // Add hot reloading in development
   entry: [
