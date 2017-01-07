@@ -34,6 +34,14 @@ module.exports = options => ({
       test: /\.json$/,
       loader: 'file?name=assets/[sha512:hash:base64:7].[ext]', // Transform all .json files required somewhere with json-loader
       exclude: path.join(__dirname, '..', '/node_modules/'),
+    }, {
+      test: /\.(glsl|frag|vert)$/,
+      loader: 'raw',
+      exclude: path.join(__dirname, '..', '/node_modules/'),
+    }, {
+      test: /\.(glsl|frag|vert)$/,
+      loader: 'glslify',
+      exclude: path.join(__dirname, '..', '/node_modules/'),
     }],
   },
   stylus: { // PostCSS plugins for Stylus
