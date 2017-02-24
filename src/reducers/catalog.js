@@ -1,7 +1,9 @@
 import { RECEIVE_ITEMS, REQUEST_ITEMS } from 'actions/catalog'
 
 const init = {
-  fetching: false, items: [], ids: [],
+  fetching: true,
+  items: [],
+  ids: [],
 }
 
 export const catalog = (state = init, { type, payload }) => {

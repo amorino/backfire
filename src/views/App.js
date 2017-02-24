@@ -8,6 +8,7 @@ import { RouteTransition } from 'react-router-transition'
 import { spring } from 'react-motion'
 import { quick } from 'animations/motion'
 import { addEvent, removeEvent } from 'utils/events'
+import { getAllItems } from 'actions/catalog'
 
 const motion = {
   atEnter: {
@@ -30,10 +31,12 @@ class App extends Component {
     location: PropTypes.object.isRequired,
     children: PropTypes.object.isRequired,
     resize: PropTypes.func.isRequired,
+    getAllItems: PropTypes.func.isRequired,
   }
 
   componentDidMount() {
     addEvent(window, 'resize', this.handleResize)
+    this.props.getAllItems()
   }
 
   componentWillUnmount() {
@@ -77,4 +80,4 @@ const mapStateToProps = state => ({
   index: state.app.index,
 })
 
-export default connect(mapStateToProps, { resize })(App)
+export default connect(mapStateToProps, { resize, getAllItems })(App)

@@ -20,7 +20,6 @@ export function* watchGetCatalog() {
 
 export default function* root() {
   yield [
-    fork(getCatalog),
     fork(watchGetCatalog),
   ]
 }

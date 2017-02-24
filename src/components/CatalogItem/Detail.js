@@ -6,7 +6,7 @@ import Image from 'components/utils/Image'
 
 class Detail extends Component {
   static propTypes = {
-    fetching: PropTypes.bool,
+    fetching: PropTypes.bool.isRequired,
     item: PropTypes.shape({
       title: PropTypes.string.isRequired,
       description: PropTypes.string.isRequired,
@@ -14,6 +14,15 @@ class Detail extends Component {
       id: PropTypes.number.isRequired,
     }),
   }
+
+  static defaultProps = {
+    item: {
+      title: '',
+      description: '',
+      image: '',
+      id: 0,
+    },
+  };
 
   render() {
     const { fetching, item } = this.props

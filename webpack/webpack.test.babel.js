@@ -17,14 +17,10 @@ module.exports = {
     tls: 'empty',
   },
   resolve: {
-    modulesDirectories: modules,
     modules,
     extensions: [
-      '',
       '.js',
       '.styl',
-      '.jsx',
-      '.react.js',
     ],
   },
 }

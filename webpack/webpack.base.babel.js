@@ -8,55 +8,83 @@ module.exports = options => ({
   entry: options.entry,
   output: options.output,
   module: {
-    loaders: [{
+    rules: [{
       test: /\.js$/, // Transform all .js files required somewhere with Babel
-      loader: 'babel',
+      loader: 'babel-loader',
       exclude: path.join(__dirname, '..', '/node_modules/'),
+      options: {
+        presets: ['react', 'es2015', 'stage-0'],
+        env: {
+          development: {
+            presets: ['react-hmre'],
+          },
+        },
+      },
     }, {
-      test: /\.modernizrrc$/,
-      loader: 'modernizr',
+      test: /\.modernizrrc.js$/,
+      loader: 'modernizr-loader',
+    },
+    {
+      test: /\.modernizrrc(\.json)?$/,
+      use: [
+        'modernizr-loader',
+        'json-loader',
+      ],
     }, {
-      test: /\.css$/, // Transform all .css files required somewhere with PostCSS
-      loader: options.cssLoaders,
+      test: /\.css$/,
+      use: options.cssLoaders,
     }, {
-      test: /\.styl$/, // Transform all .styl files required somewhere with Stylus
-      loader: options.stylusLoaders,
+      test: /\.styl$/,
+      use: options.stylusLoaders,
     }, {
-      test: /\.jpe?g$|\.gif$|\.png$/i, // Transform all images files required somewhere with file-loader
-      loader: 'file?name=assets/[sha512:hash:base64:7].[ext]',
+      test: /\.jpe?g$|\.gif$|\.png$/i,
+      loader: 'file-loader',
+      options: {
+        name: 'assets/[sha512:hash:base64:7].[ext]',
+      },
     }, {
-      test: /\.html$/, // Transform all html files required somewhere with html-loader
+      test: /\.html$/,
       loader: 'html-loader',
     }, {
-      test: /\.(ttf|eot|svg|woff(2)?)(\?[a-z0-9]+)?$/, // Transform all font files required somewhere with file-loader
-      loader: 'file?name=assets/[sha512:hash:base64:7].[ext]',
+      test: /\.(ttf|eot|svg|woff(2)?)(\?[a-z0-9]+)?$/,
+      loader: 'file-loader',
+      options: {
+        name: 'assets/[sha512:hash:base64:7].[ext]',
+      },
     }, {
       test: /\.json$/,
-      loader: 'file?name=assets/[sha512:hash:base64:7].[ext]', // Transform all .json files required somewhere with json-loader
+      loader: 'file-loader',
+      options: {
+        name: 'assets/[sha512:hash:base64:7].[ext]',
+      },
       exclude: path.join(__dirname, '..', '/node_modules/'),
     }, {
       test: /\.(glsl|frag|vert)$/,
-      loader: 'raw',
+      loader: 'raw-loader',
       exclude: path.join(__dirname, '..', '/node_modules/'),
     }, {
       test: /\.(glsl|frag|vert)$/,
-      loader: 'glslify',
+      loader: 'glslify-loader',
       exclude: path.join(__dirname, '..', '/node_modules/'),
     }],
   },
-  stylus: { // PostCSS plugins for Stylus
-    use: [
-      postcss(options.stylusPlugins),
-      rupture(),
-    ],
-  },
   plugins: options.plugins.concat([
     new webpack.optimize.CommonsChunkPlugin('common.js'),
+    new webpack.LoaderOptionsPlugin({
+      test: /\.styl$/,
+      stylus: {
+        default: {
+          use: [
+            postcss(options.stylusPlugins),
+            rupture(),
+          ],
+        },
+      },
+    }),
   ]),
   resolve: {
-    root: path.join(__dirname, '..', 'src'),
-    modules: ['src', 'node_modules'],
-    extensions: ['', '.js', '.styl'],
+    extensions: ['.js', '.styl'],
+    modules: [path.join(__dirname, '..', 'src'), 'node_modules'],
     alias: {
       modernizr$: path.resolve(__dirname, '../.modernizrrc'),
       src: path.resolve(__dirname, '../src'),
@@ -64,6 +92,6 @@ module.exports = options => ({
     },
   },
   target: 'web', // Make web variables accessible to webpack, e.g. window
-  stats: false, // Don't show stats in the console
-  progress: true,
+  stats: true,
+  performance: options.performance || {},
 })
