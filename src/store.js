@@ -6,7 +6,7 @@ import createReducer from 'reducers'
 import sagaMonitor from 'utils/sagaMonitor'
 
 const sagaMiddleware = createSagaMiddleware({ sagaMonitor })
-const devtools = window.devToolsExtension || (() => f => f)
+const devtools = !(process.env.NODE_ENV === 'production') ? window.devToolsExtension || (() => f => f) : (() => f => f)
 
 export default function configureStore(history, initialState = {}) {
   const enhancers = [
