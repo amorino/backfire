@@ -1,7 +1,7 @@
-const path = require('path')
-const webpack = require('webpack')
-const postcss = require('poststylus')
-const rupture = require('rupture')
+import path from 'path'
+import webpack from 'webpack'
+import postcss from 'poststylus'
+import rupture from 'rupture'
 
 module.exports = options => ({
   devtool: options.devtool,
@@ -46,9 +46,43 @@ module.exports = options => ({
       test: /\.html$/,
       loader: 'html-loader',
     }, {
-      test: /\.(ttf|eot|svg|woff(2)?)(\?[a-z0-9]+)?$/,
-      loader: 'file-loader',
+      test: /\.svg$/,
+      loader: 'url-loader',
       options: {
+        limit: '32000',
+        mimetype: 'image/svg+xml',
+        name: 'assets/[sha512:hash:base64:7].[ext]',
+      },
+    }, {
+      test: /\.woff$/,
+      loader: 'url-loader',
+      options: {
+        limit: '32000',
+        mimetype: 'application/font-woff',
+        name: 'assets/[sha512:hash:base64:7].[ext]',
+      },
+    }, {
+      test: /\.woff2$/,
+      loader: 'url-loader',
+      options: {
+        limit: '32000',
+        mimetype: 'application/font-woff2',
+        name: 'assets/[sha512:hash:base64:7].[ext]',
+      },
+    }, {
+      test: /\.[ot]tf$/,
+      loader: 'url-loader',
+      options: {
+        limit: '32000',
+        mimetype: 'application/octet-stream',
+        name: 'assets/[sha512:hash:base64:7].[ext]',
+      },
+    }, {
+      test: /\.eot$/,
+      loader: 'url-loader',
+      options: {
+        limit: '32000',
+        mimetype: 'application/vnd.ms-fontobject',
         name: 'assets/[sha512:hash:base64:7].[ext]',
       },
     }, {

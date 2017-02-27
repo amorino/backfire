@@ -1,14 +1,15 @@
-const path = require('path')
-const webpack = require('webpack')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
-const ExtractTextPlugin = require('extract-text-webpack-plugin')
+import path from 'path'
+import webpack from 'webpack'
+import HtmlWebpackPlugin from 'html-webpack-plugin'
+import ExtractTextPlugin from 'extract-text-webpack-plugin'
 
 // PostCSS plugins
-const postcssFocus = require('postcss-focus')
-const rucksack = require('rucksack-css')
-const lost = require('lost')
+import postcssFocus from 'postcss-focus'
+import rucksack from 'rucksack-css'
+import lost from 'lost'
+import base from './webpack.config.base.babel'
 
-module.exports = require('./webpack.base.babel')({
+module.exports = base({
   type: 'production',
   devtool: false,
   output: {

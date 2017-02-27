@@ -1,20 +1,21 @@
-const path = require('path')
-const webpack = require('webpack')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
+import path from 'path'
+import webpack from 'webpack'
+import HtmlWebpackPlugin from 'html-webpack-plugin'
 
 // PostCSS plugins
-const postcssFocus = require('postcss-focus')
-const rucksack = require('rucksack-css')
-const lost = require('lost')
+import postcssFocus from 'postcss-focus'
+import rucksack from 'rucksack-css'
+import lost from 'lost'
+import base from './webpack.config.base.babel'
 
-module.exports = require('./webpack.base.babel')({
+module.exports = base({
   type: 'development',
   devtool: 'inline-source-map',
   output: { // Compile into js/build.js
     path: path.resolve(__dirname, '..', 'build'),
     filename: 'js/[name].js',
     chunkFilename: 'js/[name].chunk.js',
-    publicPath: 'http://localhost:7777/',
+    publicPath: '/',
   },
   // Add hot reloading in development
   entry: [

@@ -1,23 +1,29 @@
-const config = require('./webpack.dev.babel')
-const express = require('express')
-const webpack = require('webpack')
+import express from 'express'
+import webpack from 'webpack'
+
+import devMiddleware from 'webpack-dev-middleware'
+import hotMiddleware from 'webpack-hot-middleware'
+import historyApi from 'connect-history-api-fallback'
+
+import config from './webpack.config.development.babel'
 
 const app = express()
 const compiler = webpack(config)
 
-app.use(require('connect-history-api-fallback')({
-  verbose: false,
-}))
+app.use(historyApi({ verbose: false }))
 
-app.use(require('webpack-dev-middleware')(compiler, {
+app.use(devMiddleware(compiler, {
   noInfo: true,
   publicPath: config.output.publicPath,
   historyApiFallback: true,
+  stats: {
+    colors: true,
+  },
 }))
 
-app.use(require('webpack-hot-middleware')(compiler))
+app.use(hotMiddleware(compiler))
 
-app.listen(7777, 'localhost', (err) => {
+app.listen(7777, (err) => {
   if (err) {
     console.log(err)
     return

@@ -5,18 +5,23 @@
 @lost cycle auto
 
 // Fonts
-$fontFamily = 'BrandonText'
-$font = 'Helvetica', 'Helvetica', sans-serif
+$font-file = 'BrandonText'
+$primary-font = $font-file, 'Helvetica', sans-serif
 
 // Colors
 $gray =  #e3e0e7
 $white = #fff
 $black =  #333333
 
-$color = $black
+$primary-color = $black
 $background = $white
 
 // Breakpoints
 $center = 1024px
 $mobile = 560px
 $tablet = 768px
+$desktop = 1800px
+
+rupture.mobile-cutoff = $mobile
+rupture.desktop-cutoff = $center
+rupture.hd-cutoff = $desktop
