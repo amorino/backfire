@@ -40,7 +40,7 @@
   "settings": {
     "import/resolver": {
       "webpack": {
-        "config": "./webpack/webpack.test.babel.js"
+        "config": "./webpack/webpack.config.test.babel.js"
       }
     }
   }

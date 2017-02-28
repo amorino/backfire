@@ -24,7 +24,7 @@ class Menu extends Component {
 
   render() {
     const { current } = this.props
-    const items = menu.map((item, i) => <LinkItem {...item} key={i} route={current} />)
+    const items = menu.map(item => <LinkItem {...item} key={item.id} route={current} />)
     return (
       <div className="menu">
         <ul>{items}</ul>
