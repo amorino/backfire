@@ -4,18 +4,16 @@ import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import LinkItem from 'components/Menu/LinkItem'
 
-const menu = [
-  {
-    text: 'Home',
-    link: '/',
-  }, {
-    text: 'About',
-    link: '/about',
-  }, {
-    text: 'Items',
-    link: '/catalog',
-  },
-]
+const menu = [{
+  text: 'Home',
+  link: '/',
+}, {
+  text: 'About',
+  link: '/about',
+}, {
+  text: 'Items',
+  link: '/catalog',
+}]
 
 class Menu extends Component {
   static propTypes = {
@@ -24,7 +22,7 @@ class Menu extends Component {
 
   render() {
     const { current } = this.props
-    const items = menu.map(item => <LinkItem {...item} key={item.id} route={current} />)
+    const items = menu.map(item => <LinkItem {...item} key={item.text} route={current} />)
     return (
       <div className="menu">
         <ul>{items}</ul>
