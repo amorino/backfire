@@ -49,7 +49,6 @@ class App extends Component {
 
   render() {
     const { location, children } = this.props
-    // const direction = { enter: -100, leave: 100 }
     return (
       <div id="app">
         <Menu current={location.pathname} />
@@ -78,6 +77,7 @@ class App extends Component {
 
 const mapStateToProps = state => ({
   index: state.app.index,
+  location: state.routing.location,
 })
 
 export default connect(mapStateToProps, { resize, getAllItems })(App)

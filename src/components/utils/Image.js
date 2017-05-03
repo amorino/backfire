@@ -7,6 +7,11 @@ class Image extends Component {
     style: PropTypes.string,
   }
 
+  static defaultProps = {
+    speed: 1,
+    style: {},
+  }
+
   state = {
     opacity: 0,
   }
@@ -16,9 +21,8 @@ class Image extends Component {
   }
 
   render() {
-    const { src, speed } = this.props
-    const style = this.props.style || {}
-    style.transition = `opacity ${speed || 1}s`
+    const { src, speed, style } = this.props
+    style.transition = `opacity ${speed}s`
     style.opacity = this.state.opacity
     return (
       <img

@@ -22,7 +22,7 @@ class CatalogItem extends Component {
 }
 
 const mapStateToProps = (state, props) => ({
-  id: props.params.id,
+  id: props.match.params.id,
 })
 
 export default connect(mapStateToProps)(CatalogItem)

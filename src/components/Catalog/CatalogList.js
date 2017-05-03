@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
-import { Link } from 'react-router'
+import { Link } from 'react-router-dom'
 import { getItems } from 'reducers/catalog'
 import { TransitionMotion, spring } from 'react-motion'
 
@@ -94,7 +94,7 @@ class CatalogList extends Component {
                       key={config.key}
                       style={{ ...config.style, border: '1px solid' }}
                     >
-                      {config.data.title} - {config.data.description} - <Link to={`catalog/${config.data.id}`}>Go</Link>
+                      {config.data.title} - {config.data.description} - <Link to={`/catalog/${config.data.id}`}>Go</Link>
                     </div>
                   )
                 })}
