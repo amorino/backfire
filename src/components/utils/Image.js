@@ -4,31 +4,35 @@ class Image extends Component {
   static propTypes = {
     src: PropTypes.string.isRequired,
     speed: PropTypes.number,
-    style: PropTypes.string,
+    style: PropTypes.object,
+    title: PropTypes.string,
   }
 
   static defaultProps = {
     speed: 1,
     style: {},
+    title: 'Image',
   }
 
   state = {
     opacity: 0,
+    loaded: false,
   }
 
   fadeIn = () => {
-    this.setState({ opacity: 1 })
+    this.setState({ opacity: 1, loaded: true })
   }
 
   render() {
-    const { src, speed, style } = this.props
-    style.transition = `opacity ${speed}s`
-    style.opacity = this.state.opacity
+    const { src, speed, title } = this.props
+    const { opacity, loaded } = this.state
     return (
       <img
-        alt={'loaded'}
-        {...this.props}
-        style={style}
+        alt={loaded ? title : 'Loading'}
+        style={{
+          transition: `opacity ${speed}s`,
+          opacity,
+        }}
         src={src}
         onLoad={this.fadeIn}
       />)
