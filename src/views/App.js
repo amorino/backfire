@@ -9,6 +9,13 @@ import { spring } from 'react-motion'
 import { quick } from 'animations/motion'
 import { addEvent, removeEvent } from 'utils/events'
 import { getAllItems } from 'actions/catalog'
+import { Route, Switch } from 'react-router-dom'
+
+import Home from 'views/Home'
+import About from 'views/About'
+import Catalog from 'views/Catalog'
+import CatalogItem from 'views/CatalogItem'
+import NotFound from 'views/NotFound'
 
 const motion = {
   atEnter: {
@@ -29,7 +36,6 @@ class App extends Component {
 
   static propTypes = {
     location: PropTypes.object.isRequired,
-    children: PropTypes.object.isRequired,
     resize: PropTypes.func.isRequired,
     getAllItems: PropTypes.func.isRequired,
   }
@@ -48,13 +54,13 @@ class App extends Component {
   }
 
   render() {
-    const { location, children } = this.props
+    const { location } = this.props
     return (
       <div id="app">
         <Menu current={location.pathname} />
         <RouteTransition
           className="app_router"
-          runOnMount={false}
+          runOnMount={true}
           component={false}
           pathname={location.pathname}
           {...motion}
@@ -66,7 +72,13 @@ class App extends Component {
           })}
         >
           <div className="app__wrapper">
-            {children}
+            <Switch key={location.key} location={location}>
+              <Route exact path="/" component={Home} />
+              <Route path="/about" component={About} />
+              <Route path="/catalog/:id" component={CatalogItem} />
+              <Route path="/catalog" component={Catalog} />
+              <Route component={NotFound} />
+            </Switch>
           </div>
         </RouteTransition>
       </div>

@@ -5,9 +5,9 @@ import classnames from 'classnames'
 class LinkItem extends Component {
 
   static propTypes = {
-    route: PropTypes.string,
-    link: PropTypes.string,
-    text: PropTypes.string,
+    route: PropTypes.string.isRequired,
+    link: PropTypes.string.isRequired,
+    text: PropTypes.string.isRequired,
     isExternal: PropTypes.bool,
   }
 

@@ -18,3 +18,19 @@ body
   font-family: $primary-font
   font-smoothing: antialiased
   text-rendering: optimizeLegibility
+
+#root
+  lost-utility clearfix
+
+#root__loader
+  position: fixed
+  size 100%
+  background: $white
+  z-index: 9999
+  margin 0
+  padding: 0
+  overflow: hidden
+  &__square
+    size 100px
+    background: $black
+    center both

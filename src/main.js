@@ -16,6 +16,14 @@ import { config } from 'config'
 console.info(Modernizr)
 window.Modernizr = Modernizr
 
+const ready = () => {
+  TweenMax.to('#root__loader', 1.3, {
+    autoAlpha: 0,
+    delay: 1.35,
+    onComplete: () => render(<Framework />, document.getElementById('root')),
+  })
+}
+
 if (config.assets) {
   console.info('Load Assets')
   const preload = preloader({ xhrImages: true, loadFullAudio: true, loadFullVideo: true })
@@ -26,11 +34,11 @@ if (config.assets) {
 
   preload.on('complete', () => {
     console.info('Assets Loaded')
-    render(<Framework />, document.getElementById('root'))
+    ready()
   })
 
   preload.load()
 } else {
   console.warn('Do Not Load Assets')
-  render(<Framework />, document.getElementById('root'))
+  ready()
 }

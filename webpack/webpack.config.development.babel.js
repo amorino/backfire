@@ -10,8 +10,9 @@ import base from './webpack.config.base.babel'
 
 module.exports = base({
   type: 'development',
-  devtool: 'inline-source-map',
-  output: { // Compile into js/build.js
+  devtool: 'cheap-module-source-map',
+  output: {
+    // Compile into js/build.js
     path: path.resolve(__dirname, '..', 'build'),
     filename: 'js/[name].js',
     chunkFilename: 'js/[name].chunk.js',

@@ -15,3 +15,18 @@ font-smoothing() {
     error('font-smoothing() must be used within a property');
   }
 }
+
+center($type = both){
+  position: absolute
+  if (type == vertical){
+    top: 50%
+    transform: translateY(-50%)
+  } else if (type == horizontal) {
+    left: 50%
+    transform: translateX(-50%)
+  } else {
+    top: 50%
+    left: 50%
+    transform: translate(-50%, -50%)
+  }
+}

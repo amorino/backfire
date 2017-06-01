@@ -20,7 +20,7 @@ const getFilteredItems = (catalog, filter) => {
 class CatalogList extends Component {
 
   static propTypes = {
-    fetching: PropTypes.bool,
+    fetching: PropTypes.bool.isRequired,
     catalog: PropTypes.arrayOf(PropTypes.shape({
       id: PropTypes.number.isRequired,
       title: PropTypes.string.isRequired,

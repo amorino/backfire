@@ -12,14 +12,6 @@ module.exports = options => ({
       test: /\.js$/, // Transform all .js files required somewhere with Babel
       loader: 'babel-loader',
       exclude: path.join(__dirname, '..', '/node_modules/'),
-      options: {
-        presets: ['react', 'es2015', 'stage-0'],
-        env: {
-          development: {
-            presets: ['react-hmre'],
-          },
-        },
-      },
     }, {
       test: /\.modernizrrc.js$/,
       loader: 'modernizr-loader',
@@ -103,7 +95,7 @@ module.exports = options => ({
     }],
   },
   plugins: options.plugins.concat([
-    new webpack.optimize.CommonsChunkPlugin('common.js'),
+    new webpack.optimize.CommonsChunkPlugin('common'),
     new webpack.LoaderOptionsPlugin({
       test: /\.styl$/,
       stylus: {
