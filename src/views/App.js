@@ -1,6 +1,7 @@
 import 'styles/views/App'
 
-import React, { Component, PropTypes } from 'react'
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import Menu from 'components/App/Menu'
 import { resize } from 'actions/app'
@@ -33,7 +34,6 @@ const motion = {
 }
 
 class App extends Component {
-
   static propTypes = {
     location: PropTypes.object.isRequired,
     resize: PropTypes.func.isRequired,

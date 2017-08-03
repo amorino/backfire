@@ -1,10 +1,10 @@
-import React, { Component, PropTypes } from 'react'
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import Footer from 'components/App/Footer'
 import Detail from 'components/CatalogItem/Detail'
 
 class CatalogItem extends Component {
-
   static propTypes = {
     id: PropTypes.string,
   }

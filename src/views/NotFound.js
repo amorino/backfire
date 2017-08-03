@@ -1,11 +1,11 @@
 import 'styles/views/NotFound'
 
-import React, { Component, PropTypes } from 'react'
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import Footer from 'components/App/Footer'
 import { connect } from 'react-redux'
 
 class NotFound extends Component {
-
   static propTypes = {
     dispatch: PropTypes.func.isRequired,
   }

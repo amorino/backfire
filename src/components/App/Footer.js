@@ -6,7 +6,7 @@ export default class Footer extends Component {
     return (
       <div className="footer">
         <div>
-            &copy; 2015
+          <span>2017</span>
         </div>
       </div>
     )

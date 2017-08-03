@@ -3,11 +3,19 @@ module.exports = {
   parser: 'babel-eslint',
   extends: 'airbnb',
   parserOptions: {
-    sourceType: 'module'
+    ecmaVersion: 6,
+    sourceType: 'module',
+    ecmaFeatures: {
+			experimentalObjectRestSpread: true,
+			impliedStrict: true,
+      globalReturn: false,
+      jsx: true
+		}
   },
   env: {
-    node: true,
-    browser: true,
+    es6: true,
+		node: true,
+		browser: true,
   },
   'globals': {
     'App': true,
@@ -24,12 +32,12 @@ module.exports = {
     'Back': true,
     'Elastic': true,
     'Linear': true,
+    'Quint': true,
     'FB': true,
     'twttr': true,
     'gapi': true,
     'requestAnimationFrame': true
   },
-  // add your custom rules here
   'rules': {
     'camelcase': ['warn'],
     'no-unused-vars': ['warn'],

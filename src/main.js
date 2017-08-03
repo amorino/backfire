@@ -19,7 +19,8 @@ window.Modernizr = Modernizr
 const ready = () => {
   TweenMax.to('#root__loader', 1.3, {
     autoAlpha: 0,
-    delay: 1.35,
+    delay: 1.75,
+    ease: Quint.easeOut,
     onComplete: () => render(<Framework />, document.getElementById('root')),
   })
 }

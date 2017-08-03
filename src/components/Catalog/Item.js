@@ -1,11 +1,11 @@
-import React, { Component, PropTypes } from 'react'
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { Link } from 'react-router'
 import styles from 'styles/views/Catalog'
 import gsap from 'react-gsap-enhancer'
 import { appearAnim, leaveAnim } from 'animations/catalog'
 
 class Item extends Component {
-
   static propTypes = {
     item: PropTypes.shape({
       title: PropTypes.string.isRequired,
