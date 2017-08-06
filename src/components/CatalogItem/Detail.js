@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { getItem } from 'reducers/catalog'
-import Image from 'components/Utils/Image'
+import Image from 'components/utils/Image'
 
 class Detail extends Component {
   static propTypes = {

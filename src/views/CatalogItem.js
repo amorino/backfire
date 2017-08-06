@@ -6,7 +6,7 @@ import Detail from 'components/CatalogItem/Detail'
 
 class CatalogItem extends Component {
   static propTypes = {
-    id: PropTypes.string,
+    id: PropTypes.string.isRequired,
   }
 
   render() {

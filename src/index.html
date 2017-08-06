@@ -1,38 +1,22 @@
 <!doctype html>
 <html lang="en">
-
-<head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-	<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0, shrink-to-fit=no">
-	<meta name="mobile-web-app-capable" content="yes">
-	<title>Backfire</title>
-	<meta name="keywords" content="">
-	<meta name="description" content="">
-	<meta name="Copyright" content="">
-  <link rel="icon" href="favicon.ico" type="image/x-icon">
-
-	<meta property="og:title" content="">
-	<meta property="og:url" content="">
-	<meta property="og:type" content="">
-	<meta property="og:image" content="">
-	<meta property="og:description" content="">
-	<meta property="og:site_name" content="">
-	<meta property="fb:app_id" content="">
-
-	<meta name="twitter:card" content="summary_large_image">
-	<meta name="twitter:creator" content="">
-	<meta name="twitter:url" content="">
-	<meta name="twitter:title" content="">
-	<meta name="twitter:description" content="">
-	<meta name="twitter:image" content="">
-</head>
-
-<body>
-  <div id="root__loader">
-    <div id="root__loader__square"></div>
-  </div>
-	<div id="root"></div>
-</body>
-
+  <head>
+    <!-- The first thing in any HTML file should be the charset -->
+    <meta charset="utf-8">
+    <!-- Make the page mobile compatible -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Allow installing the app to the homescreen -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="mobile-web-app-capable" content="yes">
+    <title>Backfire</title>
+  </head>
+  <body>
+    <!-- Display a message if JS has been disabled on the browser. -->
+    <noscript>If you're seeing this message, that means <strong>JavaScript has been disabled on your browser</strong>, please <strong>enable JS</strong> to make this app work.</noscript>
+    <div id="root__loader">
+      <div id="root__loader__square"></div>
+    </div>
+    <!-- The app hooks into this div -->
+    <div id="root"></div>
+  </body>
 </html>
