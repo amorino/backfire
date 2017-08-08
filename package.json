@@ -8,7 +8,7 @@
     "build": "npm run clean && npm run build:webpack && open .",
     "build:webpack": "NODE_ENV=production webpack --config webpack/webpack.config.production.babel.js --progress --colors -p",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "NODE_ENV=development node --max_old_space_size=2096 -r babel-register webpack/server.js",
+    "dev": "NODE_ENV=development node -r babel-register webpack/server.js",
     "start": "npm run dev",
     "lint": "eslint src"
   },

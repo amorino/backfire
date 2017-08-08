@@ -9,6 +9,7 @@ import config from './webpack.config.development.babel'
 
 const app = express()
 const compiler = webpack(config)
+const port = 7777
 
 app.use(historyApi({ verbose: false }))
 
@@ -23,10 +24,10 @@ app.use(devMiddleware(compiler, {
 
 app.use(hotMiddleware(compiler))
 
-app.listen(7777, (err) => {
+app.listen(port, (err) => {
   if (err) {
     console.log(err)
     return
   }
-  console.warn(`Listening at http://localhost:${7777}`)
+  console.warn(`Listening at http://localhost:${port}`)
 })
