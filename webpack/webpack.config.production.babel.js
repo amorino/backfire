@@ -11,6 +11,7 @@ import base from './webpack.config.base.babel'
 
 module.exports = base({
   type: 'production',
+  target: 'web',
   devtool: false,
   output: {
     path: path.resolve(__dirname, '..', 'build'),
@@ -64,6 +65,7 @@ module.exports = base({
         drop_console: true,
       },
     }),
+    new webpack.optimize.CommonsChunkPlugin('common'),
     // Minify and optimize the index.html
     new HtmlWebpackPlugin({
       template: 'src/index.html',

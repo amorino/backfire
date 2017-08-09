@@ -7,6 +7,8 @@ module.exports = options => ({
   devtool: options.devtool,
   entry: options.entry,
   output: options.output,
+  target: options.target,
+  externals: options.externals || [],
   module: {
     rules: [{
       test: /\.js$/, // Transform all .js files required somewhere with Babel
@@ -95,7 +97,6 @@ module.exports = options => ({
     }],
   },
   plugins: options.plugins.concat([
-    new webpack.optimize.CommonsChunkPlugin('common'),
     new webpack.LoaderOptionsPlugin({
       test: /\.styl$/,
       stylus: {
@@ -117,7 +118,6 @@ module.exports = options => ({
       assets: path.resolve(__dirname, '../src/assets'),
     },
   },
-  target: 'web', // Make web variables accessible to webpack, e.g. window
   stats: true,
   performance: options.performance || {},
 })

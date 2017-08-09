@@ -8,8 +8,10 @@
     "build": "npm run clean && npm run build:webpack && open .",
     "build:webpack": "NODE_ENV=production webpack --config webpack/webpack.config.production.babel.js --progress --colors -p",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "NODE_ENV=development node -r babel-register webpack/server.js",
+    "dev": "NODE_ENV=development node -r babel-register webpack/dev-server.js",
     "start": "npm run dev",
+    "server": "NODE_ENV=development webpack --config webpack/webpack.config.server.babel.js",
+    "mount": "NODE_ENV=production node server/server.js",
     "lint": "eslint src"
   },
   "repository": {
@@ -102,6 +104,7 @@
     "sanitize.css": "^5.0.0",
     "stylus": "^0.54.5",
     "superagent": "^3.3.1",
-    "webpack": "^3.4.1"
+    "webpack": "^3.4.1",
+    "webpack-node-externals": "^1.6.0"
   }
 }
