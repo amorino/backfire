@@ -3,16 +3,20 @@
   "version": "0.6.0",
   "description": "A boilerplate for React.js focused on animation using react-gsap-enhancer with redux, react-sagas, webpack, stylus, postcss plugins.",
   "scripts": {
-    "clean": "rimraf build",
+    "clean:build": "rimraf build",
+    "clean:bundle": "rimraf bundle",
     "clean:modules": "rimraf node_modules",
-    "build": "npm run clean && npm run build:webpack && open .",
-    "build:webpack": "NODE_ENV=production webpack --config webpack/webpack.config.production.babel.js --progress --colors -p",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "NODE_ENV=development node -r babel-register webpack/dev-server.js",
+    "build": "npm run clean:build && npm run build:client && open .",
+    "build:client": "NODE_ENV=production webpack --config webpack/client/webpack.config.production.babel.js --progress --colors -p",
+    "dev": "NODE_ENV=development node -r babel-register webpack/client/dev-server.js",
     "start": "npm run dev",
-    "server": "NODE_ENV=development webpack --config webpack/webpack.config.server.babel.js",
-    "mount": "NODE_ENV=production node server/server.js",
-    "lint": "eslint src"
+    "bundle": "npm run clean:bundle && npm run bundle:server && npm run bundle:client",
+    "bundle:server": "NODE_ENV=production webpack --config webpack/server/webpack.config.server.babel.js",
+    "bundle:client": "NODE_ENV=production webpack --config webpack/server/webpack.config.client.babel.js",
+    "mount": "NODE_ENV=production node bundle/server.js",
+    "app": "npm run bundle && npm run mount",
+    "lint": "eslint src",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
@@ -76,7 +80,8 @@
     "stylus-loader": "^3.0.1",
     "url-loader": "^0.5.8",
     "webpack-dev-middleware": "^1.5.1",
-    "webpack-hot-middleware": "^2.7.1"
+    "webpack-hot-middleware": "^2.7.1",
+    "window": "^4.1.0"
   },
   "dependencies": {
     "babel-polyfill": "^6.5.0",
@@ -102,6 +107,7 @@
     "redux": "^3.3.1",
     "redux-saga": "^0.15.3",
     "sanitize.css": "^5.0.0",
+    "source-map-support": "^0.4.15",
     "stylus": "^0.54.5",
     "superagent": "^3.3.1",
     "webpack": "^3.4.1",

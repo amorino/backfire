@@ -7,21 +7,21 @@ import ExtractTextPlugin from 'extract-text-webpack-plugin'
 import postcssFocus from 'postcss-focus'
 import rucksack from 'rucksack-css'
 import lost from 'lost'
-import base from './webpack.config.base.babel'
+import base from '../webpack.config.base.babel'
 
 module.exports = base({
   type: 'production',
   target: 'web',
   devtool: false,
   output: {
-    path: path.resolve(__dirname, '..', 'build'),
+    path: path.resolve(__dirname, '../..', 'build'),
     filename: 'js/[name].js',
     chunkFilename: 'js/[name].chunk.js',
     publicPath: '/', // Insert the production server folder
   },
   // In production, we skip all hot-reloading stuff
   entry: [
-    path.join(__dirname, '..', 'src/main.js'),
+    path.join(__dirname, '../..', 'src/main.js'),
   ],
   // We use ExtractTextPlugin so we get a seperate CSS file instead
   // of the CSS being in the JS and injected as a style tag
@@ -68,7 +68,7 @@ module.exports = base({
     new webpack.optimize.CommonsChunkPlugin('common'),
     // Minify and optimize the index.html
     new HtmlWebpackPlugin({
-      template: 'src/index.html',
+      template: '../src/index.html',
       minify: {
         removeComments: true,
         collapseWhitespace: true,

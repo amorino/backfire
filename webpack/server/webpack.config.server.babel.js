@@ -1,36 +1,30 @@
 import path from 'path'
-// import webpack from 'webpack'
-// import HtmlWebpackPlugin from 'html-webpack-plugin'
-// import ExtractTextPlugin from 'extract-text-webpack-plugin'
+import webpack from 'webpack'
 import externals from 'webpack-node-externals'
 
 // PostCSS plugins
 import postcssFocus from 'postcss-focus'
 import rucksack from 'rucksack-css'
 import lost from 'lost'
-import base from './webpack.config.base.babel'
+
+import base from '../webpack.config.base.babel'
 
 module.exports = base({
   type: 'production',
   devtool: 'cheap-module-source-map',
   target: 'node',
-  externals: [externals()], // in order to ignore all modules in node_modules folder
+  externals: externals(), // in order to ignore all modules in node_modules folder
   output: {
-    path: path.resolve(__dirname, '..', 'server'),
+    path: path.resolve(__dirname, '../..', 'bundle'),
     filename: 'server.js',
-    // chunkFilename: '[name].chunk.js',
+    chunkFilename: '[name].chunk.js',
     publicPath: '/', // Insert the production server folder
     libraryTarget: 'commonjs2',
   },
-  // In production, we skip all hot-reloading stuff
   entry: [
-    path.join(__dirname, '..', 'server/index.js'),
+    path.join(__dirname, '.', '/prod-server.js'),
   ],
-  // We use ExtractTextPlugin so we get a seperate CSS file instead
-  // of the CSS being in the JS and injected as a style tag
   cssLoaders: [{
-    loader: 'style-loader',
-  }, {
     loader: 'css-loader',
     options: {
       importLoaders: 1,
@@ -39,8 +33,6 @@ module.exports = base({
   }],
   // Load Stylus with SourceMaps
   stylusLoaders: [{
-    loader: 'style-loader',
-  }, {
     loader: 'css-loader',
     options: {
       importLoaders: 1,
@@ -66,17 +58,12 @@ module.exports = base({
     //     drop_console: true,
     //   },
     // }),
-    // Extract the CSS into a seperate file
-    // new ExtractTextPlugin({
-    //   filename: 'css/main.css',
-    //   allChunks: true,
-    // }),
     // Set the process.env to production so React includes the production
     // version of itself
-    // new webpack.DefinePlugin({
-    //   'process.env': {
-    //     NODE_ENV: JSON.stringify('production'),
-    //   },
-    // }),
+    new webpack.DefinePlugin({
+      'process.env': {
+        NODE_ENV: JSON.stringify('production'),
+      },
+    }),
   ],
 })

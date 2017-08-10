@@ -8,6 +8,7 @@ module.exports = options => ({
   entry: options.entry,
   output: options.output,
   target: options.target,
+  context: path.join(__dirname, '..', '/src/'),
   externals: options.externals || [],
   module: {
     rules: [{
@@ -110,7 +111,7 @@ module.exports = options => ({
     }),
   ]),
   resolve: {
-    extensions: ['.js', '.styl'],
+    extensions: ['.js', '.styl', '.css'],
     modules: [path.join(__dirname, '..', 'src'), 'node_modules'],
     alias: {
       modernizr$: path.resolve(__dirname, '../.modernizrrc'),

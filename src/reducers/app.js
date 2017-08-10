@@ -2,8 +2,8 @@ import { RESIZE } from 'actions/app'
 
 const initialState = {
   size: {
-    width: window.innerWidth,
-    height: window.innerHeight,
+    width: 0,
+    height: 0,
   },
 }
 
