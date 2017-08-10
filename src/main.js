@@ -2,7 +2,7 @@ import 'babel-polyfill'
 
 import React from 'react'
 import { render } from 'react-dom'
-import Framework from 'server-framework'
+import Framework from 'framework'
 import preloader from 'preloader'
 import { TweenMax } from 'gsap'  // eslint-disable-line
 
