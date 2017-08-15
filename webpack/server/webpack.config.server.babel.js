@@ -22,7 +22,7 @@ module.exports = base({
     libraryTarget: 'commonjs2',
   },
   entry: [
-    path.join(__dirname, '.', '/prod-server.js'),
+    'babel-polyfill', path.join(__dirname, '.', '/prod-server.js'),
   ],
   cssLoaders: [{
     loader: 'css-loader',

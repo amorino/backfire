@@ -7,7 +7,7 @@ import { Provider } from 'react-redux'
 import configureStore from 'store'
 import { environment } from 'config'
 import App from 'views/App'
-import ScrollTop from 'components/App/ScrollTop'
+import ScrollToTop from 'components/Utils/ScrollToTop'
 
 const debug = !(process.env.NODE_ENV === 'production')
 
@@ -23,9 +23,9 @@ export default class Root extends Component {
     return (
       <Provider store={store}>
         <ConnectedRouter history={history}>
-          <ScrollTop>
+          <ScrollToTop>
             <Route component={App} />
-          </ScrollTop>
+          </ScrollToTop>
         </ConnectedRouter>
       </Provider>
     )
