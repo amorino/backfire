@@ -88,7 +88,7 @@ class CatalogList extends Component {
             willEnter={this.willEnter}
           >
             {interpolatedStyles =>
-              <div>
+              (<div>
                 {interpolatedStyles.map((config) => {
                   return (
                     <div
@@ -99,9 +99,9 @@ class CatalogList extends Component {
                     </div>
                   )
                 })}
-              </div>
+              </div>)
             }
-            </TransitionMotion>
+          </TransitionMotion>
         }
       </div>
     )

@@ -78,6 +78,7 @@
   },
   "dependencies": {
     "babel-polyfill": "^6.5.0",
+    "chalk": "^2.1.0",
     "classnames": "^2.2.5",
     "gsap": "^1.18.2",
     "history": "^4.6.1",

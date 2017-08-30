@@ -1,5 +1,7 @@
+import path from 'path'
 import express from 'express'
 import webpack from 'webpack'
+import chalk from 'chalk'
 
 import devMiddleware from 'webpack-dev-middleware'
 import hotMiddleware from 'webpack-hot-middleware'
@@ -9,7 +11,10 @@ import config from './webpack.config.development.babel'
 
 const app = express()
 const compiler = webpack(config)
-const port = 7777
+const PORT = 3000
+const IP_ADRESS = 'localhost'
+const divider = chalk.gray('\n-----------------------------------')
+
 
 app.use(historyApi({ verbose: false }))
 
@@ -24,10 +29,10 @@ app.use(devMiddleware(compiler, {
 
 app.use(hotMiddleware(compiler))
 
-app.listen(port, (err) => {
-  if (err) {
-    console.log(err)
-    return
-  }
-  console.warn(`Listening at http://localhost:${port}`)
-})
+app.use('/', express.static(path.resolve(__dirname, '..', 'static')))
+
+app.listen(PORT, () => console.log(`
+  ${chalk.bold('Access URLs:')}${divider}
+  Localhost: ${chalk.magenta(`http://${IP_ADRESS}:${PORT}`)}${divider}
+  ${chalk.blue(`Press ${chalk.italic('CTRL-C')} to stop`)}
+`))
