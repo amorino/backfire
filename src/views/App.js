@@ -5,9 +5,6 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import Menu from 'components/App/Menu'
 import { resize } from 'actions/app'
-import { RouteTransition } from 'react-router-transition'
-import { spring } from 'react-motion'
-import { quick } from 'animations/motion'
 import { addEvent, removeEvent } from 'utils/events'
 import { getAllItems } from 'actions/catalog'
 import { Route, Switch } from 'react-router-dom'
@@ -17,21 +14,6 @@ import About from 'views/About'
 import Catalog from 'views/Catalog'
 import CatalogItem from 'views/CatalogItem'
 import NotFound from 'views/NotFound'
-
-const motion = {
-  atEnter: {
-    opacity: 0,
-    translate: -200,
-  },
-  atLeave: {
-    opacity: spring(0, quick),
-    translate: spring(200, quick),
-  },
-  atActive: {
-    opacity: spring(1, quick),
-    translate: spring(0, quick),
-  },
-}
 
 class App extends Component {
   static propTypes = {
@@ -58,19 +40,7 @@ class App extends Component {
     return (
       <div id="app">
         <Menu current={location.pathname} />
-        <RouteTransition
-          className="app_router"
-          runOnMount={true}
-          component={false}
-          pathname={location.pathname}
-          {...motion}
-          mapStyles={style => ({
-            opacity: `${style.opacity}`,
-            WebkitTransform: `translate3d(0, ${style.translate}px, 0)`,
-            MsTranform: `translate3d(0, ${style.translate}px, 0)`,
-            transform: `translate3d(0, ${style.translate}px, 0)`,
-          })}
-        >
+        <div className="app_router">
           <div className="app__wrapper">
             <Switch key={location.key} location={location}>
               <Route exact path="/" component={Home} />
@@ -80,7 +50,7 @@ class App extends Component {
               <Route component={NotFound} />
             </Switch>
           </div>
-        </RouteTransition>
+        </div>
       </div>
     )
   }

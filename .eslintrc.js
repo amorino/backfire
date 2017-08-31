@@ -2,15 +2,17 @@ module.exports = {
   root: true,
   parser: 'babel-eslint',
   extends: 'airbnb',
+  plugins: [
+    'redux-saga',
+    'react',
+    'jsx-a11y',
+  ],
   parserOptions: {
     ecmaVersion: 6,
     sourceType: 'module',
     ecmaFeatures: {
-			experimentalObjectRestSpread: true,
-			impliedStrict: true,
-      globalReturn: false,
-      jsx: true
-		}
+      jsx: true,
+    },
   },
   env: {
     es6: true,
@@ -58,10 +60,10 @@ module.exports = {
     'no-unused-expressions': ['off'],
     'import/no-named-default': ['off']
   },
-  'settings': {
+  settings: {
     'import/resolver': {
-      'webpack': {
-        'config': './webpack/webpack.config.test.babel.js'
+      webpack: {
+        config: './webpack/webpack.config.test.babel.js'
       }
     }
   }
