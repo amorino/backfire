@@ -7,6 +7,7 @@ module.exports = options => ({
   devtool: options.devtool,
   entry: options.entry,
   output: options.output,
+  devServer: options.devServer,
   module: {
     rules: [{
       test: /\.js$/, // Transform all .js files required somewhere with Babel

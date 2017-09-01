@@ -8,6 +8,9 @@ import rucksack from 'rucksack-css'
 import lost from 'lost'
 import base from './webpack.config.base.babel'
 
+const PORT = 3000
+const IP_ADRESS = 'localhost'
+
 module.exports = base({
   type: 'development',
   devtool: 'cheap-module-source-map',
@@ -20,10 +23,21 @@ module.exports = base({
   },
   // Add hot reloading in development
   entry: [
+    'babel-polyfill',
     'eventsource-polyfill', // necessary for hot reloading with IE
-    'webpack-hot-middleware/client',
+    'react-hot-loader/patch',
+    `webpack-dev-server/client?http://${IP_ADRESS}:${PORT}`,
+    'webpack/hot/only-dev-server',
     path.join(__dirname, '..', 'src/main.js'), // Start with js/app.js
   ],
+  devServer: {
+    hot: true,
+    noInfo: true,
+    contentBase: path.resolve(__dirname, '..', 'build'),
+    publicPath: '/',
+    port: PORT,
+    historyApiFallback: true,
+  },
   // Load the CSS in a style tag in development
   cssLoaders: [{
     loader: 'style-loader',
@@ -59,6 +73,7 @@ module.exports = base({
   // Add hot reloading
   plugins: [
     new webpack.HotModuleReplacementPlugin(), // Tell webpack we want hot reloading
+    new webpack.NamedModulesPlugin(),
     new webpack.NoEmitOnErrorsPlugin(),
     new HtmlWebpackPlugin({
       template: 'src/index.html',

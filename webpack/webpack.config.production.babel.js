@@ -20,8 +20,10 @@ module.exports = base({
   },
   // In production, we skip all hot-reloading stuff
   entry: [
+    'babel-polyfill',
     path.join(__dirname, '..', 'src/main.js'),
   ],
+  devServer: false,
   // We use ExtractTextPlugin so we get a seperate CSS file instead
   // of the CSS being in the JS and injected as a style tag
   cssLoaders: ExtractTextPlugin.extract({

@@ -1,5 +1,5 @@
 import { createStore, applyMiddleware, compose } from 'redux'
-import { routerMiddleware } from 'react-router-redux'
+// import { routerMiddleware } from 'react-router-redux'
 import createSagaMiddleware from 'redux-saga'
 import sagas from 'sagas'
 import createReducer from 'reducers'
@@ -10,7 +10,7 @@ const devtools = !(process.env.NODE_ENV === 'production') ? window.devToolsExten
 
 export default function configureStore(history, initialState = {}) {
   const enhancers = [
-    applyMiddleware(routerMiddleware(history), sagaMiddleware),
+    applyMiddleware(sagaMiddleware),
     devtools(),
   ]
 

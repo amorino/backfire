@@ -1,33 +1,24 @@
 import React, { Component } from 'react'
-import createHistory from 'history/createBrowserHistory'
-import ReactGA from 'react-ga'
+import PropTypes from 'prop-types'
 import { ConnectedRouter } from 'react-router-redux'
 import { Route } from 'react-router-dom'
-import { Provider } from 'react-redux'
-import configureStore from 'store'
-import { environment } from 'config'
+
 import App from 'views/App'
 import ScrollTop from 'components/App/ScrollTop'
 
-const debug = !(process.env.NODE_ENV === 'production')
+export default class Framework extends Component {
+  static propTypes = {
+    history: PropTypes.object.isRequired,
+  }
 
-ReactGA.initialize(environment.properties.ga, { debug, titleCase: false })
-
-const history = createHistory()
-const store = configureStore(history)
-
-history.listen(location => ReactGA.pageview(location.pathname))
-
-export default class Root extends Component {
   render() {
+    const { history } = this.props
     return (
-      <Provider store={store}>
-        <ConnectedRouter history={history}>
-          <ScrollTop>
-            <Route component={App} />
-          </ScrollTop>
-        </ConnectedRouter>
-      </Provider>
+      <ConnectedRouter history={history}>
+        <ScrollTop>
+          <Route component={App} />
+        </ScrollTop>
+      </ConnectedRouter>
     )
   }
 }
