@@ -1,5 +1,3 @@
-import 'styles/views/Home'
-
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import Footer from 'components/App/Footer'

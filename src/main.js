@@ -4,7 +4,7 @@ import { TweenMax } from 'gsap'  // eslint-disable-line
 import React from 'react'
 import { render } from 'react-dom'
 import { AppContainer } from 'react-hot-loader'
-import Framework from 'Framework'
+import Framework from 'views/Framework'
 import ReactGA from 'react-ga'
 import { Provider } from 'react-redux'
 import configureStore from 'store'
@@ -12,7 +12,7 @@ import createHistory from 'history/createBrowserHistory'
 import { config, environment } from 'config'
 
 import 'sanitize.css/sanitize.css'
-import 'styles/base'
+import 'styles/main'
 
 console.info(Modernizr)
 window.Modernizr = Modernizr
@@ -55,8 +55,8 @@ if (config.assets) {
 }
 
 if (module.hot) {
-  module.hot.accept('./Framework', () => {
-    const Next = require('./Framework').default // eslint-disable-line global-require
+  module.hot.accept('./views/Framework', () => {
+    const Next = require('./views/Framework').default // eslint-disable-line global-require
     compose(Next)
   })
 }

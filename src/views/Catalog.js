@@ -1,5 +1,3 @@
-import 'styles/views/Catalog'
-
 import React, { Component } from 'react'
 import CatalogList from 'components/Catalog/CatalogList'
 import FilterLink from 'components/Catalog/Link'

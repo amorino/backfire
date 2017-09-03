@@ -1,5 +1,4 @@
 /* eslint-disable */
-
 import { is, asEffect } from 'redux-saga/utils'
 
 const PENDING = 'PENDING'

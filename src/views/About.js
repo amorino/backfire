@@ -1,5 +1,3 @@
-import 'styles/views/About'
-
 import React, { Component } from 'react'
 import Footer from 'components/App/Footer'
 import { connect } from 'react-redux'

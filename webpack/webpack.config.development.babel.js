@@ -9,7 +9,7 @@ import lost from 'lost'
 import base from './webpack.config.base.babel'
 
 const PORT = 3000
-const IP_ADDRESS = 'localhost'
+// const IP_ADDRESS = 'localhost'
 
 module.exports = base({
   type: 'development',
@@ -26,7 +26,7 @@ module.exports = base({
     'babel-polyfill',
     'eventsource-polyfill', // necessary for hot reloading with IE
     'react-hot-loader/patch',
-    'webpack-hot-middleware/client',
+    'webpack-hot-middleware/client?reload=true',
     // `webpack-dev-server/client?http://${IP_ADDRESS}:${PORT}`,
     // 'webpack/hot/only-dev-server',
     path.join(__dirname, '..', 'src/main.js'), // Start with js/app.js
