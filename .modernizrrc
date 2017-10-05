@@ -3,5 +3,5 @@
   "options": [
     "setClasses"
   ],
-  "feature-detects": ["eventlistener"]
+  "feature-detects": ["eventlistener", "pointerevents"]
 }

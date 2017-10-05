@@ -1,23 +1,25 @@
 import Modernizr from 'modernizr'
 import preloader from 'preloader'
+import 'sanitize.css/sanitize.css'
 import { TweenMax } from 'gsap'  // eslint-disable-line
 import React from 'react'
 import { render } from 'react-dom'
 import { AppContainer } from 'react-hot-loader'
-import Framework from 'views/Framework'
 import ReactGA from 'react-ga'
 import { Provider } from 'react-redux'
-import configureStore from 'store'
 import createHistory from 'history/createBrowserHistory'
-import { config, environment } from 'config'
 
-import 'sanitize.css/sanitize.css'
-import 'styles/main'
+import configureStore from './store'
+import Framework from './containers/Framework'
+import './styles/main'
 
 console.info(Modernizr)
-window.Modernizr = Modernizr
+
+const GOOGLE_ANALYTICS_CODE = process.env.GOOGLE_ANALYTICS_CODE
+const LOAD_ASSETS = process.env.LOAD_ASSETS
+
 const debug = !(process.env.NODE_ENV === 'production')
-ReactGA.initialize(environment.properties.ga, { debug, titleCase: false })
+ReactGA.initialize(GOOGLE_ANALYTICS_CODE, { debug, titleCase: false })
 
 const history = createHistory()
 history.listen(location => ReactGA.pageview(location.pathname))
@@ -33,30 +35,27 @@ const compose = Component => render(
   </AppContainer>, root,
 )
 
-const ready = (assets = false) => {
-  if (assets) console.info('Assets Loaded')
+const ready = () => {
   TweenMax.to('#root__loader', 1.3, {
     autoAlpha: 0,
-    delay: 1.75,
+    delay: LOAD_ASSETS ? 1.75 : 0,
     ease: Quint.easeOut,
     onComplete: () => compose(Framework),
   })
 }
 
-if (config.assets) {
-  console.info('Load Assets')
+const assetsLoader = new Promise((resolve) => {
   const preload = preloader({ xhrImages: true, loadFullAudio: true, loadFullVideo: true })
-  preload.on('progress', progress => console.log(progress))
-  preload.on('complete', () => ready(true))
+  preload.on('progress', progress => console.log('assets', progress))
+  preload.on('complete', resolve)
   preload.load()
-} else {
-  console.warn('Do Not Load Assets')
-  ready()
-}
+})
+
+LOAD_ASSETS ? Promise.all([assetsLoader]).then(ready) : ready()
 
 if (module.hot) {
-  module.hot.accept('./views/Framework', () => {
-    const Next = require('./views/Framework').default // eslint-disable-line global-require
+  module.hot.accept('./containers/Framework', () => {
+    const Next = require('./containers/Framework').default // eslint-disable-line global-require
     compose(Next)
   })
 }

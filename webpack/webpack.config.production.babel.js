@@ -2,11 +2,13 @@ import path from 'path'
 import webpack from 'webpack'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
 import ExtractTextPlugin from 'extract-text-webpack-plugin'
+import DotEnv from 'dotenv-webpack'
 
 // PostCSS plugins
 import postcssFocus from 'postcss-focus'
 import rucksack from 'rucksack-css'
 import lost from 'lost'
+import hoverPrfx from 'postcss-hover-prefix'
 import base from './webpack.config.base.babel'
 
 module.exports = base({
@@ -14,8 +16,8 @@ module.exports = base({
   devtool: false,
   output: {
     path: path.resolve(__dirname, '..', 'build'),
-    filename: 'js/[name].js',
-    chunkFilename: 'js/[name].chunk.js',
+    filename: 'js/[name].js?[hash]',
+    chunkFilename: 'js/[name].chunk.js?[hash]',
     publicPath: '/', // Insert the production server folder
   },
   // In production, we skip all hot-reloading stuff
@@ -53,6 +55,7 @@ module.exports = base({
   stylusPlugins: [
     lost(),
     postcssFocus(), // Add a :focus to every :hover
+    hoverPrfx('pointerevents'),
     rucksack({
       autoprefixer: true,
       fallbacks: true,
@@ -63,8 +66,10 @@ module.exports = base({
     new webpack.optimize.UglifyJsPlugin({
       compress: {
         drop_console: true,
+        warnings: false,
       },
     }),
+
     // Minify and optimize the index.html
     new HtmlWebpackPlugin({
       template: 'src/index.html',
@@ -84,7 +89,7 @@ module.exports = base({
     }),
     // Extract the CSS into a seperate file
     new ExtractTextPlugin({
-      filename: 'css/main.css',
+      filename: 'css/main.css?[hash]',
       allChunks: true,
     }),
     // Set the process.env to production so React includes the production
@@ -93,6 +98,9 @@ module.exports = base({
       'process.env': {
         NODE_ENV: JSON.stringify('production'),
       },
+    }),
+    new DotEnv({
+      path: path.resolve(__dirname, '..', '.env.prod'),
     }),
   ],
 })

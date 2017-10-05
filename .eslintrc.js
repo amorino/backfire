@@ -35,10 +35,11 @@ module.exports = {
     'Elastic': true,
     'Linear': true,
     'Quint': true,
+    'Circ': true,
     'FB': true,
     'twttr': true,
     'gapi': true,
-    'requestAnimationFrame': true
+    'requestAnimationFrame': true,
   },
   'rules': {
     'camelcase': ['warn'],
@@ -58,7 +59,9 @@ module.exports = {
     'no-tabs': ['off'],
     'no-return-assign': ['off'],
     'no-unused-expressions': ['off'],
-    'import/no-named-default': ['off']
+    'import/no-named-default': ['off'],
+    'no-underscore-dangle': ['off'],
+    "jsx-a11y/media-has-caption": ['off']
   },
   settings: {
     'import/resolver': {

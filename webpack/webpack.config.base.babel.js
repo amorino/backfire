@@ -2,12 +2,12 @@ import path from 'path'
 import webpack from 'webpack'
 import postcss from 'poststylus'
 import rupture from 'rupture'
+import FaviconsWebpackPlugin from 'favicons-webpack-plugin'
 
 module.exports = options => ({
   devtool: options.devtool,
   entry: options.entry,
   output: options.output,
-  devServer: options.devServer || {},
   module: {
     rules: [{
       test: /\.js$/, // Transform all .js files required somewhere with Babel
@@ -30,10 +30,10 @@ module.exports = options => ({
       test: /\.styl$/,
       use: options.stylusLoaders,
     }, {
-      test: /\.jpe?g$|\.gif$|\.png$/i,
+      test: /\.jpe?g$|\.gif$|\.png$|\.mp4$/i,
       loader: 'file-loader',
       options: {
-        name: 'assets/[sha512:hash:base64:7].[ext]',
+        name: 'assets/[name].[ext]?[sha512:hash:base64:7]',
       },
     }, {
       test: /\.html$/,
@@ -44,7 +44,7 @@ module.exports = options => ({
       options: {
         limit: '32000',
         mimetype: 'image/svg+xml',
-        name: 'assets/[sha512:hash:base64:7].[ext]',
+        name: 'assets/[name].[ext]?[sha512:hash:base64:7]',
       },
     }, {
       test: /\.woff$/,
@@ -52,7 +52,7 @@ module.exports = options => ({
       options: {
         limit: '32000',
         mimetype: 'application/font-woff',
-        name: 'assets/[sha512:hash:base64:7].[ext]',
+        name: 'assets/[name].[ext]?[sha512:hash:base64:7]',
       },
     }, {
       test: /\.woff2$/,
@@ -60,7 +60,7 @@ module.exports = options => ({
       options: {
         limit: '32000',
         mimetype: 'application/font-woff2',
-        name: 'assets/[sha512:hash:base64:7].[ext]',
+        name: 'assets/[name].[ext]?[sha512:hash:base64:7]',
       },
     }, {
       test: /\.[ot]tf$/,
@@ -68,7 +68,7 @@ module.exports = options => ({
       options: {
         limit: '32000',
         mimetype: 'application/octet-stream',
-        name: 'assets/[sha512:hash:base64:7].[ext]',
+        name: 'assets/[name].[ext]?[sha512:hash:base64:7]',
       },
     }, {
       test: /\.eot$/,
@@ -76,27 +76,41 @@ module.exports = options => ({
       options: {
         limit: '32000',
         mimetype: 'application/vnd.ms-fontobject',
-        name: 'assets/[sha512:hash:base64:7].[ext]',
+        name: 'assets/[name].[ext]?[sha512:hash:base64:7]',
       },
     }, {
       test: /\.json$/,
       loader: 'file-loader',
       options: {
-        name: 'assets/[sha512:hash:base64:7].[ext]',
+        name: 'assets/[name].[ext]?[sha512:hash:base64:7]',
       },
-      exclude: path.join(__dirname, '..', '/node_modules/'),
-    }, {
-      test: /\.(glsl|frag|vert)$/,
-      loader: 'raw-loader',
-      exclude: path.join(__dirname, '..', '/node_modules/'),
-    }, {
-      test: /\.(glsl|frag|vert)$/,
-      loader: 'glslify-loader',
       exclude: path.join(__dirname, '..', '/node_modules/'),
     }],
   },
   plugins: options.plugins.concat([
     new webpack.optimize.CommonsChunkPlugin('common'),
+    new FaviconsWebpackPlugin({
+      logo: 'src/favicon.png',
+      prefix: 'icons/',
+      inject: true,
+      // favicon background color (see https://github.com/haydenbleasel/favicons#usage)
+      background: '#ffffff',
+      // favicon app title (see https://github.com/haydenbleasel/favicons#usage)
+      title: 'Backfire',
+      // which icons should be generated (see https://github.com/haydenbleasel/favicons#usage)
+      icons: {
+        android: true,
+        appleIcon: true,
+        appleStartup: true,
+        coast: false,
+        favicons: true,
+        firefox: true,
+        opengraph: false,
+        twitter: false,
+        yandex: false,
+        windows: false,
+      },
+    }),
     new webpack.LoaderOptionsPlugin({
       test: /\.styl$/,
       stylus: {
