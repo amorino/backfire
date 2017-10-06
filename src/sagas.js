@@ -1,5 +1,5 @@
 import { fork } from 'redux-saga/effects'
-import { watchGetCatalog } from './containers/Catalog/sagas'
+import { watchGetCatalog } from './containers/Catalog/saga'
 
 export default function* root() {
   yield [
