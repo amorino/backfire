@@ -94,13 +94,13 @@ module.exports = base({
     }),
     // Set the process.env to production so React includes the production
     // version of itself
+    new DotEnv({
+      path: path.resolve(__dirname, '..', '.env.prod'),
+    }),
     new webpack.DefinePlugin({
       'process.env': {
         NODE_ENV: JSON.stringify('production'),
       },
-    }),
-    new DotEnv({
-      path: path.resolve(__dirname, '..', '.env.prod'),
     }),
   ],
 })

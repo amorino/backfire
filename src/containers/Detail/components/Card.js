@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { getItem } from '../../Catalog/reducer'
+import { getItem } from '../../Catalog/selectors'
 import Image from '../../../components/Image'
 
 class Detail extends Component {
@@ -46,7 +46,7 @@ class Detail extends Component {
 
 const mapStateToProps = (state, props) => ({
   fetching: state.catalog.fetching,
-  item: getItem(state.catalog, props.id),
+  item: getItem(state, props.id),
 })
 
 export default connect(mapStateToProps)(Detail)

@@ -2,6 +2,9 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { Route, Switch } from 'react-router-dom'
+import { TransitionGroup, Transition } from 'react-transition-group'
+import { TweenMax } from 'gsap'
+
 import { addEvent, removeEvent } from '../../utils/events'
 import { resize } from './actions'
 import { getAllItems } from '../Catalog/actions'
@@ -37,19 +40,50 @@ class App extends Component {
   render() {
     const { location } = this.props
     return (
-      <div id="app">
+      <div id="App">
         <Menu current={location.pathname} />
-        <div className="app_router">
-          <div className="app__wrapper">
-            <Switch key={location.key} location={location}>
+        <TransitionGroup className="AppRouter">
+          <Transition
+            key={location.pathname}
+            mountOnEnter
+            unmountOnExit
+            addEndListener={(node, done) => {
+              TweenMax.killTweensOf(node)
+              if (node === this.enterNode) {
+                TweenMax.fromTo(node, 0.6, {
+                  x: 100,
+                  autoAlpha: 0,
+                  position: 'absolute',
+                }, {
+                  autoAlpha: 1,
+                  x: 0,
+                  onComplete: () => {
+                    TweenMax.set(node, { clearProps: 'position' })
+                    done()
+                  },
+                })
+              } else {
+                TweenMax.to(node, 0.6, {
+                  opacity: 0,
+                  position: 'absolute',
+                  x: -100,
+                  onComplete: done,
+                })
+              }
+            }}
+            onEnter={(node) => {
+              this.enterNode = node
+            }}
+          >
+            <Switch location={location}>
               <Route exact path="/" component={Home} />
-              <Route path="/about" component={About} />
-              <Route path="/catalog/:id" component={Detail} />
-              <Route path="/catalog" component={Catalog} />
+              <Route exact path="/about" component={About} />
+              <Route exact path="/catalog/:id" component={Detail} />
+              <Route exact path="/catalog" component={Catalog} />
               <Route component={NotFound} />
             </Switch>
-          </div>
-        </div>
+          </Transition>
+        </TransitionGroup>
       </div>
     )
   }

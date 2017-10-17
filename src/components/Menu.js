@@ -23,7 +23,7 @@ class Menu extends Component {
     const { current } = this.props
     const items = menu.map(item => <MenuItem {...item} key={item.text} route={current} />)
     return (
-      <div className="menu">
+      <div className="Menu">
         <ul>{items}</ul>
       </div>
     )

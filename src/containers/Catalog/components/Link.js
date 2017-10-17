@@ -3,16 +3,16 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { filterItem } from '../actions'
 
-const FilterLink = ({ filterFunc, filter, active, children }) => {
+const FilterLink = ({ filterItemFunc, filter, active, children }) => {
   if (active) {
-    return <span>{children}</span>
+    return <span className="button">{children}</span>
   }
 
   return (
     <button
       onClick={(e) => {
         e.preventDefault()
-        filterFunc(filter)
+        filterItemFunc(filter)
       }}
     >
       {children}
@@ -29,7 +29,7 @@ FilterLink.propTypes = {
   active: PropTypes.bool.isRequired,
   children: PropTypes.node.isRequired,
   filter: PropTypes.string.isRequired,
-  filterFunc: PropTypes.func.isRequired,
+  filterItemFunc: PropTypes.func.isRequired,
 }
 
-export default connect(mapStateToProps, { filterFunc: filterItem })(FilterLink)
+export default connect(mapStateToProps, { filterItemFunc: filterItem })(FilterLink)

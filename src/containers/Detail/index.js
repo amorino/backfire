@@ -12,7 +12,7 @@ class Detail extends Component {
   render() {
     const { id } = this.props
     return (
-      <div className="app__container">
+      <div className="AppContainer">
         <h2>Detail</h2>
         <Card id={id} />
         <Footer />

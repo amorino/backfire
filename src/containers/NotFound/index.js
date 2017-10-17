@@ -10,7 +10,7 @@ class NotFound extends Component {
 
   render() {
     return (
-      <div className="app__wrapper">
+      <div className="AppContainer">
         <h2>Not Found</h2>
         <Footer />
       </div>

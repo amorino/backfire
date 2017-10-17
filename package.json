@@ -106,9 +106,11 @@
     "react-router-dom": "^4.2.2",
     "react-router-redux": "5.0.0-alpha.6",
     "react-share": "^1.15.1",
+    "react-transition-group": "^2.2.1",
     "react-transition-group-plus": "^0.5.2",
     "redux": "^3.3.1",
     "redux-saga": "^0.15.3",
+    "reselect": "^3.0.1",
     "sanitize.css": "^5.0.0",
     "superagent": "^3.3.1"
   }

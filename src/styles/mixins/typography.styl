@@ -1,6 +1,22 @@
-size($width, $height = $width)
-  width: $width
-  height: $height
+word-wrap()
+  word-wrap: arguments
+  -ms-word-wrap: arguments
+
+text-justify()
+  text-justify: arguments
+  -ms-text-justify: arguments
+
+hyphens()
+  -webkit-hyphens: arguments
+  -moz-hyphens: arguments
+  -ms-hyphens: arguments
+  hyphens: arguments
+
+ellipsis(no-wrap = true)
+  if no-wrap
+    white-space: nowrap
+  overflow: hidden
+  text-overflow: ellipsis
 
 font-smoothing() {
   if current-property {
@@ -13,20 +29,5 @@ font-smoothing() {
     {current-property}: arguments
   } else {
     error('font-smoothing() must be used within a property');
-  }
-}
-
-center($type = both){
-  position: absolute
-  if ($type == vertical){
-    top: 50%
-    transform: translateY(-50%)
-  } else if ($type == horizontal) {
-    left: 50%
-    transform: translateX(-50%)
-  } else {
-    top: 50%
-    left: 50%
-    transform: translate(-50%, -50%)
   }
 }

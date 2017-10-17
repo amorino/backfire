@@ -1,0 +1,18 @@
+@import '../vars'
+
+button, .button
+  background: $black
+  color $white
+  border: none
+  padding: 7px 20px
+  cursor: pointer
+  transition background 0.5s ease-in-out-circ
+  font-family: inherit
+  &:first-of-type
+    margin-left 0
+  &:focus
+    background: rgba($black, 0.8)
+  &:hover
+    background: rgba($black, 0.9)
+a
+  text-decoration: none

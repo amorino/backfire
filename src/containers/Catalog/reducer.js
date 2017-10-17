@@ -34,6 +34,3 @@ export const catalog = (state = init, { type, payload }) => {
       return state
   }
 }
-
-export const getItem = (state, id) => state.items[id]
-export const getItems = state => state.ids.map(id => getItem(state, id))

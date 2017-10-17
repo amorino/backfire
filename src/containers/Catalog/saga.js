@@ -1,5 +1,5 @@
 import { put, call } from 'redux-saga/effects'
-import { takeEvery } from 'redux-saga'
+import { takeLatest } from 'redux-saga'
 import catalog from 'assets/json/catalog.json'
 
 import request from '../../utils/request'
@@ -16,5 +16,5 @@ export function* getCatalog() {
 }
 
 export function* watchGetCatalog() {
-  yield* takeEvery(GET_ALL_ITEMS, getCatalog)
+  yield* takeLatest(GET_ALL_ITEMS, getCatalog)
 }

@@ -5,7 +5,7 @@ import Footer from '../../components/Footer'
 class About extends Component {
   render() {
     return (
-      <div className="app__container">
+      <div className="AppContainer">
         <h2>About</h2>
         <p>This is a static page.</p>
         <Footer />

@@ -1,13 +1,13 @@
+import React from 'react'
 import Modernizr from 'modernizr'
 import preloader from 'preloader'
-import 'sanitize.css/sanitize.css'
-import { TweenMax } from 'gsap'  // eslint-disable-line
-import React from 'react'
+import { TweenMax, Quint } from 'gsap'
 import { render } from 'react-dom'
 import { AppContainer } from 'react-hot-loader'
 import ReactGA from 'react-ga'
 import { Provider } from 'react-redux'
 import createHistory from 'history/createBrowserHistory'
+import 'sanitize.css/sanitize.css'
 
 import configureStore from './store'
 import Framework from './containers/Framework'
@@ -25,7 +25,7 @@ const history = createHistory()
 history.listen(location => ReactGA.pageview(location.pathname))
 const store = configureStore(history)
 
-const root = document.getElementById('root')
+const root = document.getElementById('Root')
 
 const compose = Component => render(
   <AppContainer>
@@ -36,7 +36,7 @@ const compose = Component => render(
 )
 
 const ready = () => {
-  TweenMax.to('#root__loader', 1.3, {
+  TweenMax.to('#RootLoader', 1.3, {
     autoAlpha: 0,
     delay: LOAD_ASSETS ? 1.75 : 0,
     ease: Quint.easeOut,

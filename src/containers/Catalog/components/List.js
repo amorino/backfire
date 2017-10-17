@@ -3,23 +3,9 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { TransitionMotion, spring } from 'react-motion'
-import { getItems } from '../reducer'
-
-const getFilteredItems = (catalog, filter) => {
-  switch (filter) {
-    case 'all':
-      return catalog
-    case 'art':
-      return catalog.filter(t => t.type === 'art')
-    case 'music':
-      return catalog.filter(t => t.type === 'music')
-    default:
-      return catalog
-  }
-}
+import { getFilteredCatalog } from '../selectors'
 
 class CatalogList extends Component {
-
   static propTypes = {
     fetching: PropTypes.bool.isRequired,
     catalog: PropTypes.arrayOf(PropTypes.shape({
@@ -45,26 +31,22 @@ class CatalogList extends Component {
 
   getStyles = () => {
     const { catalog } = this.props
-    return catalog.map((item) => {
-      return {
-        data: item,
-        key: item.id.toString(),
-        style: {
-          width: spring(200),
-          height: spring(200),
-          opacity: spring(1),
-        },
-      }
-    })
+    return catalog.map(item => ({
+      data: item,
+      key: item.id.toString(),
+      style: {
+        width: spring(200),
+        height: spring(200),
+        opacity: spring(1),
+      },
+    }))
   }
 
-  willEnter = () => {
-    return {
-      width: 0,
-      height: 0,
-      opacity: 1,
-    }
-  }
+  willEnter = () => ({
+    width: 0,
+    height: 0,
+    opacity: 1,
+  })
 
   willLeave = () => {
     return {
@@ -78,7 +60,7 @@ class CatalogList extends Component {
     const { fetching } = this.props
 
     return (
-      <div className="list__component">
+      <div className="ListComponent">
         {fetching && <h3>Loading...</h3>}
         {!fetching &&
           <TransitionMotion
@@ -110,7 +92,7 @@ class CatalogList extends Component {
 
 
 const mapStateToProps = state => ({
-  catalog: getFilteredItems(getItems(state.catalog), state.filter),
+  catalog: getFilteredCatalog(state),
   fetching: state.catalog.fetching,
 })
 
