@@ -1,12 +1,93 @@
 @import '../vars'
 
+@import '../vars'
+
+$bar-width = 27px
+$bar-height = 2px
+$bar-spacing = 10px
+
+$ease = ease-out-circ
+
 .Menu
-  lost-center: $center
-  ul
-    margin: 0
-    padding: 0
-  li
-    display: inline-block
-    margin-left: 1em
-    &:first-of-type
-      margin-left: 0
+  &-Mobile
+    &_Sidebar
+      position: fixed
+      top 0
+      left 0
+      size 100%
+      background: $black
+      z-index: 99
+      color: $white
+      padding: $bar-width + 20px 40px
+      .Link
+        margin 20px 0
+        button
+          margin: 0
+          text-transform: uppercase
+          color $white
+    &_Trigger
+      position: fixed
+      top 0
+      right 0
+      size $bar-width + 18px
+      z-index: 100
+      background: $black
+      &_Icon
+        position: absolute 0
+        margin: auto
+        width: $bar-width
+        height: $bar-height + $bar-spacing*2
+        cursor: pointer
+        &_Bar
+            position: relative
+            background: $white
+            transition: all 0ms 300ms, background 1.33s ease-out-circ
+            width: $bar-width
+            height: $bar-height
+            &.Animate
+                background: $black
+                &:after
+                    top: 0
+                    transform: rotate(45deg)
+                    transition: top 300ms $ease, transform 300ms 300ms $ease, background 0.3s $ease
+                    background: $white
+                &:before
+                    bottom: 0
+                    transform: rotate(-45deg)
+                    transition: bottom 300ms $ease, transform 300ms 300ms $ease, background 0.3s $ease
+                    background: $white
+            &:after,
+            &:before
+                width: $bar-width
+                height: $bar-height
+                background: $white
+                left: 0
+                content: ""
+                position: absolute
+            &:before
+                bottom: $bar-spacing
+                transition: bottom 300ms 300ms $ease, transform 300ms $ease, background 1.33s ease-out-circ
+            &:after
+                top: $bar-spacing
+                transition: top 300ms 300ms $ease, transform 300ms $ease, background 1.33s ease-out-circ
+  &-Desktop
+    lost-center $center
+    z-index: 100
+    position: relative
+    &_Logo
+      width: 160px
+      position: relative
+      margin: 0 30px
+      img
+        position: absolute
+        top 10px
+        width 100%
+    &_Container
+      .Link
+        transition background 0.5s ease-out-quad
+        background: $black
+        padding: 15px 10px
+        color $white
+        margin-right: 15px
+        &:hover, &.Active
+          background: $grey

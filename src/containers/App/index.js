@@ -3,13 +3,17 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { Route, Switch } from 'react-router-dom'
 import { TransitionGroup, Transition } from 'react-transition-group'
+import { push } from 'react-router-redux'
+import MediaQuery from 'react-responsive'
 import { TweenMax } from 'gsap'
 
 import { addEvent, removeEvent } from '../../utils/events'
 import { resize } from './actions'
 import { getAllItems } from '../Catalog/actions'
 
-import Menu from '../../components/Menu'
+import routes from '../../routes'
+import MenuDesktop from './components/MenuDesktop'
+import MenuMobile from './components/MenuMobile'
 
 import Home from '../Home'
 import About from '../About'
@@ -22,6 +26,7 @@ class App extends Component {
     location: PropTypes.object.isRequired,
     resize: PropTypes.func.isRequired,
     getAllItems: PropTypes.func.isRequired,
+    dipatchPush: PropTypes.func.isRequired,
   }
 
   componentDidMount() {
@@ -38,10 +43,23 @@ class App extends Component {
   }
 
   render() {
-    const { location } = this.props
+    const { location, dipatchPush } = this.props
     return (
       <div id="App">
-        <Menu current={location.pathname} />
+        <MediaQuery minWidth={560}>
+          <MenuDesktop
+            routes={routes}
+            current={location.pathname}
+            push={dipatchPush}
+          />
+        </MediaQuery>
+        <MediaQuery maxWidth={560}>
+          <MenuMobile
+            routes={routes}
+            current={location.pathname}
+            push={dipatchPush}
+          />
+        </MediaQuery>
         <TransitionGroup className="AppRouter">
           <Transition
             key={location.pathname}
@@ -95,4 +113,4 @@ const mapStateToProps = state => ({
   location: state.routing.location,
 })
 
-export default connect(mapStateToProps, { resize, getAllItems })(App)
+export default connect(mapStateToProps, { resize, getAllItems, dipatchPush: push })(App)

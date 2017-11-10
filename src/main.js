@@ -1,7 +1,7 @@
 import React from 'react'
 import Modernizr from 'modernizr'
 import preloader from 'preloader'
-import { TweenMax, Quint } from 'gsap'
+import { TweenMax, Quint, Linear } from 'gsap'
 import { render } from 'react-dom'
 import { AppContainer } from 'react-hot-loader'
 import ReactGA from 'react-ga'
@@ -12,6 +12,7 @@ import 'sanitize.css/sanitize.css'
 import configureStore from './store'
 import Framework from './containers/Framework'
 import './styles/main'
+import catalog from './assets/json/catalog.json'
 
 console.info(Modernizr)
 
@@ -40,14 +41,28 @@ const ready = () => {
     autoAlpha: 0,
     delay: LOAD_ASSETS ? 1.75 : 0,
     ease: Quint.easeOut,
-    onComplete: () => compose(Framework),
+    onComplete: () => {
+      const loader = document.getElementById('RootLoader')
+      loader.parentNode.removeChild(loader)
+      compose(Framework)
+    },
   })
 }
 
 const assetsLoader = new Promise((resolve) => {
   const preload = preloader({ xhrImages: true, loadFullAudio: true, loadFullVideo: true })
-  preload.on('progress', progress => console.log('assets', progress))
+  preload.on('progress', (progress) => {
+    const percentage = `${Math.round(progress * 100)}%`
+    console.log('>> loading', percentage)
+    document.getElementById('RootLoader_Container_Text').innerHTML = percentage
+    TweenMax.to('#RootLoader_Container_Line', 0.4, {
+      ease: Linear.easeNone,
+      overwrite: 'all',
+      width: percentage,
+    })
+  })
   preload.on('complete', resolve)
+  preload.add(catalog)
   preload.load()
 })
 
