@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import List from './components/List'
 import FilterLink from './components/Link'
-import Footer from '../../components/Footer'
 
 class Catalog extends Component {
   render() {
@@ -18,7 +17,6 @@ class Catalog extends Component {
           <FilterLink filter="art">Art</FilterLink>
         </p>
         <List />
-        <Footer />
       </div>
     )
   }

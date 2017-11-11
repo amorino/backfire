@@ -11,7 +11,6 @@ import 'sanitize.css/sanitize.css'
 
 import configureStore from './store'
 import Framework from './containers/Framework'
-import './styles/main'
 import catalog from './assets/json/catalog.json'
 
 console.info(Modernizr)

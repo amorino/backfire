@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
+import Img from 'components/Img'
 import { getItem } from '../../Catalog/selectors'
-import Image from '../../../components/Image'
 
 class Detail extends Component {
   static propTypes = {
@@ -35,7 +35,7 @@ class Detail extends Component {
             <h3>Item</h3>
             {item.title} - {item.description} - <Link to={'/catalog'}>Return</Link>
             <div className="image__item">
-              <Image src={item.image} />
+              <Img src={item.image} />
             </div>
           </div>
         }

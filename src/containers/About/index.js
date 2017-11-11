@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import Footer from '../../components/Footer'
 
 class About extends Component {
   render() {
@@ -8,7 +7,6 @@ class About extends Component {
       <div className="AppContainer">
         <h2>About</h2>
         <p>This is a static page.</p>
-        <Footer />
       </div>
     )
   }

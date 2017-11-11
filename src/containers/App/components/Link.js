@@ -1,14 +1,15 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import classnames from 'classnames'
+import Button from 'components/Button'
 
 const Link = ({ current, link, text, isExternal, push }) => {
   if (isExternal) {
-    return <a className="Link" href={link} target="_blank" rel="noopener noreferrer">{text}</a>
+    return <Button className="Link" href={link} target="_blank" rel="noopener noreferrer">{text}</Button>
   }
 
   return (
-    <button onClick={() => push(link)} className={classnames('Link', { Active: current === link })}>{text}</button>
+    <Button onClick={() => push(link)} className={classnames('d', { Active: current === link })}>{text}</Button>
   )
 }
 

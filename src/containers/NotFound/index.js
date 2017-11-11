@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import Footer from '../../components/Footer'
 
 class NotFound extends Component {
   static propTypes = {
@@ -12,7 +11,6 @@ class NotFound extends Component {
     return (
       <div className="AppContainer">
         <h2>Not Found</h2>
-        <Footer />
       </div>
     )
   }

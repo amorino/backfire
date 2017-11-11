@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import Footer from '../../components/Footer'
 import Card from './components/Card'
 
 class Detail extends Component {
@@ -15,7 +14,6 @@ class Detail extends Component {
       <div className="AppContainer">
         <h2>Detail</h2>
         <Card id={id} />
-        <Footer />
       </div>
     )
   }

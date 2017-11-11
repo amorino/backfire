@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
-class Image extends Component {
+class Img extends Component {
   static propTypes = {
     src: PropTypes.string.isRequired,
     speed: PropTypes.number,
@@ -42,4 +42,4 @@ class Image extends Component {
   }
 }
 
-export default Image
+export default Img

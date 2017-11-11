@@ -124,12 +124,12 @@ module.exports = options => ({
     }),
   ]),
   resolve: {
-    extensions: ['.js', '.styl'],
+    extensions: ['.js'],
     modules: [path.join(__dirname, '..', 'src'), 'node_modules'],
     alias: {
       modernizr$: path.resolve(__dirname, '../.modernizrrc'),
       src: path.resolve(__dirname, '../src'),
-      assets: path.resolve(__dirname, '../src/assets'),
+      design: path.resolve(__dirname, '../src/design'),
     },
   },
   target: 'web', // Make web variables accessible to webpack, e.g. window
