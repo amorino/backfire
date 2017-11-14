@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import { Trigger, Icon, Bar, Sidebar, RouteContainer, RouteButton } from './components/Hamburger'
 
 export default class MenuMobile extends Component {
   static propTypes = {
@@ -21,25 +22,25 @@ export default class MenuMobile extends Component {
     const { routes } = this.props
     const { opened } = this.state
     return (
-      <div className="Menu-Mobile">
-        <div className="Menu-Mobile_Trigger">
-          <button className="Menu-Mobile_Trigger_Icon" onClick={() => this.setState({ opened: !opened })}>
-            <div className={`${opened ? 'Animate' : 'Inactive'} Menu-Mobile_Trigger_Icon_Bar`} />
-          </button>
-        </div>
-        {opened && <div className="Menu-Mobile_Sidebar">
+      <div>
+        <Trigger>
+          <Icon onClick={() => this.setState({ opened: !opened })}>
+            <Bar opened={opened} />
+          </Icon>
+        </Trigger>
+        {opened && <Sidebar>
           {
             routes.map((route) => {
               return (
-                <div key={route.link} className="Link">
-                  <button onClick={() => this.handleClick(route)}>
+                <RouteContainer key={route.text}>
+                  <RouteButton onClick={() => this.handleClick(route)}>
                     {route.text}
-                  </button>
-                </div>
+                  </RouteButton>
+                </RouteContainer>
               )
             })
           }
-        </div>}
+        </Sidebar>}
       </div>
     )
   }

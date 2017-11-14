@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
+import { H1, P } from 'components/Typography'
+import { RouterWrapper } from '../App/components'
 
 class Home extends Component {
   static propTypes = {
@@ -9,10 +11,10 @@ class Home extends Component {
 
   render() {
     return (
-      <div className="AppContainer" ref={node => this.node = node}>
-        <h2>Welcome to Backfire</h2>
-        <p>This is a static page.</p>
-      </div>
+      <RouterWrapper>
+        <H1>Backfire</H1>
+        <P>Welcome to Backfire.</P>
+      </RouterWrapper>
     )
   }
 }

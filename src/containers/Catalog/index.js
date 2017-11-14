@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
-import List from './components/List'
-import FilterLink from './components/Link'
+import List from './List'
+import FilterLink from './Link'
+import { RouterWrapper } from '../App/components'
 
 class Catalog extends Component {
   render() {
     return (
-      <div className="AppContainer">
+      <RouterWrapper>
         <h2>Catalog</h2>
         <p>
           Show:
@@ -17,7 +18,7 @@ class Catalog extends Component {
           <FilterLink filter="art">Art</FilterLink>
         </p>
         <List />
-      </div>
+      </RouterWrapper>
     )
   }
 }

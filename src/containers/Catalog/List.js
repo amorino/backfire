@@ -3,7 +3,8 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { TransitionMotion, spring } from 'react-motion'
-import { getFilteredCatalog } from '../selectors'
+import { getFilteredCatalog } from './selectors'
+import Card from './components/Card'
 
 class CatalogList extends Component {
   static propTypes = {
@@ -73,12 +74,12 @@ class CatalogList extends Component {
               (<div>
                 {interpolatedStyles.map((config) => {
                   return (
-                    <div
+                    <Card
                       key={config.key}
-                      style={{ ...config.style, border: '1px solid' }}
+                      style={{ ...config.style }}
                     >
                       {config.data.title} - {config.data.description} - <Link to={`/catalog/${config.data.id}`}>Go</Link>
-                    </div>
+                    </Card>
                   )
                 })}
               </div>)

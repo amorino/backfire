@@ -20,7 +20,6 @@ module.exports = {
     modules,
     extensions: [
       '.js',
-      '.styl',
     ],
   },
 }

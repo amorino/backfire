@@ -129,7 +129,7 @@ module.exports = options => ({
     alias: {
       modernizr$: path.resolve(__dirname, '../.modernizrrc'),
       src: path.resolve(__dirname, '../src'),
-      design: path.resolve(__dirname, '../src/design'),
+      components: path.resolve(__dirname, '../src/components'),
     },
   },
   target: 'web', // Make web variables accessible to webpack, e.g. window

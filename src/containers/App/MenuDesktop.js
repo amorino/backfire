@@ -1,12 +1,11 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import Link from './Link'
+import RouteButton from './components/RouteButton'
 
 const Menu = ({ current, routes, push }) => {
-  const linkProps = { current, push }
   return (
-    <div className="Menu-Desktop">
-      <div className="Menu-Desktop_Container">{routes.map(item => <Link {...item} {...linkProps} key={item.text} />)}</div>
+    <div>
+      {routes.map(({ text, link }) => <RouteButton fontSize={[2, 3, 4]} active={current === link} key={text} onClick={() => push(link)} >{text}</RouteButton>)}
     </div>
   )
 }

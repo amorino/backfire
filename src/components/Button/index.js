@@ -1,29 +1,21 @@
-import React, { Children } from 'react'
-import PropTypes from 'prop-types'
+import styled, { css } from 'styled-components'
+import { colors } from 'styles'
 
-import A from './A'
-import StyledButton from './StyledButton'
-
-const Button = (props) => {
-  if (props.handleRoute) {
-    return (
-      <StyledButton onClick={props.handleRoute}>
-        {Children.toArray(props.children)}
-      </StyledButton>
-    )
+const Button = styled.button`
+  background: ${colors.black};
+  color ${colors.white};
+  padding: 7px 20px;
+  transition background 0.5s ease-in-out;
+  margin-left: 15px;
+  &:first-of-type {
+    margin-left 0;
   }
-  return (
-    <A href={props.href} onClick={props.onClick}>
-        {Children.toArray(props.children)}
-    </A>
-  )
-}
-
-Button.propTypes = {
-  handleRoute: PropTypes.func,
-  href: PropTypes.string,
-  onClick: PropTypes.func,
-  children: PropTypes.node.isRequired,
-}
+  &:hover {
+    background: ${colors.grey};
+  }
+  ${props => props.active && css`
+		background: ${colors.grey};
+	`}
+`
 
 export default Button

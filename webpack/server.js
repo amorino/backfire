@@ -9,7 +9,7 @@ import hotMiddleware from 'webpack-hot-middleware'
 import historyApi from 'connect-history-api-fallback'
 
 import config from './webpack.config.development.babel'
-import { log } from './util/log'
+import { log } from './utils/log'
 
 const app = express()
 const compiler = webpack(config)

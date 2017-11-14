@@ -3,7 +3,8 @@ import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import Img from 'components/Img'
-import { getItem } from '../../Catalog/selectors'
+import { getItem } from '../Catalog/selectors'
+import Container from './components/Container'
 
 class Detail extends Component {
   static propTypes = {
@@ -28,18 +29,16 @@ class Detail extends Component {
   render() {
     const { fetching, item } = this.props
     return (
-      <div>
+      <Container>
         {fetching && <h2>Loading...</h2>}
         {!fetching &&
           <div>
             <h3>Item</h3>
-            {item.title} - {item.description} - <Link to={'/catalog'}>Return</Link>
-            <div className="image__item">
-              <Img src={item.image} />
-            </div>
+            <span>{item.title} - {item.description} - <Link to={'/catalog'}>Return</Link></span>
+            <Img src={item.image} />
           </div>
         }
-      </div>
+      </Container>
     )
   }
 }

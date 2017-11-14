@@ -6,15 +6,13 @@ import { TransitionGroup, Transition } from 'react-transition-group'
 import { push } from 'react-router-redux'
 import MediaQuery from 'react-responsive'
 import { TweenMax } from 'gsap'
-
 import { addEvent, removeEvent } from '../../utils/events'
 import { resize } from './actions'
 import { getAllItems } from '../Catalog/actions'
-
 import routes from '../../routes'
-import MenuDesktop from './components/MenuDesktop'
-import MenuMobile from './components/MenuMobile'
-
+import MenuDesktop from './MenuDesktop'
+import MenuMobile from './MenuMobile'
+import { AppRoot, AppWrapper } from './components'
 import Home from '../Home'
 import About from '../About'
 import Catalog from '../Catalog'
@@ -24,14 +22,15 @@ import NotFound from '../NotFound'
 class App extends Component {
   static propTypes = {
     location: PropTypes.object.isRequired,
-    resize: PropTypes.func.isRequired,
-    getAllItems: PropTypes.func.isRequired,
+    dispatchResize: PropTypes.func.isRequired,
+    dispatchGetAllItems: PropTypes.func.isRequired,
     dipatchPush: PropTypes.func.isRequired,
   }
 
   componentDidMount() {
+    const { dispatchGetAllItems } = this.props
     addEvent(window, 'resize', this.handleResize)
-    this.props.getAllItems()
+    dispatchGetAllItems()
   }
 
   componentWillUnmount() {
@@ -39,13 +38,14 @@ class App extends Component {
   }
 
   handleResize = () => {
-    this.props.resize(window.innerWidth, window.innerHeight)
+    const { dispatchResize } = this.props
+    dispatchResize({ width: window.innerWidth, height: window.innerHeight })
   }
 
   render() {
     const { location, dipatchPush } = this.props
     return (
-      <div id="App">
+      <AppRoot>
         <MediaQuery minWidth={560}>
           <MenuDesktop
             routes={routes}
@@ -60,7 +60,7 @@ class App extends Component {
             push={dipatchPush}
           />
         </MediaQuery>
-        <TransitionGroup className="AppRouter">
+        <TransitionGroup component={AppWrapper}>
           <Transition
             key={location.pathname}
             mountOnEnter
@@ -102,7 +102,7 @@ class App extends Component {
             </Switch>
           </Transition>
         </TransitionGroup>
-      </div>
+      </AppRoot>
     )
   }
 }
@@ -113,4 +113,10 @@ const mapStateToProps = state => ({
   location: state.routing.location,
 })
 
-export default connect(mapStateToProps, { resize, getAllItems, dipatchPush: push })(App)
+const mapDispatchToProps = dispatch => ({
+  dispatchResize: size => dispatch(resize(size)),
+  dispatchGetAllItems: () => dispatch(getAllItems()),
+  dipatchPush: route => dispatch(push(route)),
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(App)

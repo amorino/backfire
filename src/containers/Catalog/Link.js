@@ -1,24 +1,14 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { filterItem } from '../actions'
+import FilterButton from './components/FilterButton'
+import { filterItem } from './actions'
 
-const FilterLink = ({ filterItemFunc, filter, active, children }) => {
-  if (active) {
-    return <span className="button">{children}</span>
-  }
 
-  return (
-    <button
-      onClick={(e) => {
-        e.preventDefault()
-        filterItemFunc(filter)
-      }}
-    >
-      {children}
-    </button>
-  )
-}
+const FilterLink = ({ filterItemFunc, filter, active, children }) => (
+  <FilterButton active={active} onClick={(e) => { !active ? filterItemFunc(filter) : e.preventDefault() }}>{children}</FilterButton>
+)
+
 
 const mapStateToProps = (state, props) => ({
   active: props.filter === state.filter,

@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import Card from './components/Card'
+import Card from './Card'
+import { RouterWrapper } from '../App/components'
 
 class Detail extends Component {
   static propTypes = {
@@ -11,10 +12,9 @@ class Detail extends Component {
   render() {
     const { id } = this.props
     return (
-      <div className="AppContainer">
-        <h2>Detail</h2>
+      <RouterWrapper>
         <Card id={id} />
-      </div>
+      </RouterWrapper>
     )
   }
 }
