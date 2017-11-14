@@ -1,7 +1,7 @@
 import { injectGlobal } from 'styled-components'
 
-import { colors } from './index'
-import fontFace from './fonts'
+import { colors } from './'
+import { fontFace } from './utils/fonts'
 
 injectGlobal`
   ${
@@ -23,7 +23,6 @@ injectGlobal`
   }
 
   #root {
-    overflow: hidden;
     width: 100%;
     height: 100%;
   }

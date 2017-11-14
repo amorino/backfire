@@ -2,11 +2,6 @@ import path from 'path'
 import webpack from 'webpack'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
 import DotEnv from 'dotenv-webpack'
-// PostCSS plugins
-import postcssFocus from 'postcss-focus'
-import rucksack from 'rucksack-css'
-import lost from 'lost'
-import hoverPrfx from 'postcss-hover-prefix'
 import base from './webpack.config.base.babel'
 
 module.exports = base({
@@ -25,8 +20,6 @@ module.exports = base({
     'eventsource-polyfill', // necessary for hot reloading with IE
     'react-hot-loader/patch',
     'webpack-hot-middleware/client?reload=true',
-    // `webpack-dev-server/client?http://${IP_ADDRESS}:${PORT}`,
-    // 'webpack/hot/only-dev-server',
     path.join(__dirname, '..', 'src/main.js'), // Start with js/app.js
   ],
   // Load the CSS in a style tag in development
@@ -39,29 +32,6 @@ module.exports = base({
       sourceMap: true,
     },
   }],
-  // Load Stylus with SourceMaps
-  stylusLoaders: [{
-    loader: 'style-loader',
-  }, {
-    loader: 'css-loader',
-    options: {
-      importLoaders: 1,
-      sourceMap: true,
-      localIdentName: '[local]___[hash:base64:10]',
-    },
-  }, {
-    loader: 'stylus-loader',
-  }],
-  // Process the CSS with PostCSS
-  stylusPlugins: [
-    lost(),
-    postcssFocus(), // Add a :focus to every :hover
-    hoverPrfx('pointerevents'),
-    rucksack({
-      autoprefixer: true,
-      fallbacks: true,
-    }),
-  ],
   // Add hot reloading
   plugins: [
     new webpack.HotModuleReplacementPlugin(), // Tell webpack we want hot reloading

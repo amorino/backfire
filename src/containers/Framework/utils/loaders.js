@@ -1,5 +1,5 @@
 import preloader from 'preloader'
-import catalog from '../../assets/json/catalog.json'
+import catalog from '../../../assets/json/catalog.json'
 
 export const assetsLoader = (setPercentage) => {
   return new Promise((resolve) => {

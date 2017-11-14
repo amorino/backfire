@@ -3,12 +3,6 @@ import webpack from 'webpack'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
 import ExtractTextPlugin from 'extract-text-webpack-plugin'
 import DotEnv from 'dotenv-webpack'
-
-// PostCSS plugins
-import postcssFocus from 'postcss-focus'
-import rucksack from 'rucksack-css'
-import lost from 'lost'
-import hoverPrfx from 'postcss-hover-prefix'
 import base from './webpack.config.base.babel'
 
 module.exports = base({
@@ -38,29 +32,6 @@ module.exports = base({
     },
   }),
   // Load Stylus with SourceMaps
-  stylusLoaders: ExtractTextPlugin.extract({
-    fallback: 'style-loader',
-    use: [{
-      loader: 'css-loader',
-      options: {
-        importLoaders: 2,
-        sourceMap: true,
-        localIdentName: '[local]___[hash:base64:10]',
-      },
-    }, {
-      loader: 'stylus-loader',
-    }],
-  }),
-  // In production, we minify our CSS with cssnano
-  stylusPlugins: [
-    lost(),
-    postcssFocus(), // Add a :focus to every :hover
-    hoverPrfx('pointerevents'),
-    rucksack({
-      autoprefixer: true,
-      fallbacks: true,
-    }),
-  ],
   plugins: [
     // Minify and optimize the JavaScript
     new webpack.optimize.UglifyJsPlugin({

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import Img from 'components/Img'
+import { H1 } from 'components/Typography'
 import { getItem } from '../Catalog/selectors'
 import Container from './components/Container'
 
@@ -33,7 +34,7 @@ class Detail extends Component {
         {fetching && <h2>Loading...</h2>}
         {!fetching &&
           <div>
-            <h3>Item</h3>
+            <H1>Item</H1>
             <span>{item.title} - {item.description} - <Link to={'/catalog'}>Return</Link></span>
             <Img src={item.image} />
           </div>

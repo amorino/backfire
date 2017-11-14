@@ -11,7 +11,7 @@ import Root from './components/Root'
 import App from '../App'
 import ScrollTop from './ScrollTop'
 import { provider } from '../../styles'
-import { assetsLoader } from './Loaders'
+import { assetsLoader } from './utils/loaders'
 
 export default class Framework extends Component {
 

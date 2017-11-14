@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
+import { H1 } from 'components/Typography'
 import { RouterWrapper } from '../App/components'
 
 class NotFound extends Component {
@@ -11,7 +12,7 @@ class NotFound extends Component {
   render() {
     return (
       <RouterWrapper>
-        <h2>Not Found</h2>
+        <H1>Not Found</H1>
       </RouterWrapper>
     )
   }

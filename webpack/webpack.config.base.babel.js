@@ -1,7 +1,5 @@
 import path from 'path'
 import webpack from 'webpack'
-import postcss from 'poststylus'
-import rupture from 'rupture'
 import FaviconsWebpackPlugin from 'favicons-webpack-plugin'
 
 module.exports = options => ({
@@ -26,9 +24,6 @@ module.exports = options => ({
     }, {
       test: /\.css$/,
       use: options.cssLoaders,
-    }, {
-      test: /\.styl$/,
-      use: options.stylusLoaders,
     }, {
       test: /\.jpe?g$|\.gif$|\.png$|\.mp4$/i,
       loader: 'file-loader',
@@ -109,17 +104,6 @@ module.exports = options => ({
         twitter: false,
         yandex: false,
         windows: false,
-      },
-    }),
-    new webpack.LoaderOptionsPlugin({
-      test: /\.styl$/,
-      stylus: {
-        default: {
-          use: [
-            postcss(options.stylusPlugins),
-            rupture(),
-          ],
-        },
       },
     }),
   ]),
