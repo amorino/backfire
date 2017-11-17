@@ -11,7 +11,7 @@ class Img extends Component {
   }
 
   static defaultProps = {
-    speed: 1.35,
+    speed: 1,
     style: {},
     title: 'Image',
     ease: 'ease-out',

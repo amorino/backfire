@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import FilterButton from './components/FilterButton'
+import { FilterButton } from './components'
 import { filterItem } from './actions'
 
 

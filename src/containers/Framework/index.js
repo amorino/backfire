@@ -7,7 +7,7 @@ import { TweenMax, Power3 } from 'gsap'
 import { Transition } from 'react-transition-group'
 
 import Loader from './Loader'
-import Root from './components/Root'
+import Root from './components'
 import App from '../App'
 import ScrollTop from './ScrollTop'
 import { provider } from '../../styles'

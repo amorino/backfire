@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { Trigger, Icon, Bar, Sidebar, RouteContainer, RouteButton } from './components/Hamburger'
+import { Trigger, Icon, Bar, Sidebar, RouteContainer, RouteButton } from './components/Menu'
 
 export default class MenuMobile extends Component {
   static propTypes = {
@@ -33,9 +33,7 @@ export default class MenuMobile extends Component {
             routes.map((route) => {
               return (
                 <RouteContainer key={route.text}>
-                  <RouteButton onClick={() => this.handleClick(route)}>
-                    {route.text}
-                  </RouteButton>
+                  <RouteButton onClick={() => this.handleClick(route)}>{route.text}</RouteButton>
                 </RouteContainer>
               )
             })

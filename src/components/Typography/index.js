@@ -8,6 +8,7 @@ export const H1 = styled.h1`
   line-height: ${h1.lineHeight};
   margin-bottom: ${h1.marginBottom};
 `
+
 export const H2 = styled.h2`
   font-size: ${h2.fontSize};
   line-height: ${h2.lineHeight};

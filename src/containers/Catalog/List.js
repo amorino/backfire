@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { TransitionMotion, spring } from 'react-motion'
+import { H1 } from 'components/Typography'
 import { getFilteredCatalog } from './selectors'
 import Card from './components/Card'
 
@@ -62,7 +63,7 @@ class CatalogList extends Component {
 
     return (
       <div className="ListComponent">
-        {fetching && <h3>Loading...</h3>}
+        {fetching && <H1>Loading...</H1>}
         {!fetching &&
           <TransitionMotion
             defaultStyles={this.getDefaultStyles()}
