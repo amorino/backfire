@@ -1,15 +1,12 @@
 import { injectGlobal } from 'styled-components'
-
-import { colors } from './'
+import { colors, fontFamily } from './'
 import { fontFace } from './utils/fonts'
 
 injectGlobal`
-  ${
-    fontFace({
-      fontFamily: 'Gotham',
-      fontFilePath: 'GothamMedium',
-    },
-  )}
+  ${fontFace({
+    fontFamily: 'Gotham',
+    fontFilePath: 'GothamMedium',
+  })}
 
   body, html {
     background-color: ${colors.white};
@@ -17,9 +14,10 @@ injectGlobal`
     height: 100%;
     min-width: 100%;
     min-height: 100%;
-    font-family: 'Gotham', Helvetica, Arial;
+    font-family: ${fontFamily.gotham};
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
+    color: ${colors.black};
   }
 
   #root {

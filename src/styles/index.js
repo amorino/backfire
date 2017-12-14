@@ -1,4 +1,19 @@
-import Shevy from 'shevyjs'
+import { css } from 'styled-components'
+
+const sizes = {
+  desktop: 992,
+  tablet: 768,
+  phone: 376,
+}
+
+export const media = Object.keys(sizes).reduce((acc, label) => {
+  acc[label] = (...args) => css`
+  @media (max-width: ${sizes[label] / 16}em) {
+    ${css(...args)}
+  }
+	`
+  return acc
+}, {})
 
 export const colors = {
   white: '#fff',
@@ -9,18 +24,16 @@ export const colors = {
 
 export const provider = {
   breakpoints: [
-    32, 48, 64,
+    `${sizes.mobile}`, `${sizes.tablet}px`, `${sizes.desktop}px`,
   ],
   space: [
     0, 6, 12, 18, 24,
   ],
+  fontSizes: [
+    12, 14, 16, 24, 36, 72,
+  ],
 }
 
-export const shevy = new Shevy({
-  baseFontSize: '14px',
-  baseLineHeight: 1.5,
-  baseFontScale: [3, 2.5, 2, 1.5, 1.25, 1],
-  addMarginBottom: false,
-  proximity: false,
-  proximityFactor: 0.85,
-})
+export const fontFamily = {
+  gotham: 'Gotham, sans-serif',
+}

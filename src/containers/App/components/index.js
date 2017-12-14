@@ -1,8 +1,11 @@
 import styled from 'styled-components'
 import NormalButton from 'components/Button'
+import { fontSize } from 'styled-system'
+
 
 export const AppRoot = styled.div`
   width: 100%;
+  ${fontSize};
 `
 
 export const RouterWrapper = styled.div`
@@ -14,5 +17,6 @@ export const AppWrapper = styled.div`
   width: 100%;
   position: relative;
 `
+
 
 export const Button = NormalButton.extend``

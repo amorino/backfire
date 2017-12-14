@@ -10,6 +10,7 @@ import { addEvent, removeEvent } from '../../utils/events'
 import { resize } from './actions'
 import { getAllItems } from '../Catalog/actions'
 import routes from '../../routes'
+import { sizes } from '../../styles'
 import { AppRoot, AppWrapper } from './components'
 import MenuDesktop from './MenuDesktop'
 import MenuMobile from './MenuMobile'
@@ -45,15 +46,15 @@ class App extends Component {
   render() {
     const { location, dipatchPush } = this.props
     return (
-      <AppRoot>
-        <MediaQuery minWidth={560}>
+      <AppRoot fontSize={[0, 1, 2]}>
+        <MediaQuery minWidth={sizes.mobile}>
           <MenuDesktop
             routes={routes}
             current={location.pathname}
             push={dipatchPush}
           />
         </MediaQuery>
-        <MediaQuery maxWidth={560}>
+        <MediaQuery maxWidth={sizes.mobile}>
           <MenuMobile
             routes={routes}
             current={location.pathname}
