@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components'
-import { colors, fontFamily } from 'styles'
+import { colors } from 'styles'
 
 export const Button = styled.button`
   background: ${colors.black};
@@ -7,7 +7,7 @@ export const Button = styled.button`
   padding: 7px 20px;
   transition background 0.5s ease-in-out;
   margin-left: 15px;
-  font-family: ${fontFamily.lato};
+  font-family: inherit;
   &:first-of-type {
     margin-left 0;
   }
@@ -28,11 +28,8 @@ export const ClearButton = styled.button`
   &:first-of-type {
     margin-left 0;
   }
-  &:hover {
-    color: ${colors.lightingYellow};
-  }
   ${props => props.active && css`
-		color: ${colors.lightingYellow};
+		color: ${colors.grey};
 	`}
 `
 

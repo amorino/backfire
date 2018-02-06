@@ -28,17 +28,19 @@ export default class MenuMobile extends Component {
             <Bar opened={opened} />
           </Icon>
         </Trigger>
-        {opened && <Sidebar>
-          {
-            routes.map((route) => {
-              return (
-                <RouteContainer key={route.text}>
-                  <RouteButton onClick={() => this.handleClick(route)}>{route.text}</RouteButton>
-                </RouteContainer>
-              )
-            })
-          }
-        </Sidebar>}
+        {opened &&
+          <Sidebar>
+            {
+              routes.map((route) => {
+                return (
+                  <RouteContainer key={route.text}>
+                    <RouteButton onClick={() => this.handleClick(route)}>{route.text}</RouteButton>
+                  </RouteContainer>
+                )
+              })
+            }
+          </Sidebar>
+        }
       </div>
     )
   }

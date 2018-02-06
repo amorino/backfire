@@ -4,7 +4,7 @@ import path from 'path'
 import express from 'express'
 import webpack from 'webpack'
 
-import devMiddleware from 'webpack-dev-middleware'
+import middleware from 'webpack-dev-middleware'
 import hotMiddleware from 'webpack-hot-middleware'
 import historyApi from 'connect-history-api-fallback'
 
@@ -18,12 +18,12 @@ const IP_ADRESS = 'localhost'
 
 app.use(historyApi({ verbose: false }))
 
-app.use(devMiddleware(compiler, {
-  noInfo: true,
+app.use(middleware(compiler, {
   publicPath: config.output.publicPath,
-  historyApiFallback: true,
   stats: {
+    assets: false,
     colors: true,
+    modules: false,
   },
 }))
 

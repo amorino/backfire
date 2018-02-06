@@ -28,6 +28,10 @@ class App extends Component {
     dipatchPush: PropTypes.func.isRequired,
   }
 
+  state = {
+    duration: 1,
+  }
+
   componentDidMount() {
     const { dispatchGetAllItems } = this.props
     addEvent(window, 'resize', this.handleResize)
@@ -45,16 +49,17 @@ class App extends Component {
 
   render() {
     const { location, dipatchPush } = this.props
+    const { duration } = this.state
     return (
       <AppRoot fontSize={[0, 1, 2]}>
-        <MediaQuery minWidth={sizes.mobile}>
+        <MediaQuery minWidth={sizes.phone}>
           <MenuDesktop
             routes={routes}
             current={location.pathname}
             push={dipatchPush}
           />
         </MediaQuery>
-        <MediaQuery maxWidth={sizes.mobile}>
+        <MediaQuery maxWidth={sizes.phone}>
           <MenuMobile
             routes={routes}
             current={location.pathname}
@@ -69,20 +74,24 @@ class App extends Component {
             addEndListener={(node, done) => {
               TweenMax.killTweensOf(node)
               if (node === this.enterNode) {
-                TweenMax.fromTo(node, 0.6, {
+                TweenMax.set(node, {
+                  width: '100%',
+                })
+                TweenMax.fromTo(node, duration, {
                   x: 100,
                   autoAlpha: 0,
                   position: 'absolute',
                 }, {
                   autoAlpha: 1,
                   x: 0,
+                  delay: duration,
                   onComplete: () => {
-                    TweenMax.set(node, { clearProps: 'position' })
+                    TweenMax.set(node, { clearProps: 'position, width, height' })
                     done()
                   },
                 })
               } else {
-                TweenMax.to(node, 0.6, {
+                TweenMax.to(node, duration, {
                   opacity: 0,
                   position: 'absolute',
                   x: -100,

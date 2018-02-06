@@ -18,11 +18,11 @@ injectGlobal`
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
     color: ${colors.black};
+    overflow-x: hidden;
   }
 
   #root {
     width: 100%;
-    height: 100%;
   }
 
   button {

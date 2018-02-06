@@ -72,18 +72,20 @@ class CatalogList extends Component {
             willEnter={this.willEnter}
           >
             {interpolatedStyles =>
-              (<div>
-                {interpolatedStyles.map((config) => {
-                  return (
-                    <Card
-                      key={config.key}
-                      style={{ ...config.style }}
-                    >
-                      {config.data.title} - {config.data.description} - <Link to={`/catalog/${config.data.id}`}>Go</Link>
-                    </Card>
-                  )
-                })}
-              </div>)
+              (
+                <div>
+                  {interpolatedStyles.map((config) => {
+                    return (
+                      <Card
+                        key={config.key}
+                        style={{ ...config.style }}
+                      >
+                        {config.data.title} - {config.data.description} - <Link to={`/catalog/${config.data.id}`}>Go</Link>
+                      </Card>
+                    )
+                  })}
+                </div>
+              )
             }
           </TransitionMotion>
         }

@@ -1,4 +1,15 @@
 {
-  "presets": [["env", { "loose": true }], "react", "stage-0"],
-  "plugins": ["transform-decorators-legacy", "react-hot-loader/babel"]
+  "presets": [
+    [
+      "env",
+      {
+        "loose": true
+      }
+    ],
+    "react",
+    "stage-0"
+  ],
+  "plugins": [
+    "react-hot-loader/babel"
+  ]
 }

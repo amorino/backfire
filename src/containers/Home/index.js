@@ -11,7 +11,7 @@ class Home extends Component {
 
   render() {
     return (
-      <RouterWrapper>
+      <RouterWrapper background="papayawhip">
         <H1>Backfire</H1>
         <P>Welcome to Backfire.</P>
       </RouterWrapper>

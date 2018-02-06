@@ -1,12 +1,21 @@
-export function fontFace({ fontFamily, fontFilePath, fontWeight = 'normal', fontStyle = 'normal' }) {
+export function fontFace({
+  fontFamily,
+  fontFilePath,
+  fontWeight = 'normal',
+  fontStyle = 'normal',
+}) {
+  const eot = require(`../../assets/fonts/${fontFilePath}.eot`)
+  const woff = require(`../../assets/fonts/${fontFilePath}.woff`)
+  const ttf = require(`../../assets/fonts/${fontFilePath}.ttf`)
+  const svg = require(`../../assets/fonts/${fontFilePath}.svg`)
   return `
       @font-face{
           font-family: "${fontFamily}";
-          src: url(${import(`../../assets/fonts/${fontFilePath}.eot`)});
-          src: url(${import(`../../assets/fonts/${fontFilePath}.eot`)}?#iefix) format("embedded-opentype"),
-                url(${import(`../../assets/fonts/${fontFilePath}.woff`)}) format("woff"),
-                url(${import(`../../assets/fonts/${fontFilePath}.ttf`)}) format("truetype"),
-                url(${import(`../../assets/fonts/${fontFilePath}.svg`)}#${fontFamily}) format("svg");
+          src: url(${eot});
+          src: url(${eot}?#iefix) format("embedded-opentype"),
+                url(${woff}) format("woff"),
+                url(${ttf}) format("truetype"),
+                url(${svg}#${fontFamily}) format("svg");
 
           font-style: ${fontStyle};
           font-weight: ${fontWeight};

@@ -11,7 +11,7 @@ import './styles/globalStyles'
 import configureStore from './store'
 import Framework from './containers/Framework'
 
-const GOOGLE_ANALYTICS_CODE = process.env.GOOGLE_ANALYTICS_CODE
+const { GOOGLE_ANALYTICS_CODE } = process.env
 
 const debug = !(process.env.NODE_ENV === 'production')
 ReactGA.initialize(GOOGLE_ANALYTICS_CODE, { debug, titleCase: false })

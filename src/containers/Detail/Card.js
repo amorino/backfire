@@ -35,7 +35,7 @@ class Detail extends Component {
         {!fetching &&
           <div>
             <H1>Item</H1>
-            <span>{item.title} - {item.description} - <Link to={'/catalog'}>Return</Link></span>
+            <span>{item.title} - {item.description} - <Link to="/catalog">Return</Link></span>
             <Img src={item.image} />
           </div>
         }

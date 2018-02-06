@@ -14,7 +14,6 @@ import { provider } from '../../styles'
 import { assetsLoader } from './utils/loaders'
 
 export default class Framework extends Component {
-
   static propTypes = {
     history: PropTypes.object.isRequired,
   }
@@ -28,7 +27,7 @@ export default class Framework extends Component {
   componentDidMount() {
     const { setPercentage } = this
     Promise.all([assetsLoader(setPercentage)])
-    .then(() => this.setState({ isLoaded: true }))
+      .then(() => this.setState({ isLoaded: true }))
   }
 
   setPercentage = percentage => this.setState({ percentage })
