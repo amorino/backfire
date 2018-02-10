@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 import { TransitionMotion, spring } from 'react-motion'
 import { H1 } from 'components/Typography'
 import { getFilteredCatalog } from './selectors'
-import Card from './components/Card'
+import { Card } from './components/List'
 
 class CatalogList extends Component {
   static propTypes = {

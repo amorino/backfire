@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import { colors } from 'styles'
+import favicon from '../../../favicon.png'
 
 export const RootLoader = styled.div`
   position: fixed;
@@ -24,7 +25,10 @@ export const Container = styled.div`
 export const Square = styled.div`
   width: 100px;
   height: 100px;
-  background: ${colors.black};
+  background-url: url(${favicon});
+  background-repeat: no-repeat;
+  background-color: ${colors.white};
+  background-size: cover;
 `
 
 export const Line = styled.div`

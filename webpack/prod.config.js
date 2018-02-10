@@ -3,7 +3,7 @@ import webpack from 'webpack'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
 import ExtractTextPlugin from 'extract-text-webpack-plugin'
 import DotEnv from 'dotenv-webpack'
-import base from './webpack.config.base.babel'
+import base from './common.config'
 
 module.exports = base({
   type: 'production',

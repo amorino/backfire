@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components'
-import NormalButton from 'components/Button'
+import { Button } from 'components/Button'
 import { fontSize } from 'styled-system'
 
 export const AppRoot = styled.div`
@@ -20,4 +20,4 @@ export const AppWrapper = styled.div`
   position: relative;
 `
 
-export const Button = NormalButton.extend``
+export const NormalButton = Button.extend``

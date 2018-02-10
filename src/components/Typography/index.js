@@ -14,7 +14,4 @@ export const H3 = styled.h3`
 
 export const P = styled.p`
   margin: 0.7em 0;
-  :first-of-type{
-    margin-top: 0;
-  }
 `

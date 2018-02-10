@@ -6,8 +6,8 @@ export const divider = chalk.gray('\n-----------------------------------')
 
 function backfire() {
   return process.platform === 'win32'
-  ? 'Backfire -'
-  : chalk.dim('🌀  Backfire')
+    ? 'Backfire -'
+    : chalk.dim('🌀  Backfire')
 }
 
 export function logError(entry) {

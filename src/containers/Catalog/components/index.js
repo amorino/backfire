@@ -1,5 +1,5 @@
-import NormalButton from 'components/Button'
+import { Button } from 'components/Button'
 
-export const FilterButton = NormalButton.extend``
+export const FilterButton = Button.extend``
 
 export default FilterButton

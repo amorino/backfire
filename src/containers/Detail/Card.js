@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 import Img from 'components/Img'
 import { H1 } from 'components/Typography'
 import { getItem } from '../Catalog/selectors'
-import Container from './components/Container'
+import { Container } from './components/Card'
 
 class Detail extends Component {
   static propTypes = {
