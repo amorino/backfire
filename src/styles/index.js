@@ -1,13 +1,20 @@
+// @flow
 import { css } from 'styled-components'
 
-export const sizes = {
+type BrowserSizes = {
+  desktop: number,
+  tablet: number,
+  mobile: number
+}
+
+export const sizes : BrowserSizes = {
   desktop: 992,
   tablet: 768,
-  phone: 609,
+  mobile: 609,
 }
 
 export const media = Object.keys(sizes).reduce((acc, label) => {
-  acc[label] = (...args) => css`
+  acc[label] = (...args: any) => css`
   @media (max-width: ${sizes[label] / 16}em) {
     ${css(...args)}
   }

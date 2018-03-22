@@ -1,13 +1,16 @@
-import React, { Component } from 'react'
-import PropTypes from 'prop-types'
-import { Trigger, Icon, Bar, Sidebar, RouteContainer, RouteButton } from './components/Menu'
+import * as React from 'react'
+import { Trigger, Icon, Bar, Sidebar, RouteContainer, RouteButton } from '../styled/Menu'
 
-export default class MenuMobile extends Component {
-  static propTypes = {
-    routes: PropTypes.array.isRequired,
-    push: PropTypes.func.isRequired,
-  }
+type State = {
+    opened: boolean,
+}
 
+type Props = {
+    routes: [],
+    push: (route: string) => void,
+};
+
+export default class MenuMobile extends React.Component<Props, State> {
   state = {
     opened: false,
   }

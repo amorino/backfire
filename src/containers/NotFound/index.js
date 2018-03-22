@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { H1 } from 'components/Typography'
-import { RouterWrapper } from '../App/components'
+import { RouterWrapper } from '../App/styled'
 
 class NotFound extends Component {
   static propTypes = {

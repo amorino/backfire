@@ -1,15 +1,20 @@
-import React, { Component } from 'react'
-import PropTypes from 'prop-types'
+// @flow
+import * as React from 'react'
 
-class Img extends Component {
-  static propTypes = {
-    src: PropTypes.string.isRequired,
-    speed: PropTypes.number,
-    style: PropTypes.object,
-    title: PropTypes.string,
-    ease: PropTypes.string,
-  }
+type State = {
+    opacity: number,
+    loaded: boolean,
+}
 
+type Props = {
+    src: string,
+    speed: number,
+    style: Object,
+    title: string,
+    ease: string,
+}
+
+class Img extends React.Component<Props, State> {
   static defaultProps = {
     speed: 1,
     style: {},

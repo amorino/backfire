@@ -1,3 +1,5 @@
+// @flow
+
 import React from 'react'
 import { render } from 'react-dom'
 import { AppContainer } from 'react-hot-loader'
@@ -20,14 +22,17 @@ const history = createHistory()
 history.listen(location => ReactGA.pageview(location.pathname))
 const store = configureStore(history)
 
-const root = document.getElementById('root')
+const pad = document.getElementById('root')
+if (pad == null) {
+  throw new Error('no root element')
+}
 
 const compose = App => render(
   <AppContainer>
     <Provider store={store}>
       <App history={history} />
     </Provider>
-  </AppContainer>, root,
+  </AppContainer>, pad,
 )
 
 compose(Framework)

@@ -1,3 +1,4 @@
+// @flow
 import { injectGlobal } from 'styled-components'
 import { colors, fontFamily } from './'
 import { fontFace } from './utils/fonts'
@@ -18,7 +19,6 @@ injectGlobal`
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
     color: ${colors.black};
-    overflow-x: hidden;
   }
 
   #root {

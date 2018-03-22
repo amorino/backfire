@@ -1,6 +1,18 @@
-export const RESIZE = 'app/resize'
+// @flow
+import type { Size } from './types'
 
-export const resize = (width, height) => ({
-  type: RESIZE,
-  payload: { width, height },
+export type ResizeAction = {
+  type: 'APP_RESIZE',
+  payload: Size,
+}
+
+export type Action =
+  | ResizeAction
+
+
+export const resize = (payload: Size): ResizeAction => ({
+  type: 'APP_RESIZE',
+  payload,
 })
+
+export default resize

@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { H1 } from 'components/Typography'
-import List from './List'
-import FilterLink from './Link'
-import { RouterWrapper } from '../App/components'
+import List from './components/List'
+import FilterLink from './components/Link'
+import { RouterWrapper } from '../App/styled'
 
 class Catalog extends Component {
   render() {

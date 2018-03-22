@@ -1,13 +1,13 @@
-import { Component } from 'react'
-import PropTypes from 'prop-types'
+// @flow
+import * as React from 'react'
 import { withRouter } from 'react-router-dom'
 
-class ScrollToTop extends Component {
-  static propTypes = {
-    location: PropTypes.object.isRequired,
-    children: PropTypes.object.isRequired,
-  }
+type Props = {
+  location: Object,
+  children?: React.Node,
+}
 
+class ScrollToTop extends React.Component<Props> {
   componentDidUpdate(prevProps) {
     if (this.props.location !== prevProps.location) {
       window.scrollTo(0, 0)

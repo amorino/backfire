@@ -1,4 +1,11 @@
-import { RESIZE } from './actions'
+// @flow
+
+import type { Action } from './actions'
+import type { Size } from './types'
+
+type State = {
+  size: Size,
+};
 
 const initialState = {
   size: {
@@ -7,9 +14,9 @@ const initialState = {
   },
 }
 
-const app = (state = initialState, { type, payload }) => {
+const app = (state: State = initialState, { payload, type }: Action) => {
   switch (type) {
-    case RESIZE:
+    case 'APP_RESIZE':
       return { ...state, size: payload }
     default:
       return state

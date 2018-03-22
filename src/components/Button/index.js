@@ -1,5 +1,6 @@
+// @flow
 import styled, { css } from 'styled-components'
-import { colors } from 'styles'
+import { colors } from '../../styles'
 
 export const Button = styled.button`
   background: ${colors.black};

@@ -1,9 +1,18 @@
+// @flow
+
+type Font = {
+  fontFamily: string,
+  fontFilePath: string,
+  fontWeight?: string,
+  fontStyle?: string,
+}
+
 export function fontFace({
   fontFamily,
   fontFilePath,
   fontWeight = 'normal',
   fontStyle = 'normal',
-}) {
+}: Font) {
   const eot = require(`../../assets/fonts/${fontFilePath}.eot`)
   const woff = require(`../../assets/fonts/${fontFilePath}.woff`)
   const ttf = require(`../../assets/fonts/${fontFilePath}.ttf`)

@@ -1,23 +1,29 @@
-import React, { Component } from 'react'
-import PropTypes from 'prop-types'
+// @flow
+import * as React from 'react'
 import { ConnectedRouter } from 'react-router-redux'
 import { Route } from 'react-router-dom'
 import { ThemeProvider } from 'styled-components'
 import { TweenMax, Power3 } from 'gsap'
 import { Transition } from 'react-transition-group'
 
-import Loader from './Loader'
-import Root from './components'
+import Loader from './components/Loader'
+import ScrollTop from './components/ScrollTop'
+import Root from './styled'
 import App from '../App'
-import ScrollTop from './ScrollTop'
 import { provider } from '../../styles'
 import { assetsLoader } from './utils/loaders'
 
-export default class Framework extends Component {
-  static propTypes = {
-    history: PropTypes.object.isRequired,
-  }
+type State = {
+  isLoaded: boolean,
+  loaderLeft: boolean,
+  percentage: number,
+}
 
+type Props = {
+  history: Object,
+}
+
+export default class Framework extends React.Component<Props, State> {
   state = {
     isLoaded: false,
     loaderLeft: false,
@@ -30,9 +36,9 @@ export default class Framework extends Component {
       .then(() => this.setState({ isLoaded: true }))
   }
 
-  setPercentage = percentage => this.setState({ percentage })
+  setPercentage = (percentage: number) => this.setState({ percentage })
 
-  loaderLeave = (done) => {
+  loaderLeave = (done: Function) => {
     done()
     this.setState({ loaderLeft: true })
   }

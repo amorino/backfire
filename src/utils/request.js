@@ -1,4 +1,12 @@
+// @flow
+
 import agent from 'superagent'
+
+
+class ResponseError extends Error {
+  response: string
+}
+
 /**
  * Parses the JSON returned by a network request
  *
@@ -22,7 +30,7 @@ function checkStatus(response) {
     return response
   }
 
-  const error = new Error(response.statusText)
+  const error = new ResponseError(response.statusText)
   error.response = response
   throw error
 }
@@ -35,7 +43,7 @@ function checkStatus(response) {
  *
  * @return {object}           An object containing either "data" or "err"
  */
-export default function request(url) {
+export default function request(url: string) {
   return agent
     .get(url)
     .then(checkStatus)

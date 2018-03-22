@@ -1,5 +1,6 @@
-import React, { Component } from 'react'
-import PropTypes from 'prop-types'
+// @flow
+
+import * as React from 'react'
 import { connect } from 'react-redux'
 import { Route, Switch } from 'react-router-dom'
 import { TransitionGroup, Transition } from 'react-transition-group'
@@ -11,23 +12,28 @@ import { resize } from './actions'
 import { getAllItems } from '../Catalog/actions'
 import routes from '../../routes'
 import { sizes } from '../../styles'
-import { AppRoot, AppWrapper } from './components'
-import MenuDesktop from './MenuDesktop'
-import MenuMobile from './MenuMobile'
+import { AppRoot, AppWrapper } from './styled'
+import MenuDesktop from './components/MenuDesktop'
+import MenuMobile from './components/MenuMobile'
 import Home from '../Home'
 import About from '../About'
 import Catalog from '../Catalog'
 import Detail from '../Detail'
 import NotFound from '../NotFound'
+import type { Size } from './types'
 
-class App extends Component {
-  static propTypes = {
-    location: PropTypes.object.isRequired,
-    dispatchResize: PropTypes.func.isRequired,
-    dispatchGetAllItems: PropTypes.func.isRequired,
-    dipatchPush: PropTypes.func.isRequired,
-  }
+type State = {
+    duration: number,
+}
 
+type Props = {
+    location: Object,
+    dispatchResize: (size: Size) => void,
+    dispatchGetAllItems: Function,
+    dipatchPush: (route: string) => void,
+}
+
+class App extends React.Component<Props, State> {
   state = {
     duration: 1,
   }
@@ -42,6 +48,8 @@ class App extends Component {
     removeEvent(window, 'resize', this.handleResize)
   }
 
+  enterNode: ?HTMLElement;
+
   handleResize = () => {
     const { dispatchResize } = this.props
     dispatchResize({ width: window.innerWidth, height: window.innerHeight })
@@ -52,14 +60,14 @@ class App extends Component {
     const { duration } = this.state
     return (
       <AppRoot fontSize={[0, 1, 2]}>
-        <MediaQuery minWidth={sizes.phone}>
+        <MediaQuery minWidth={sizes.mobile}>
           <MenuDesktop
             routes={routes}
             current={location.pathname}
             push={dipatchPush}
           />
         </MediaQuery>
-        <MediaQuery maxWidth={sizes.phone}>
+        <MediaQuery maxWidth={sizes.mobile}>
           <MenuMobile
             routes={routes}
             current={location.pathname}
@@ -78,12 +86,11 @@ class App extends Component {
                   width: '100%',
                 })
                 TweenMax.fromTo(node, duration, {
-                  x: 100,
                   autoAlpha: 0,
-                  position: 'absolute',
+                  // position: 'absolute',
                 }, {
                   autoAlpha: 1,
-                  x: 0,
+                  // x: 0,
                   delay: duration,
                   onComplete: () => {
                     TweenMax.set(node, { clearProps: 'position, width, height' })
@@ -93,8 +100,7 @@ class App extends Component {
               } else {
                 TweenMax.to(node, duration, {
                   opacity: 0,
-                  position: 'absolute',
-                  x: -100,
+                  // position: 'absolute',
                   onComplete: done,
                 })
               }

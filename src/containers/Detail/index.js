@@ -1,14 +1,14 @@
-import React, { Component } from 'react'
-import PropTypes from 'prop-types'
+// @flow
+import * as React from 'react'
 import { connect } from 'react-redux'
-import Card from './Card'
-import { RouterWrapper } from '../App/components'
+import Card from './components/Card'
+import { RouterWrapper } from '../App/styled'
 
-class Detail extends Component {
-  static propTypes = {
-    id: PropTypes.string.isRequired,
-  }
+type Props = {
+  id: string
+}
 
+class Detail extends React.Component<Props> {
   render() {
     const { id } = this.props
     return (

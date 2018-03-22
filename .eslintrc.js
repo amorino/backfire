@@ -21,13 +21,9 @@ module.exports = {
 		browser: true,
   },
   'globals': {
-    'System': true,
-    'document': true,
-    'window': true,
     'FB': true,
     'twttr': true,
     'gapi': true,
-    'requestAnimationFrame': true,
   },
   'rules': {
     'object-curly-newline': [0],
@@ -61,7 +57,7 @@ module.exports = {
   settings: {
     'import/resolver': {
       webpack: {
-        config: './webpack/test.config.js'
+        config: './webpack/test.config.babel.js'
       }
     }
   }

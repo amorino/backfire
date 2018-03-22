@@ -6,6 +6,7 @@
         "loose": true
       }
     ],
+    "flow",
     "react",
     "stage-0"
   ],

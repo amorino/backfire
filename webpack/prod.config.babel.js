@@ -39,6 +39,7 @@ module.exports = base({
         drop_console: true,
         warnings: false,
       },
+      comments: false,
     }),
 
     // Minify and optimize the index.html

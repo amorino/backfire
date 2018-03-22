@@ -1,11 +1,27 @@
+// @flow
+
 import styled, { css } from 'styled-components'
-import { colors } from 'styles'
+import { colors } from '../../../styles'
+import { Button } from '../../../components/Button'
 
 const barWidth = 27
 const barHeight = 2
 const barSpacing = 10
 
 const ease = 'ease-out'
+
+// Desktop
+
+export const MenuDesktop = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 99;
+`
+
+export const NormalButton = Button.extend``
+
+// Mobile
 
 export const Sidebar = styled.div`
   position: fixed;

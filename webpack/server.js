@@ -8,7 +8,7 @@ import middleware from 'webpack-dev-middleware'
 import hotMiddleware from 'webpack-hot-middleware'
 import historyApi from 'connect-history-api-fallback'
 
-import config from './dev.config'
+import config from './dev.config.babel'
 import { log } from './utils/log'
 
 const app = express()

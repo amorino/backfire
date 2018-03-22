@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { H1, P } from 'components/Typography'
-import { RouterWrapper } from '../App/components'
+import { RouterWrapper } from '../App/styled'
 
 class About extends Component {
   render() {
