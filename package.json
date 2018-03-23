@@ -6,7 +6,7 @@
     "clean": "rimraf build",
     "clean:modules": "rimraf node_modules",
     "build": "npm run clean && npm run build:webpack",
-    "build:webpack": "webpack --config webpack/config.prod.babel.js",
+    "build:webpack": "webpack --config webpack/prod.config.babel.js",
     "dev": "NODE_ENV=development node -r babel-register webpack/server.js",
     "start": "npm run dev",
     "lint": "eslint src"
@@ -69,6 +69,7 @@
     "style-loader": "^0.19.0",
     "url-loader": "^0.6.2",
     "webapp-webpack-plugin": "^1.3.1",
+    "webpack-cli": "^2.0.13",
     "webpack-dev-middleware": "^2.0.4",
     "webpack-hot-middleware": "^2.7.1"
   },
