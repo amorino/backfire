@@ -1,5 +1,4 @@
 // @flow
-import Modernizr from 'modernizr'
 
 /**
  * Bind a listener to DOM or window
@@ -8,7 +7,7 @@ import Modernizr from 'modernizr'
  * @param  {function} func              Function to bind
  */
 export function addEvent(object: Function, event: string, func: Function) {
-  return Modernizr.eventlistener ? object.addEventListener(event, func, false) : object.attachEvent(`on${event}`, func)
+  object.addEventListener(event, func, false)
 }
 
 /**
@@ -18,5 +17,5 @@ export function addEvent(object: Function, event: string, func: Function) {
  * @param  {function} func              Function to bind
  */
 export function removeEvent(object: Function, event: string, func: Function) {
-  return Modernizr.eventlistener ? object.removeEventListener(event, func, false) : object.detachEvent(`on${event}`, func)
+  object.removeEventListener(event, func, false)
 }

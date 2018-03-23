@@ -33,9 +33,8 @@ export const receiveItems = (payload: Array<mixed>) => ({
   payload,
 })
 
-export const requestItems = (payload: Array<mixed>) => ({
+export const requestItems = () => ({
   type: 'REQUEST_ITEMS',
-  payload,
 })
 
 export const filterItem = (payload: string) => ({

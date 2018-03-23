@@ -22,10 +22,9 @@ export function fontFace({
           font-family: "${fontFamily}";
           src: url(${eot});
           src: url(${eot}?#iefix) format("embedded-opentype"),
-                url(${woff}) format("woff"),
-                url(${ttf}) format("truetype"),
-                url(${svg}#${fontFamily}) format("svg");
-
+               url(${woff}) format("woff"),
+               url(${ttf}) format("truetype"),
+               url(${svg}#${fontFamily}) format("svg");
           font-style: ${fontStyle};
           font-weight: ${fontWeight};
       }
