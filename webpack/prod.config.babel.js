@@ -60,7 +60,7 @@ module.exports = base({
       allChunks: true,
     }),
     new DotEnv({
-      path: path.resolve(__dirname, '..', '.env.prod'),
+      path: path.resolve(__dirname, '..', '.env'),
     }),
     new webpack.DefinePlugin({
       'process.env': {

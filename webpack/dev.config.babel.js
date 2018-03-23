@@ -41,7 +41,7 @@ module.exports = base({
       inject: true,
     }),
     new DotEnv({
-      path: path.resolve(__dirname, '..', '.env.dev'),
+      path: path.resolve(__dirname, '..', '.env'),
     }),
   ],
 })
