@@ -1,5 +1,4 @@
 // @flow
-
 import styled, { css } from 'styled-components'
 import { fontSize } from 'styled-system'
 

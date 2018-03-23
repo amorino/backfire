@@ -1,5 +1,4 @@
 // @flow
-
 import type { Action } from './actions'
 import type { Size } from './types'
 

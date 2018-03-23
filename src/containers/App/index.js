@@ -7,7 +7,6 @@ import { TransitionGroup, Transition } from 'react-transition-group'
 import { push } from 'react-router-redux'
 import MediaQuery from 'react-responsive'
 import { TweenMax } from 'gsap'
-import { addEvent, removeEvent } from '../../utils/events'
 import { resize } from './actions'
 import { getAllItems } from '../Catalog/actions'
 import routes from '../../routes'
@@ -20,7 +19,7 @@ import About from '../About'
 import Catalog from '../Catalog'
 import Detail from '../Detail'
 import NotFound from '../NotFound'
-import type { Size } from './types'
+import type { Size, Route as RouteType } from './types'
 
 type State = {
     duration: number,
@@ -40,12 +39,12 @@ class App extends React.Component<Props, State> {
 
   componentDidMount() {
     const { dispatchGetAllItems } = this.props
-    addEvent(window, 'resize', this.handleResize)
+    window.addEventListener('resize', this.handleResize)
     dispatchGetAllItems()
   }
 
   componentWillUnmount() {
-    removeEvent(window, 'resize', this.handleResize)
+    window.removeEventListener('resize', this.handleResize)
   }
 
   enterNode: ?HTMLElement;
@@ -130,9 +129,9 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  dispatchResize: size => dispatch(resize(size)),
+  dispatchResize: (size: Size) => dispatch(resize(size)),
   dispatchGetAllItems: () => dispatch(getAllItems()),
-  dipatchPush: route => dispatch(push(route)),
+  dipatchPush: (route: RouteType) => dispatch(push(route)),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(App)

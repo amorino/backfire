@@ -1,5 +1,4 @@
 // @flow
-
 import styled, { css } from 'styled-components'
 import { colors } from '../../../styles'
 import { Button } from '../../../components/Button'

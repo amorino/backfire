@@ -15,7 +15,6 @@ module.system=haste
 
 munge_underscores=true
 
-
 module.file_ext=.js
 module.file_ext=.jsx
 module.file_ext=.json
@@ -29,7 +28,6 @@ suppress_comment=\\(.\\|\n\\)*\\$FlowFixedInNextDeploy
 suppress_comment=\\(.\\|\n\\)*\\$FlowExpectedError
 
 module.system.node.resolve_dirname=node_modules
-module.system.node.resolve_dirname=custom_node_modules
 
 [strict]
 

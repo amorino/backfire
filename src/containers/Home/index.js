@@ -1,14 +1,11 @@
-import React, { Component } from 'react'
-import PropTypes from 'prop-types'
+// @flow
+import * as React from 'react'
 import { connect } from 'react-redux'
-import { H1, P } from 'components/Typography'
+import { H1, P } from '../../components/Typography'
 import { RouterWrapper } from '../App/styled'
 
-class Home extends Component {
-  static propTypes = {
-    dispatch: PropTypes.func.isRequired,
-  }
 
+class Home extends React.Component<void> {
   render() {
     return (
       <RouterWrapper background="papayawhip">

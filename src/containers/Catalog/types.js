@@ -1,5 +1,4 @@
 // @flow
-
 export type Item = {
   id: number,
   type: string,

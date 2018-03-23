@@ -1,10 +1,11 @@
-import React, { Component } from 'react'
-import { H1 } from 'components/Typography'
+// @flow
+import * as React from 'react'
+import { H1 } from '../../components/Typography'
 import List from './components/List'
 import FilterLink from './components/Link'
 import { RouterWrapper } from '../App/styled'
 
-class Catalog extends Component {
+class Catalog extends React.Component<void> {
   render() {
     return (
       <RouterWrapper>

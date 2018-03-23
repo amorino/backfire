@@ -1,10 +1,12 @@
-import React from 'react'
+// @flow
+import * as React from 'react'
 import { NormalButton, MenuDesktop } from '../styled/Menu'
+import type { Route } from '../types'
 
 type Props = {
-  current: String,
-  routes: [],
-  push: (route: String) => void,
+  current: string,
+  routes: Array<Route>,
+  push: (route: string) => void,
 }
 
 const Menu = (props: Props) => {

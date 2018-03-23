@@ -1,7 +1,5 @@
 // @flow
-
 import agent from 'superagent'
-
 
 class ResponseError extends Error {
   response: string

@@ -1,26 +1,29 @@
-import React, { Component } from 'react'
-import PropTypes from 'prop-types'
+// @flow
+import * as React from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { TransitionMotion, spring } from 'react-motion'
-import { H1 } from 'components/Typography'
+import { H1 } from '../../../components/Typography'
 import { getFilteredCatalog } from '../selectors'
 import { Card } from '../styled/List'
+import type { Item } from '../types'
 
-class CatalogList extends Component {
-  static propTypes = {
-    fetching: PropTypes.bool.isRequired,
-    catalog: PropTypes.arrayOf(PropTypes.shape({
-      id: PropTypes.number.isRequired,
-      title: PropTypes.string.isRequired,
-      description: PropTypes.string.isRequired,
-      image: PropTypes.string.isRequired,
-    })).isRequired,
-  }
 
+type Props = {
+  fetching: boolean,
+  catalog: Array<Item>,
+}
+
+type TransitionStyle = {
+  data: any,
+  key: string,
+  style: any,
+}
+
+class CatalogList extends React.Component<Props> {
   getDefaultStyles = () => {
     const { catalog } = this.props
-    return catalog.map(item => ({
+    return catalog.map((item: Item) => ({
       data: item,
       key: item.id.toString(),
       style: {
@@ -28,12 +31,12 @@ class CatalogList extends Component {
         height: 0,
         opacity: 1,
       },
-    }))
+    }: TransitionStyle))
   }
 
   getStyles = () => {
     const { catalog } = this.props
-    return catalog.map(item => ({
+    return catalog.map((item: Item) => ({
       data: item,
       key: item.id.toString(),
       style: {
@@ -41,7 +44,7 @@ class CatalogList extends Component {
         height: spring(200),
         opacity: spring(1),
       },
-    }))
+    }: TransitionStyle))
   }
 
   willEnter = () => ({
@@ -74,7 +77,7 @@ class CatalogList extends Component {
             {interpolatedStyles =>
               (
                 <div>
-                  {interpolatedStyles.map((config) => {
+                  {interpolatedStyles.map((config: TransitionStyle) => {
                     return (
                       <Card
                         key={config.key}

@@ -1,5 +1,4 @@
 // @flow
-
 import type { FilterAction, CatalogAction } from './actions'
 import type { CatalogState, FilterState } from './types'
 
