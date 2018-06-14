@@ -1,5 +1,5 @@
 // @flow
-import { Button } from '../../../components/Button'
+import { Button } from '../../../components/styled/Button'
 
 export const FilterButton = Button.extend``
 

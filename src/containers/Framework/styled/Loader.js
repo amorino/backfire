@@ -7,7 +7,7 @@ export const RootLoader = styled.div`
   position: fixed;
   width: 100%;
   height: 100%;
-  background: ${colors.white};
+  background: ${colors.black};
   z-index: 999;
   margin: 0;
   padding: 0;
@@ -28,12 +28,12 @@ export const Square = styled.div`
   height: 100px;
   background-url: url(${favicon});
   background-repeat: no-repeat;
-  background-color: ${colors.white};
+  background-color: ${colors.black};
   background-size: cover;
 `
 
 export const Line = styled.div`
-  background: ${colors.black};
+  background: ${colors.white};
   height: 4px;
 `
 export const Text = styled.span`

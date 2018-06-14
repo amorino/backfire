@@ -4,10 +4,10 @@ import { withRouter } from 'react-router-dom'
 
 type Props = {
   location: Object,
-  children?: React.Node,
+  children: React.Node,
 }
 
-class ScrollToTop extends React.Component<Props> {
+class ScrollToTop extends React.PureComponent<Props> {
   componentDidUpdate(prevProps) {
     if (this.props.location !== prevProps.location) {
       window.scrollTo(0, 0)

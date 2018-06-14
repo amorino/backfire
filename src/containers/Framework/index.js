@@ -23,7 +23,7 @@ type Props = {
   history: Object,
 }
 
-export default class Framework extends React.Component<Props, State> {
+export default class Framework extends React.PureComponent<Props, State> {
   state = {
     isLoaded: false,
     loaderLeft: false,

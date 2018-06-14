@@ -20,7 +20,7 @@ type TransitionStyle = {
   style: any,
 }
 
-class CatalogList extends React.Component<Props> {
+class CatalogList extends React.PureComponent<Props> {
   getDefaultStyles = () => {
     const { catalog } = this.props
     return catalog.map((item: Item) => ({

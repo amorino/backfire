@@ -1,7 +1,7 @@
 // @flow
 import styled, { css } from 'styled-components'
 import { colors } from '../../../styles'
-import { Button } from '../../../components/Button'
+import { Button } from '../../../components/styled/Button'
 
 const barWidth = 27
 const barHeight = 2

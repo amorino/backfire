@@ -14,7 +14,7 @@ type Props = {
     ease: string,
 }
 
-class Img extends React.Component<Props, State> {
+class Img extends React.PureComponent<Props, State> {
   static defaultProps = {
     speed: 1,
     style: {},

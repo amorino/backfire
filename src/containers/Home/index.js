@@ -5,7 +5,7 @@ import { H1, P } from '../../components/Typography'
 import { RouterWrapper } from '../App/styled'
 
 
-class Home extends React.Component<void> {
+class Home extends React.PureComponent<void> {
   render() {
     return (
       <RouterWrapper background="papayawhip">

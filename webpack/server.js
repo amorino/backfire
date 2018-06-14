@@ -14,7 +14,7 @@ import { log } from './utils/log'
 const app = express()
 const compiler = webpack(config)
 const PORT = 3000
-const IP_ADRESS = 'localhost'
+const IP_ADRESS = '127.0.0.1'
 
 app.use(historyApi({ verbose: false }))
 

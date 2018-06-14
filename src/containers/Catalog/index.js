@@ -5,7 +5,7 @@ import List from './components/List'
 import FilterLink from './components/Link'
 import { RouterWrapper } from '../App/styled'
 
-class Catalog extends React.Component<void> {
+class Catalog extends React.PureComponent<void> {
   render() {
     return (
       <RouterWrapper>

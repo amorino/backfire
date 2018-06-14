@@ -13,7 +13,7 @@ type Props = {
   item: Item,
 }
 
-class Detail extends React.Component<Props> {
+class Detail extends React.PureComponent<Props> {
   render() {
     const { fetching, item } = this.props
     return (

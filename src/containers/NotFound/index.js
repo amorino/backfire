@@ -5,7 +5,7 @@ import { H1 } from '../../components/Typography'
 import { RouterWrapper } from '../App/styled'
 
 
-class NotFound extends React.Component<void> {
+class NotFound extends React.PureComponent<void> {
   render() {
     return (
       <RouterWrapper>

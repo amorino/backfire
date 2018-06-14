@@ -79,7 +79,10 @@
     "babel-polyfill": "^6.5.0",
     "gsap": "^2.0.1",
     "history": "^4.6.1",
-    "lodash": "^4.16.6",
+    "lodash": "^4.17.10",
+    "mobx": "^5.0.2",
+    "mobx-react": "^5.2.3",
+    "mobx-react-router": "^4.0.4",
     "polished": "^1.9.0",
     "preloader": "^4.0.1",
     "prop-types": "^15.6.1",
@@ -100,7 +103,7 @@
     "sanitize.css": "^5.0.0",
     "styled-components": "^3.0.1",
     "styled-system": "^2.2.9",
-    "superagent": "^3.3.1",
+    "superagent": "^3.8.3",
     "webpack": "^4.2.0"
   }
 }

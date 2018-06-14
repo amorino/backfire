@@ -12,7 +12,7 @@ type Props = {
     push: (route: string) => void,
 };
 
-export default class MenuMobile extends React.Component<Props, State> {
+export default class MenuMobile extends React.PureComponent<Props, State> {
   state = {
     opened: false,
   }

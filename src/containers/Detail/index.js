@@ -8,7 +8,7 @@ type Props = {
   id: string
 }
 
-class Detail extends React.Component<Props> {
+class Detail extends React.PureComponent<Props> {
   render() {
     const { id } = this.props
     return (

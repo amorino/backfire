@@ -21,10 +21,6 @@ import Detail from '../Detail'
 import NotFound from '../NotFound'
 import type { Size, Route as RouteType } from './types'
 
-type State = {
-    duration: number,
-}
-
 type Props = {
     location: Object,
     dispatchResize: (size: Size) => void,
@@ -32,11 +28,7 @@ type Props = {
     dipatchPush: (route: string) => void,
 }
 
-class App extends React.Component<Props, State> {
-  state = {
-    duration: 1,
-  }
-
+class App extends React.PureComponent<Props> {
   componentDidMount() {
     const { dispatchGetAllItems } = this.props
     window.addEventListener('resize', this.handleResize)
@@ -47,7 +39,9 @@ class App extends React.Component<Props, State> {
     window.removeEventListener('resize', this.handleResize)
   }
 
-  enterNode: ?HTMLElement;
+  enterNode: ?HTMLElement
+  isAppearing: Boolean = false
+  duration: Number = 1
 
   handleResize = () => {
     const { dispatchResize } = this.props
@@ -56,7 +50,6 @@ class App extends React.Component<Props, State> {
 
   render() {
     const { location, dipatchPush } = this.props
-    const { duration } = this.state
     return (
       <AppRoot fontSize={[0, 1, 2]}>
         <MediaQuery minWidth={sizes.mobile}>
@@ -76,11 +69,13 @@ class App extends React.Component<Props, State> {
         <TransitionGroup component={AppWrapper}>
           <Transition
             key={location.pathname}
+            appear
             mountOnEnter
             unmountOnExit
             addEndListener={(node, done) => {
               TweenMax.killTweensOf(node)
-              if (node === this.enterNode) {
+              const { duration, isAppearing, enterNode } = this
+              if (node === enterNode) {
                 TweenMax.set(node, {
                   width: '100%',
                 })
@@ -90,7 +85,7 @@ class App extends React.Component<Props, State> {
                 }, {
                   autoAlpha: 1,
                   // x: 0,
-                  delay: duration,
+                  delay: isAppearing ? 0 : duration,
                   onComplete: () => {
                     TweenMax.set(node, { clearProps: 'position, width, height' })
                     done()
@@ -104,8 +99,9 @@ class App extends React.Component<Props, State> {
                 })
               }
             }}
-            onEnter={(node) => {
+            onEnter={(node: HTMLElement, isAppearing: Boolean) => {
               this.enterNode = node
+              this.isAppearing = isAppearing
             }}
           >
             <Switch location={location}>
