@@ -79,7 +79,7 @@
     "babel-polyfill": "^6.5.0",
     "gsap": "^3.6.0",
     "history": "^4.6.1",
-    "lodash": "^4.17.10",
+    "lodash": "^4.17.19",
     "mobx": "^5.0.2",
     "mobx-react": "^5.2.3",
     "mobx-react-router": "^4.0.4",
