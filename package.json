@@ -77,7 +77,7 @@
     "babel-core": "^6.26.0",
     "babel-eslint": "^8.2.2",
     "babel-polyfill": "^6.5.0",
-    "gsap": "^2.0.1",
+    "gsap": "^3.6.0",
     "history": "^4.6.1",
     "lodash": "^4.17.10",
     "mobx": "^5.0.2",
